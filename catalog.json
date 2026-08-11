@@ -1,0 +1,32 @@
+[
+  {
+    "id": "marinmagic",
+    "name": "MarinMagic",
+    "type": "app",
+    "url": "https://marincountygov.github.io/marinmagic/",
+    "description": "Convert spreadsheet data into CMS-ready structured rich text.",
+    "audience": "staff",
+    "status": "active",
+    "owner": "County of Marin"
+  },
+  {
+    "id": "marinwaymaker",
+    "name": "Marin WayMaker",
+    "type": "app",
+    "url": "https://marincountygov.github.io/marinwaymaker/",
+    "description": "Create clear decision guides and publish them as interactive web forms.",
+    "audience": "staff",
+    "status": "active",
+    "owner": "County of Marin"
+  },
+  {
+    "id": "marindocs",
+    "name": "MarinDocs",
+    "type": "docs",
+    "url": "https://marincountygov.github.io/marindocs/",
+    "description": "Browse County operational documentation and standard operating procedures.",
+    "audience": "staff",
+    "status": "active",
+    "owner": "County of Marin"
+  }
+]
