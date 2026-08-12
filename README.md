@@ -10,7 +10,7 @@ The HTML directory remains fully usable without JavaScript. When adding or chang
 
 ## Brand bundle
 
-The installed MarinOS bundle version is recorded in `BRAND_VERSION`. Update `shared/` and `vendor/` from the matching `marinappsbrand` release as a unit.
+The installed MarinOS bundle version is recorded in `BRAND_VERSION`. Update `shared/` and `vendor/` from the matching `marin-ui` release as a unit.
 
 ## Hosting assumption
 
