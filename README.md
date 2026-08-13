@@ -6,7 +6,7 @@ MarinOS is the directory for apps and documentation built by County of Marin tea
 
 `catalog.json` is the machine-readable directory contract. Every entry requires a stable ID, name, `app` or `docs` type, URL, task-focused description, audience, lifecycle status, and owner.
 
-The HTML directory remains fully usable without JavaScript. When adding or changing an entry, update both `catalog.json` and the corresponding card in `index.html` in the same pull request.
+The HTML directory remains fully usable without JavaScript. When adding or changing an entry, update both `catalog.json` and the corresponding card in `index.html` in the same pull request. A GitHub Actions check (`scripts/check-catalog-sync.js`) fails the PR if the two disagree — run `node scripts/check-catalog-sync.js` locally to check before pushing.
 
 ## Brand bundle
 
