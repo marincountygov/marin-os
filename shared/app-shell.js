@@ -299,4 +299,137 @@
       }
     });
   });
+
+  // Tab sections: elements sharing a data-tab-section="name" show together,
+  // hidden unless "name" matches the current hash — everything else in the
+  // group stays hidden, so a page reads as one section at a time (Help shows
+  // only Help, Updates shows only Updates) instead of stacking under
+  // whatever's already showing. An unrecognized or empty hash falls back to
+  // the first name encountered in the page, so there's no need for an
+  // explicit "Home" tab pointing at the default. Pairs automatically with
+  // any #app-nav whose links use matching #name hashes — no per-page
+  // JavaScript needed.
+  const tabSections = document.querySelectorAll("[data-tab-section]");
+  if (tabSections.length) {
+    const tabNames = [];
+    tabSections.forEach((section) => {
+      const name = section.dataset.tabSection;
+      if (!tabNames.includes(name)) tabNames.push(name);
+    });
+    const tabNav = document.querySelector("#app-nav");
+
+    function showTabFromHash() {
+      const hash = window.location.hash.slice(1);
+      const activeName = tabNames.includes(hash) ? hash : tabNames[0];
+      tabSections.forEach((section) => {
+        section.hidden = section.dataset.tabSection !== activeName;
+      });
+      if (tabNav) {
+        tabNav.querySelectorAll('a[href^="#"]').forEach((link) => {
+          if (link.getAttribute("href") === `#${activeName}`) link.setAttribute("aria-current", "page");
+          else link.removeAttribute("aria-current");
+        });
+      }
+    }
+
+    showTabFromHash();
+    window.addEventListener("hashchange", showTabFromHash);
+  }
+
+  // Updates: any [data-updates-repo="repo"] section lazy-loads that repo's
+  // 10 most recent commits from the GitHub API the first time it becomes
+  // visible, and renders them into its own [data-updates-list]. Visibility
+  // is detected by watching the section's `hidden` attribute, so it works
+  // with whatever tab/hash-routing a page already has (or none, if the
+  // section is never hidden) — no per-page JavaScript needed. A bare repo
+  // name is assumed to be marincountygov/<repo>; pass "owner/repo" to
+  // override. Add [data-app-name="App Name"] on the same section so the
+  // status line reads "App Name release notes." once loaded, instead of the
+  // generic "Latest commits loaded." — the single description the section
+  // needs, not a separate static line plus a loading message.
+  document.querySelectorAll("[data-updates-repo]").forEach((section) => {
+    const repo = section.dataset.updatesRepo;
+    const appName = section.dataset.appName;
+    const loadedText = appName ? `${appName} release notes.` : "Latest commits loaded.";
+    const status = section.querySelector("[data-updates-status]");
+    const list = section.querySelector("[data-updates-list]");
+    if (!repo || !list) return;
+
+    const owner = repo.includes("/") ? repo : `marincountygov/${repo}`;
+    let loaded = false;
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+
+    async function loadUpdates() {
+      if (loaded) return;
+      if (status) status.textContent = "Loading latest commits...";
+      list.innerHTML = "";
+      try {
+        // Fetch more than we display: merge-PR commits are filtered out
+        // below (they're noise, not a real change), so 15 fetched usually
+        // leaves close to 10 real ones to show.
+        const response = await fetch(`https://api.github.com/repos/${owner}/commits?per_page=15`, {
+          headers: { Accept: "application/vnd.github+json" },
+        });
+        if (!response.ok) throw new Error(`GitHub API error: ${response.status}`);
+        const commits = (await response.json()).filter(
+          (commit) => !/^Merge pull request #\d+/.test(String(commit?.commit?.message ?? ""))
+        );
+        if (!Array.isArray(commits) || !commits.length) {
+          if (status) status.textContent = "No recent commits found.";
+          return;
+        }
+        loaded = true;
+        if (status) status.textContent = loadedText;
+        list.innerHTML = commits
+          .slice(0, 10)
+          .map((commit) => {
+            const message = String(commit?.commit?.message ?? "").trim();
+            const title = message.split("\n")[0] || "Untitled commit";
+            const bodyLines = message
+              .split("\n")
+              .slice(1)
+              .map((line) => line.trim().replace(/^[-*]\s*/, ""))
+              .filter(Boolean);
+            const date = commit?.commit?.committer?.date
+              ? new Date(commit.commit.committer.date).toLocaleString([], {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                  hour: "numeric",
+                  minute: "2-digit",
+                })
+              : "Date unavailable";
+            const url = commit?.html_url || `https://github.com/${owner}/commits`;
+            const body =
+              bodyLines.length > 1
+                ? `<ul>${bodyLines.map((line) => `<li>${escapeHtml(line)}</li>`).join("")}</ul>`
+                : bodyLines.length === 1
+                  ? `<p>${escapeHtml(bodyLines[0])}</p>`
+                  : "";
+            return (
+              `<article class="app-card"><h3><a href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${escapeHtml(title)}</a></h3>` +
+              `<p class="app-help-text">${escapeHtml(date)}</p>` +
+              body +
+              `</article>`
+            );
+          })
+          .join("");
+      } catch (error) {
+        console.error(error);
+        if (status) status.textContent = "Could not load updates right now.";
+      }
+    }
+
+    if (!section.hidden) loadUpdates();
+
+    new MutationObserver(() => {
+      if (!section.hidden) loadUpdates();
+    }).observe(section, { attributes: true, attributeFilter: ["hidden"] });
+  });
 })();
