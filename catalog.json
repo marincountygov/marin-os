@@ -7,7 +7,11 @@
     "description": "Convert spreadsheet data into CMS-ready structured rich text.",
     "audience": "staff",
     "status": "active",
-    "owner": "County of Marin"
+    "owner": "County of Marin",
+    "icon": {
+      "viewBox": "0 0 48 48",
+      "markup": "<path d=\"m24 5 2.8 9.2L36 17l-9.2 2.8L24 29l-2.8-9.2L12 17l9.2-2.8zM37 28l1.6 5.4L44 35l-5.4 1.6L37 42l-1.6-5.4L30 35l5.4-1.6zM11 28l1.2 3.8L16 33l-3.8 1.2L11 38l-1.2-3.8L6 33l3.8-1.2z\"/>"
+    }
   },
   {
     "id": "marinwaymaker",
@@ -17,7 +21,11 @@
     "description": "Create clear decision guides and publish them as interactive web forms.",
     "audience": "staff",
     "status": "active",
-    "owner": "County of Marin"
+    "owner": "County of Marin",
+    "icon": {
+      "viewBox": "0 0 48 48",
+      "markup": "<circle cx=\"11\" cy=\"12\" r=\"4\"/><circle cx=\"37\" cy=\"12\" r=\"4\"/><circle cx=\"24\" cy=\"37\" r=\"4\"/><path d=\"M15 12h18M35 16 26 33M13 16l9 17\"/>"
+    }
   },
   {
     "id": "marindocs",
@@ -27,6 +35,10 @@
     "description": "Browse County operational documentation and standard operating procedures.",
     "audience": "staff",
     "status": "active",
-    "owner": "County of Marin"
+    "owner": "County of Marin",
+    "icon": {
+      "viewBox": "0 0 48 48",
+      "markup": "<path d=\"M13 6h17l8 8v28H13z\"/><path d=\"M30 6v9h8M19 24h13M19 31h13\"/>"
+    }
   }
 ]
