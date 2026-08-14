@@ -1,9 +1,9 @@
 [
   {
-    "id": "marinmagic",
+    "id": "marin-magic",
     "name": "MarinMagic",
     "type": "app",
-    "url": "https://marincountygov.github.io/marinmagic/",
+    "url": "https://marincountygov.github.io/marin-magic/",
     "description": "Convert spreadsheet data into CMS-ready structured rich text.",
     "audience": "staff",
     "status": "active",
@@ -14,10 +14,10 @@
     }
   },
   {
-    "id": "marinwaymaker",
+    "id": "marin-waymaker",
     "name": "Marin WayMaker",
     "type": "app",
-    "url": "https://marincountygov.github.io/marinwaymaker/",
+    "url": "https://marincountygov.github.io/marin-waymaker/",
     "description": "Create clear decision guides and publish them as interactive web forms.",
     "audience": "staff",
     "status": "active",
@@ -28,10 +28,10 @@
     }
   },
   {
-    "id": "marindocs",
+    "id": "marin-docs",
     "name": "MarinDocs",
     "type": "docs",
-    "url": "https://marincountygov.github.io/marindocs/",
+    "url": "https://marincountygov.github.io/marin-docs/",
     "description": "Browse County operational documentation and standard operating procedures.",
     "audience": "staff",
     "status": "active",

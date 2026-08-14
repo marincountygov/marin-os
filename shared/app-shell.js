@@ -77,7 +77,7 @@
   // visit doesn't refetch the catalog on every page load.
   const marinosMenuPanel = document.querySelector("#marinos-menu-panel");
   if (marinosMenuPanel) {
-    const CATALOG_URL = "https://marincountygov.github.io/marinos/catalog.json";
+    const CATALOG_URL = "https://marincountygov.github.io/marin-os/catalog.json";
     // Bump this whenever the expected catalog shape or rendering changes
     // (for example, adding the `icon` field) so browsers holding an older
     // cached shape refetch immediately instead of waiting out the TTL.

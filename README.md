@@ -24,7 +24,7 @@ The installed MarinOS bundle version is recorded in `BRAND_VERSION`. Update `sha
 
 ## Hosting assumption
 
-Links use conventional GitHub Pages project URLs under `marincountygov.github.io`. Confirmed live (`curl -I https://marincountygov.github.io/marinos/catalog.json` returns 200 with `access-control-allow-origin: *`), so consumer apps can `fetch()` `catalog.json` cross-origin without restriction.
+Links use conventional GitHub Pages project URLs under `marincountygov.github.io`. Confirmed live (`curl -I https://marincountygov.github.io/marin-os/catalog.json` returns 200 with `access-control-allow-origin: *`), so consumer apps can `fetch()` `catalog.json` cross-origin without restriction.
 
 ## Testing with WAVE
 
