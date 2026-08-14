@@ -405,6 +405,11 @@ input[type="radio"] {
   gap: 1rem;
 }
 
+a.app-title-row {
+  color: inherit;
+  text-decoration: none;
+}
+
 .app-icon,
 .app-card__icon {
   display: inline-flex;
@@ -949,6 +954,10 @@ th[aria-sort="descending"] .sort-button::after {
   gap: 0.75rem;
   align-items: center;
   justify-content: flex-start;
+}
+
+.header-inner > .app-nav {
+  margin-left: auto;
 }
 
 .docs-brand-icon {
