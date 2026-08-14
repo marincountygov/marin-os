@@ -1298,6 +1298,67 @@ th[aria-sort="descending"] .sort-button::after {
   }
 }
 
+.app-inspector-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  justify-items: end;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.app-inspector-overlay[hidden] {
+  display: none;
+}
+
+.app-inspector-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.app-inspector-panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 42rem);
+  height: 100%;
+  overflow: auto;
+  padding: 1rem;
+  border-left: 1px solid var(--app-border);
+  background: var(--app-surface);
+  color: var(--app-text);
+  box-shadow: -1rem 0 2rem rgba(0, 0, 0, 0.22);
+}
+
+.app-inspector-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding-bottom: 0.75rem;
+  background: var(--app-surface);
+  border-bottom: 1px solid var(--app-border);
+}
+
+@media (max-width: 850px) {
+  .app-inspector-overlay {
+    align-items: end;
+  }
+
+  .app-inspector-panel {
+    width: 100%;
+    height: min(92vh, 56rem);
+    border-left: 0;
+    border-top: 1px solid var(--app-border);
+    border-radius: var(--pico-border-radius) var(--pico-border-radius) 0 0;
+  }
+}
+
 @media print {
   .skip-link,
   .marinos-banner,
@@ -1309,7 +1370,8 @@ th[aria-sort="descending"] .sort-button::after {
   .toc,
   .site-footer,
   .doc-actions,
-  .topic-filters {
+  .topic-filters,
+  .app-inspector-overlay {
     display: none !important;
   }
 
