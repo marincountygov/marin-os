@@ -14,10 +14,10 @@
     }
   },
   {
-    "id": "marin-waymaker",
-    "name": "Marin WayMaker",
+    "id": "marin-decision-maker",
+    "name": "Marin Decision Maker",
     "type": "app",
-    "url": "https://marincountygov.github.io/marin-waymaker/",
+    "url": "https://marincountygov.github.io/marin-decision-maker/",
     "description": "Create clear decision guides and publish them as interactive web forms.",
     "audience": "staff",
     "status": "active",
@@ -39,6 +39,20 @@
     "icon": {
       "viewBox": "0 0 48 48",
       "markup": "<path d=\"M13 6h17l8 8v28H13z\"/><path d=\"M30 6v9h8M19 24h13M19 31h13\"/>"
+    }
+  },
+  {
+    "id": "marin-pdf",
+    "name": "Should This Be a PDF?",
+    "type": "app",
+    "url": "https://marincountygov.github.io/marin-pdf/",
+    "description": "Check whether a PDF is the right format before you build one.",
+    "audience": "staff",
+    "status": "active",
+    "owner": "County of Marin",
+    "icon": {
+      "viewBox": "0 0 48 48",
+      "markup": "<path d=\"M13 6h17l8 8v28H13z\"/><path d=\"M30 6v9h8\"/><path d=\"M17 25l5 6 10-14\"/>"
     }
   }
 ]
