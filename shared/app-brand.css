@@ -26,7 +26,7 @@
   --app-focus: #0777cf;
   --app-danger-text: #7f2d20;
   --app-table-row-hover: #e6f2fb;
-  --app-max-width: 1120px;
+  --app-max-width: 1280px;
   --docs-max-width: 1180px;
 
   --app-brand: var(--marin-black);
@@ -488,8 +488,13 @@ a.app-title-row {
 }
 
 .app-main {
+  max-width: var(--app-max-width);
+  margin-left: auto;
+  margin-right: auto;
   padding-top: 2rem;
+  padding-right: 1rem;
   padding-bottom: 3rem;
+  padding-left: 1rem;
 }
 
 .app-page-heading {
@@ -773,7 +778,6 @@ th[aria-sort="descending"] .sort-button::after {
   background: var(--app-surface);
   color: var(--app-text);
   box-shadow: 0 6px 18px rgba(16, 24, 40, 0.14);
-  font-weight: 700;
   text-decoration: none;
 }
 
@@ -935,9 +939,6 @@ th[aria-sort="descending"] .sort-button::after {
 */
 
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
   border-bottom: 1px solid var(--app-border);
   background: var(--app-surface);
 }
@@ -1117,7 +1118,7 @@ th[aria-sort="descending"] .sort-button::after {
 
 .toc {
   position: sticky;
-  top: 5.5rem;
+  top: 1rem;
   align-self: start;
   padding-left: 1rem;
   border-left: 2px solid var(--app-border);
