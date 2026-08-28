@@ -26,5 +26,19 @@
       "viewBox": "0 0 48 48",
       "markup": "<path d=\"M13 6h17l8 8v28H13z\"/><path d=\"M30 6v9h8M19 24h13M19 31h13\"/>"
     }
+  },
+  {
+    "id": "marin-engagement-level",
+    "name": "What level of engagement do I need?",
+    "type": "app",
+    "url": "https://marincountygov.github.io/marin-engagement-level/",
+    "description": "Find the right level of public engagement for your project, from the Public Engagement Plan.",
+    "audience": "staff",
+    "status": "prototype",
+    "owner": "County of Marin",
+    "icon": {
+      "viewBox": "0 0 48 48",
+      "markup": "<path d=\"M24 8v14\"/><path d=\"M24 22 12 40\"/><path d=\"M24 22l12 18\"/>"
+    }
   }
 ]
