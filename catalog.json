@@ -40,5 +40,47 @@
       "viewBox": "0 0 48 48",
       "markup": "<path d=\"M24 8v14\"/><path d=\"M24 22 12 40\"/><path d=\"M24 22l12 18\"/>"
     }
+  },
+  {
+    "id": "marin-anonymizer",
+    "name": "Marin Anonymizer",
+    "type": "app",
+    "url": "https://marincountygov.github.io/marin-anonymizer/",
+    "description": "Anonymize CSV, JSON, and Excel files locally in your browser.",
+    "audience": "staff",
+    "status": "active",
+    "owner": "County of Marin",
+    "icon": {
+      "viewBox": "0 0 24 24",
+      "markup": "<path d=\"M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3z\"/><circle cx=\"12\" cy=\"9\" r=\"2.5\"/><path d=\"M7.8 18.4c.8-3 2.2-4.4 4.2-4.4s3.4 1.4 4.2 4.4\"/>"
+    }
+  },
+  {
+    "id": "marin-zipper",
+    "name": "Marin Zipper",
+    "type": "app",
+    "url": "https://marincountygov.github.io/marin-zipper/",
+    "description": "Compress and encrypt files locally in your browser.",
+    "audience": "staff",
+    "status": "active",
+    "owner": "County of Marin",
+    "icon": {
+      "viewBox": "0 0 24 24",
+      "markup": "<g stroke-width=\"1\"><path d=\"M13.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v11.5\"/><path d=\"M14 2v5a1 1 0 0 0 1 1h5\"/><path d=\"M8 12v-1\"/><path d=\"M8 18v-2\"/><path d=\"M8 7V6\"/><circle cx=\"8\" cy=\"20\" r=\"2\"/></g>"
+    }
+  },
+  {
+    "id": "marin-unzipper",
+    "name": "Marin Unzipper",
+    "type": "app",
+    "url": "https://marincountygov.github.io/marin-unzipper/",
+    "description": "Decrypt and decompress ZIP files locally in your browser.",
+    "audience": "staff",
+    "status": "active",
+    "owner": "County of Marin",
+    "icon": {
+      "viewBox": "0 0 24 24",
+      "markup": "<path d=\"M12 22v-9\"/><path d=\"M15.17 2.21a1.67 1.67 0 0 1 1.63 0L21 4.57a1.93 1.93 0 0 1 0 3.36L8.82 14.79a1.655 1.655 0 0 1-1.64 0L3 12.43a1.93 1.93 0 0 1 0-3.36z\"/><path d=\"M20 13v3.87a2.06 2.06 0 0 1-1.11 1.83l-6 3.08a1.93 1.93 0 0 1-1.78 0l-6-3.08A2.06 2.06 0 0 1 4 16.87V13\"/><path d=\"M21 12.43a1.93 1.93 0 0 0 0-3.36L8.83 2.2a1.64 1.64 0 0 0-1.63 0L3 4.57a1.93 1.93 0 0 0 0 3.36l12.18 6.86a1.636 1.636 0 0 0 1.63 0z\"/>"
+    }
   }
 ]
