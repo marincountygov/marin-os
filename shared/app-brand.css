@@ -1,9 +1,17 @@
-/* MarinOS brand bundle v1.1.0 */
+/* MarinOS brand bundle v1.16.0 */
 @font-face {
   font-family: "Jost";
   src: url("../vendor/fonts/Jost-wght.ttf") format("truetype");
   font-style: normal;
   font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../vendor/fonts/open-sans/OpenSans-VariableFont_wdth,wght.woff2") format("woff2-variations");
+  font-style: normal;
+  font-weight: 300 800;
   font-display: swap;
 }
 
@@ -45,7 +53,12 @@
     "Segoe UI",
     sans-serif;
 
-  --pico-font-family-sans-serif:
+  /* Body/UI typeface per marin-digital-standards/brand/typography.md —
+     Open Sans is required for paragraphs, form controls, buttons, labels,
+     tables, and other routine interface copy; Verdana stays as a named
+     fallback per that same standard. */
+  --app-font-body:
+    "Open Sans",
     Arial,
     Verdana,
     system-ui,
@@ -53,6 +66,8 @@
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
+
+  --pico-font-family-sans-serif: var(--app-font-body);
 
   --pico-primary: var(--marin-blue);
   --pico-primary-hover: #005ea8;
