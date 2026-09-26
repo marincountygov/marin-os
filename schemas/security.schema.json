@@ -1,0 +1,295 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/marincountygov/marin-os/main/schemas/security.schema.json",
+  "title": "MarinOS application security.json",
+  "description": "Schema for a deployed MarinOS application's security.json. Identity fields (app id, name, repo, owner) live in the app's own marin.yml, not here — see marin-os/security/README.md for why. Standard language and profile definitions live in marin-digital-standards/security/.",
+  "type": "object",
+  "required": ["schema", "profile", "review"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Instance documents reference this schema file (e.g. './schemas/security.schema.json' or the raw GitHub URL) so editors can validate/autocomplete against it."
+    },
+    "$comment": {
+      "type": "string",
+      "description": "Free-text documentation for whoever reads this file next (e.g. why a profile default was overridden). Not read by any generator/validator logic."
+    },
+    "schema": {
+      "type": "integer",
+      "description": "Standard version this file conforms to, matching marin.yml's plain-integer schema field convention.",
+      "minimum": 1
+    },
+    "profile": {
+      "type": "string",
+      "description": "See marin-digital-standards/security/profiles.md for what each profile requires.",
+      "enum": ["public-web", "public-api", "authenticated", "internal", "custom"]
+    },
+    "securityTxt": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "contact": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "One or more contact URIs (mailto:, https:), per the security.txt spec."
+        },
+        "policy": { "type": "string", "format": "uri" },
+        "canonicalUrl": { "type": "string", "format": "uri" },
+        "preferredLanguages": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "expires": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Required by the security.txt spec. generate-security-txt.js should refuse to emit an already-expired file."
+        }
+      }
+    },
+    "transport": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "httpsRequired": { "type": "boolean" },
+        "httpRedirect": { "type": "boolean" },
+        "hsts": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["enabled", "inherited-from-platform", "not-achievable", "planned"],
+              "description": "'inherited-from-platform' is the expected value for a github.io deployment — HSTS is very likely already in effect via github.io's HSTS preload status, not something the app configures itself. Confirm rather than assume; see standard.md."
+            },
+            "maxAge": { "type": "integer" },
+            "includeSubdomains": { "type": "boolean" },
+            "preload": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "headers": {
+      "type": "object",
+      "description": "Controls that require a real HTTP response header. On GitHub Pages, these are not achievable by the application itself — see standard.md, 'What GitHub Pages can and can't do.' Use status 'not-achievable' rather than omitting the field or falsely marking it 'enabled'.",
+      "additionalProperties": false,
+      "properties": {
+        "contentTypeOptions": { "$ref": "#/$defs/headerControl" },
+        "referrerPolicy": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["enabled-via-meta", "not-set", "not-achievable"]
+            },
+            "value": { "type": "string" }
+          }
+        },
+        "permissionsPolicy": { "$ref": "#/$defs/headerControl" },
+        "frameProtection": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["enabled", "not-achievable", "not-applicable", "planned"],
+              "description": "Clickjacking protection. Not achievable via meta-delivered CSP (frame-ancestors is ignored when CSP arrives via <meta>) and not achievable via X-Frame-Options on GitHub Pages. A known, standing gap on the current hosting stack unless a documented exception says otherwise. Use 'not-applicable' (not 'not-achievable') when there's no rendered page to clickjack in the first place, e.g. a pure data API."
+            },
+            "notes": { "type": "string" }
+          }
+        }
+      }
+    },
+    "csp": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "deliveryMechanism": {
+          "type": "string",
+          "enum": ["meta", "header"],
+          "description": "'header' is not currently possible on GitHub Pages; record 'meta' honestly rather than aspirationally."
+        },
+        "directives": {
+          "type": "object",
+          "description": "Directive name to list of sources. Baseline + app-specific additions combine per standard.md — this field holds the app's effective policy, not just its additions.",
+          "additionalProperties": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "properties": {
+            "default-src": { "type": "array", "items": { "type": "string" } },
+            "script-src": { "type": "array", "items": { "type": "string" } },
+            "style-src": { "type": "array", "items": { "type": "string" } },
+            "img-src": { "type": "array", "items": { "type": "string" } },
+            "font-src": { "type": "array", "items": { "type": "string" } },
+            "connect-src": { "type": "array", "items": { "type": "string" } },
+            "object-src": { "type": "array", "items": { "type": "string" } },
+            "base-uri": { "type": "array", "items": { "type": "string" } },
+            "form-action": { "type": "array", "items": { "type": "string" } },
+            "frame-ancestors": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Ignored by browsers when CSP is delivered via <meta> (deliveryMechanism: meta). Recording it here is documentation of intent, not a claim that it's enforced."
+            },
+            "frame-src": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "authentication": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "required": { "type": "boolean" },
+        "provider": { "type": "string" },
+        "notes": {
+          "type": "string",
+          "description": "Plain-language context only. Never provider secrets, client IDs, or endpoint configuration here."
+        }
+      }
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "required": { "type": "boolean" },
+        "serverSideEnforced": {
+          "type": "boolean",
+          "description": "false is the honest answer for a purely static, client-side MarinOS app — there is no server in the request path to enforce anything. See standard.md."
+        },
+        "leastPrivilege": { "type": "boolean" }
+      }
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "collectsUserData": { "type": "boolean" },
+        "collectsSensitiveData": { "type": "boolean" },
+        "storesPersonalInformation": { "type": "boolean" },
+        "acceptsUserSubmittedContent": { "type": "boolean" },
+        "externalDataSources": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lockfileRequired": { "type": "boolean" },
+        "runtimeCdnPolicy": {
+          "type": "string",
+          "description": "Expected value references marin-digital-standards/product-design/runtime-dependencies.md rather than restating it.",
+          "const": "see marin-digital-standards/product-design/runtime-dependencies.md"
+        },
+        "thirdPartyDependencyReview": { "type": "boolean" },
+        "dependencyScanning": { "$ref": "#/$defs/githubNativeControl" }
+      }
+    },
+    "secrets": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "clientSideSecretsProhibited": { "type": "boolean", "const": true },
+        "committedSecretsProhibited": { "type": "boolean", "const": true },
+        "repositoryScanning": { "$ref": "#/$defs/githubNativeControl" }
+      }
+    },
+    "externalResources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["origin", "purpose", "type"],
+        "additionalProperties": false,
+        "properties": {
+          "origin": { "type": "string" },
+          "purpose": { "type": "string" },
+          "type": { "type": "string" }
+        }
+      }
+    },
+    "monitoring": {
+      "type": "object",
+      "description": "Records GitHub Advanced Security org-level status. Does not duplicate it with app-level scanning tooling.",
+      "additionalProperties": false,
+      "properties": {
+        "secretScanning": { "$ref": "#/$defs/githubNativeControl" },
+        "pushProtection": { "$ref": "#/$defs/githubNativeControl" },
+        "dependabotSecurityUpdates": { "$ref": "#/$defs/githubNativeControl" }
+      }
+    },
+    "exceptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["control", "reason", "riskDescription", "owner", "expires"],
+        "additionalProperties": false,
+        "properties": {
+          "control": { "type": "string" },
+          "reason": { "type": "string" },
+          "riskDescription": { "type": "string" },
+          "owner": { "type": "string" },
+          "approvedBy": { "type": "string" },
+          "expires": { "type": "string", "format": "date" }
+        }
+      }
+    },
+    "publicSecurity": {
+      "type": "object",
+      "description": "The only part of this file a public #security section may render. Never generate #security from the full document.",
+      "additionalProperties": false,
+      "properties": {
+        "profile": { "type": "string" },
+        "lastReviewed": { "type": "string", "format": "date" },
+        "controls": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "High-level control names only (e.g. 'HTTPS', 'Content Security Policy') — never directive-level CSP detail or anything from headers/csp/exceptions verbatim."
+        },
+        "data": {
+          "type": "object",
+          "description": "Factual, public-safe subset of the data{} block above."
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": ["lastReviewed"],
+      "additionalProperties": false,
+      "properties": {
+        "lastReviewed": { "type": "string", "format": "date" },
+        "owner": { "type": "string" }
+      }
+    }
+  },
+  "$defs": {
+    "headerControl": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["enabled", "not-achievable", "not-applicable", "planned"]
+        },
+        "notes": { "type": "string" }
+      }
+    },
+    "githubNativeControl": {
+      "type": "object",
+      "description": "Records GitHub's own org-level Advanced Security status rather than a custom implementation.",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["enabled", "disabled", "not-available"]
+        },
+        "provider": { "type": "string", "const": "github-advanced-security" },
+        "lastChecked": { "type": "string", "format": "date" }
+      }
+    }
+  }
+}

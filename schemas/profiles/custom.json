@@ -1,0 +1,4 @@
+{
+  "$comment": "The 'custom' profile deliberately carries no technical defaults. It exists for an application that doesn't fit public-web/public-api/authenticated/internal without distortion — every field it needs still comes from the full schema, and every deviation from what the closest-fitting standard profile would have required must be recorded in this file's 'exceptions' array (control, reason, riskDescription, owner, expires), per standard.md. Do not use 'custom' as a way to skip writing exceptions.",
+  "profile": "custom"
+}
