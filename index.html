@@ -76,10 +76,9 @@
         </ul>
 
         <h3>Applications</h3>
-        <!-- Rendered by assets/app.js from security/inventory.json (generate with
-             scripts/generate-security-inventory.js) — not hand-maintained, unlike the
-             directory cards above, since review status/dates change independently of
-             catalog.json and would silently drift if kept in sync by hand. -->
+        <!-- Rendered live by assets/app.js: catalog.json lists the apps, then each app's own
+             security.json is read from its Pages site. Not hand-maintained and not generated
+             into a file, since review status and dates change independently of catalog.json. -->
         <p data-inventory-status class="app-help-text" role="status" aria-live="polite" aria-atomic="true">Loading application security inventory&hellip;</p>
         <table data-inventory-table hidden>
           <thead><tr><th>Application</th><th>Profile</th><th>Last reviewed</th><th>Security</th></tr></thead>
@@ -87,7 +86,7 @@
         </table>
 
         <h3>Report an issue</h3>
-        <p>See <a href="/.well-known/security.txt">security.txt</a> for contact details.</p>
+        <p>See <a href=".well-known/security.txt">security.txt</a> for contact details.</p>
 
         <h3>For developers</h3>
         <ul>
@@ -99,7 +98,7 @@
 
         <h3>Technical information</h3>
         <ul>
-          <li><a href="/.well-known/security.txt">security.txt</a></li>
+          <li><a href=".well-known/security.txt">security.txt</a></li>
         </ul>
       </section>
     </main>
