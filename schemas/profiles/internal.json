@@ -1,0 +1,48 @@
+{
+  "$comment": "Default field values for the 'internal' security profile. See marin-digital-standards/security/profiles.md for the prose explanation. A new app's security.json starts from the matching profile file here, then fills in app-specific fields (data, authentication, exceptions, review, publicSecurity) — this file only carries what's true by default for every app choosing this profile.",
+  "profile": "internal",
+  "securityTxt": {
+    "enabled": true,
+    "preferredLanguages": ["en"]
+  },
+  "transport": {
+    "httpsRequired": true,
+    "httpRedirect": true,
+    "hsts": { "status": "inherited-from-platform" }
+  },
+  "headers": {
+    "contentTypeOptions": { "status": "not-achievable", "notes": "GitHub Pages does not serve custom HTTP response headers." },
+    "referrerPolicy": { "status": "enabled-via-meta", "value": "strict-origin-when-cross-origin" },
+    "permissionsPolicy": { "status": "not-achievable", "notes": "GitHub Pages does not serve custom HTTP response headers." },
+    "frameProtection": { "status": "not-achievable", "notes": "Requires a header (X-Frame-Options) or a directive meta-delivered CSP ignores (frame-ancestors); neither is available on GitHub Pages." }
+  },
+  "csp": {
+    "deliveryMechanism": "meta",
+    "directives": {
+      "default-src": ["'self'"],
+      "script-src": ["'self'"],
+      "style-src": ["'self'"],
+      "img-src": ["'self'"],
+      "font-src": ["'self'"],
+      "object-src": ["'none'"],
+      "base-uri": ["'self'"],
+      "form-action": ["'self'"]
+    }
+  },
+  "dependencies": {
+    "lockfileRequired": false,
+    "runtimeCdnPolicy": "see marin-digital-standards/product-design/runtime-dependencies.md",
+    "thirdPartyDependencyReview": true,
+    "dependencyScanning": { "status": "enabled", "provider": "github-advanced-security" }
+  },
+  "secrets": {
+    "clientSideSecretsProhibited": true,
+    "committedSecretsProhibited": true,
+    "repositoryScanning": { "status": "enabled", "provider": "github-advanced-security" }
+  },
+  "monitoring": {
+    "secretScanning": { "status": "enabled", "provider": "github-advanced-security" },
+    "pushProtection": { "status": "enabled", "provider": "github-advanced-security" },
+    "dependabotSecurityUpdates": { "status": "enabled", "provider": "github-advanced-security" }
+  }
+}

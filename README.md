@@ -26,6 +26,10 @@ The installed MarinOS bundle version is recorded in `BRAND_VERSION`. Update `sha
 
 Links use conventional GitHub Pages project URLs under `marincountygov.github.io`. Confirmed live (`curl -I https://marincountygov.github.io/marin-os/catalog.json` returns 200 with `access-control-allow-origin: *`), so consumer apps can `fetch()` `catalog.json` cross-origin without restriction.
 
+## Security
+
+MarinOS follows the same security standard it defines for every application — see [`SECURITY.md`](SECURITY.md), [`security.json`](security.json), the [schema](schemas/security.schema.json), and the [standard itself](https://github.com/marincountygov/marin-digital-standards/blob/main/security/standard.md). See [`security.txt`](.well-known/security.txt) to report a security issue. The public security page is at `#security` once published (see `security/README.md` for current status).
+
 ## Testing with WAVE
 
 Prefer testing a locally served HTTP URL such as `http://localhost:8000/` (`python3 -m http.server 8000`) instead of opening the page with `file://`. Firefox extensions, including WAVE, generally cannot evaluate `file://` pages unless "Allow access to file URLs" is enabled for the extension in `about:addons`. A page that stays gray after WAVE is selected usually means the extension could not evaluate the local page, not that the site added an overlay.
