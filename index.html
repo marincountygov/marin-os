@@ -53,53 +53,74 @@
       </section>
 
       <section id="security" class="app-card" data-tab-section="security" data-security-json="security.json" hidden>
-        <h2>Security</h2>
-        <p>MarinOS provides a shared security standard, machine-readable configuration, generators, and validation used by every MarinOS application. Each application still owns its own security information — MarinOS never holds a single copy of everyone's configuration.</p>
+<h2>Security</h2>
+<p>MarinOS applications are designed to be secure by default. Most MarinOS apps are hosted as static websites on GitHub Pages, which means they do not run server-side application code or maintain their own databases.</p>
 
-        <h3>MarinOS's own security</h3>
-        <p data-security-status class="app-help-text" role="status" aria-live="polite" aria-atomic="true">Loading security information&hellip;</p>
-        <div data-security-content></div>
+<p>MarinOS provides common security standards and tools that each application uses. Every application also publishes its own security information so you can see how that specific app handles data and security.</p>
 
-        <h3>How it works</h3>
-        <p>MarinOS standard &rarr; each application's <code>security.json</code> &rarr; generated configuration &rarr; validation &rarr; public security information.</p>
+<h3>MarinOS security</h3>
+<p data-security-status class="app-help-text" role="status" aria-live="polite" aria-atomic="true">Loading security information&hellip;</p>
+<div data-security-content></div>
 
-        <h3>Security by default</h3>
-        <ul>
-          <li>HTTPS and transport security</li>
-          <li>Content Security Policy</li>
-          <li>Browser security headers, where the hosting platform allows them</li>
-          <li><code>security.txt</code></li>
-          <li>Dependency monitoring</li>
-          <li>Secret scanning</li>
-          <li>External resource review</li>
-          <li>Security documentation</li>
-        </ul>
+<h3>GitHub Pages hosting</h3>
+<p>MarinOS applications hosted on GitHub Pages are static websites. This means:</p>
+<ul>
+  <li>Application files are delivered over HTTPS.</li>
+  <li>There is no MarinOS application server running behind the website.</li>
+  <li>GitHub Pages does not provide a MarinOS application database.</li>
+  <li>Browser-based applications can process files and information locally on your device without sending that information to MarinOS.</li>
+  <li>Passwords, API keys, private credentials, and other secrets must not be stored in published application code.</li>
+  <li>GitHub Pages does not allow applications to configure arbitrary HTTP response headers, so some browser security protections must be implemented within the application itself or are provided by the hosting platform.</li>
+</ul>
+<p>If an application connects to an API or another external service, its Security page should describe that connection and what information may be sent.</p>
 
-        <h3>Applications</h3>
-        <!-- Rendered live by assets/app.js: catalog.json lists the apps, then each app's own
-             security.json is read from its Pages site. Not hand-maintained and not generated
-             into a file, since review status and dates change independently of catalog.json. -->
-        <p data-inventory-status class="app-help-text" role="status" aria-live="polite" aria-atomic="true">Loading application security inventory&hellip;</p>
-        <table data-inventory-table hidden>
-          <thead><tr><th>Application</th><th>Profile</th><th>Last reviewed</th><th>Security</th></tr></thead>
-          <tbody data-inventory-body></tbody>
-        </table>
+<h3>How it works</h3>
+<p>MarinOS defines the common security standard. Each application keeps its own <code>security.json</code> file describing its security characteristics. That information is used to generate and validate the application's public security information.</p>
 
-        <h3>Report an issue</h3>
-        <p>See <a href=".well-known/security.txt">security.txt</a> for contact details.</p>
+<h3>Security by default</h3>
+<ul>
+  <li>HTTPS</li>
+  <li>Content Security Policy</li>
+  <li>Browser security protections supported by GitHub Pages and the application</li>
+  <li><code>security.txt</code></li>
+  <li>Dependency monitoring</li>
+  <li>Secret scanning</li>
+  <li>External resource review</li>
+  <li>Application-specific security documentation</li>
+</ul>
 
-        <h3>For developers</h3>
-        <ul>
-          <li><a href="https://github.com/marincountygov/marin-digital-standards/blob/main/security/standard.md">Security standard</a></li>
-          <li><a href="https://github.com/marincountygov/marin-digital-standards/blob/main/security/profiles.md">Security profiles</a></li>
-          <li><a href="schemas/security.schema.json">Security schema</a></li>
-          <li><a href="security.json">MarinOS's own security.json</a></li>
-        </ul>
+<h3>Applications</h3>
+<!-- Rendered live by assets/app.js: catalog.json lists the apps, then each app's own
+     security.json is read from its Pages site. Not hand-maintained and not generated
+     into a file, since review status and dates change independently of catalog.json. -->
+<p data-inventory-status class="app-help-text" role="status" aria-live="polite" aria-atomic="true">Loading application security inventory&hellip;</p>
+<table data-inventory-table hidden>
+  <thead>
+    <tr>
+      <th>Application</th>
+      <th>Profile</th>
+      <th>Last reviewed</th>
+      <th>Security</th>
+    </tr>
+  </thead>
+  <tbody data-inventory-body></tbody>
+</table>
 
-        <h3>Technical information</h3>
-        <ul>
-          <li><a href=".well-known/security.txt">security.txt</a></li>
-        </ul>
+<h3>Report an issue</h3>
+<p>See <a href=".well-known/security.txt">security.txt</a> for contact details.</p>
+
+<h3>For developers</h3>
+<ul>
+  <li><a href="https://github.com/marincountygov/marin-digital-standards/blob/main/security/standard.md">Security standard</a></li>
+  <li><a href="https://github.com/marincountygov/marin-digital-standards/blob/main/security/profiles.md">Security profiles</a></li>
+  <li><a href="schemas/security.schema.json">Security schema</a></li>
+  <li><a href="security.json">MarinOS's own security.json</a></li>
+</ul>
+
+<h3>Technical information</h3>
+<ul>
+  <li><a href=".well-known/security.txt">security.txt</a></li>
+</ul>
       </section>
     </main>
     <footer class="app-footer" role="contentinfo"><div class="app-footer__inner"><a href="https://marincountygov.github.io/marin-os/">MarinOS</a></div></footer>
