@@ -6,7 +6,7 @@
     "url": "https://marincountygov.github.io/marin-magic/",
     "description": "Convert spreadsheet data into CMS-ready structured rich text.",
     "audience": "staff",
-    "status": "active",
+    "status": "live",
     "owner": "County of Marin",
     "icon": {
       "viewBox": "0 0 24 24",
@@ -20,7 +20,7 @@
     "url": "https://marincountygov.github.io/marin-docs/",
     "description": "Browse County operational documentation and standard operating procedures.",
     "audience": "staff",
-    "status": "active",
+    "status": "alpha",
     "owner": "County of Marin",
     "icon": {
       "viewBox": "0 0 24 24",
@@ -34,7 +34,7 @@
     "url": "https://marincountygov.github.io/marin-brand/",
     "description": "Logo, color, and typography reference for Marin brands.",
     "audience": "public",
-    "status": "active",
+    "status": "alpha",
     "owner": "County of Marin",
     "icon": {
       "viewBox": "0 0 24 24",
@@ -48,7 +48,7 @@
     "url": "https://marincountygov.github.io/marin-mentions/",
     "description": "A live media-monitoring console tracking Bay Area news, video, and social mentions of configured keywords and phrases.",
     "audience": "staff",
-    "status": "active",
+    "status": "beta",
     "owner": "County of Marin",
     "icon": {
       "viewBox": "0 0 24 24",
@@ -62,7 +62,7 @@
     "url": "https://marincountygov.github.io/marin-anonymizer/",
     "description": "Anonymize CSV, JSON, and Excel files locally in your browser.",
     "audience": "staff",
-    "status": "active",
+    "status": "beta",
     "owner": "County of Marin",
     "icon": {
       "viewBox": "0 0 24 24",
@@ -76,7 +76,7 @@
     "url": "https://marincountygov.github.io/marin-zipper/",
     "description": "Compress and encrypt files locally in your browser.",
     "audience": "staff",
-    "status": "active",
+    "status": "beta",
     "owner": "County of Marin",
     "icon": {
       "viewBox": "0 0 24 24",
@@ -90,7 +90,7 @@
     "url": "https://marincountygov.github.io/marin-unzipper/",
     "description": "Decrypt and decompress ZIP files locally in your browser.",
     "audience": "staff",
-    "status": "active",
+    "status": "beta",
     "owner": "County of Marin",
     "icon": {
       "viewBox": "0 0 24 24",

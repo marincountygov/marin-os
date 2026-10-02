@@ -1,4 +1,26 @@
 (() => {
+  // MarinOS's own status — shown in two places on this page (the banner
+  // toggle and this page's own <h1>), and they used to be two separately
+  // hardcoded badges that had already drifted apart (banner said Alpha,
+  // title said Live). MarinOS doesn't list itself in its own catalog.json
+  // (see the #security/#status inventory loaders below, which both inject
+  // a synthetic self-entry for the same reason), so there's no catalog
+  // value for shared/app-shell.js's generic renderOwnStatusBadge() to find
+  // for this page specifically — this constant is that single source
+  // instead, for just this one self-referential case. Change it here only;
+  // every [data-marinos-own-status] element on this page reads from it.
+  const MARINOS_OWN_STATUS = "beta";
+  const MARINOS_OWN_STATUS_LABELS = { alpha: "Alpha", beta: "Beta", live: "Live" };
+  const ownStatusLabel = MARINOS_OWN_STATUS_LABELS[MARINOS_OWN_STATUS];
+  if (ownStatusLabel) {
+    document.querySelectorAll("[data-marinos-own-status]").forEach((el) => {
+      el.dataset.status = MARINOS_OWN_STATUS;
+      el.textContent = ownStatusLabel;
+    });
+  }
+})();
+
+(() => {
   // Renders the #security section's "Applications" table live: catalog.json
   // (same-origin) gives the list of apps, then each app's own security.json
   // is read straight from its Pages site (GitHub Pages serves
@@ -90,6 +112,73 @@
       loaded = true;
       console.error(error);
       status.textContent = "Couldn't load the application security inventory right now.";
+    }
+  }
+
+  if (!section.hidden) loadInventory();
+
+  new MutationObserver(() => {
+    if (!section.hidden) loadInventory();
+  }).observe(section, { attributes: true, attributeFilter: ["hidden"] });
+})();
+
+(() => {
+  // Renders the #status section's "App status" table live: catalog.json
+  // (same-origin) already has every app's current status, so unlike the
+  // Security table above, no per-app fetch is needed — one request covers
+  // the whole table. MarinOS doesn't list itself in its own catalog.json
+  // (same as the Security table's own comment notes), so it isn't a row
+  // here either — this table is exactly "every app in catalog.json."
+  const section = document.querySelector("#status");
+  const status = document.querySelector("[data-status-inventory-status]");
+  const table = document.querySelector("[data-status-inventory-table]");
+  const tbody = document.querySelector("[data-status-inventory-body]");
+  if (!section || !status || !table || !tbody) return;
+
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  // The one place the badge's visible label text is set — must match the
+  // Alpha/Beta/Live headings hand-authored above in this same section, and
+  // the data-status values shared/app-brand.css's .app-status rules support.
+  const STATUS_LABELS = { alpha: "Alpha", beta: "Beta", live: "Live" };
+
+  function renderStatusBadge(appStatus) {
+    const label = STATUS_LABELS[appStatus] || appStatus;
+    return `<span class="app-status" data-status="${escapeHtml(appStatus)}">${escapeHtml(label)}</span>`;
+  }
+
+  function rowFor(app) {
+    const nameCell = `<a href="${escapeHtml(app.url)}">${escapeHtml(app.name)}</a>`;
+    return (
+      `<tr><td>${nameCell}</td>` +
+      `<td>${renderStatusBadge(app.status)}</td>` +
+      `<td>${escapeHtml(app.description || "")}</td></tr>`
+    );
+  }
+
+  let loaded = false;
+  async function loadInventory() {
+    if (loaded) return;
+    status.textContent = "Loading application status inventory...";
+    try {
+      const response = await fetch("catalog.json", { cache: "no-store" });
+      if (!response.ok) throw new Error(`catalog fetch failed: ${response.status}`);
+      const catalog = await response.json();
+
+      loaded = true;
+      tbody.innerHTML = catalog.map(rowFor).join("");
+      table.hidden = false;
+      status.textContent = `${catalog.length} app${catalog.length === 1 ? "" : "s"}, read live from catalog.json.`;
+    } catch (error) {
+      loaded = true;
+      console.error(error);
+      status.textContent = "Couldn't load the application status inventory right now.";
     }
   }
 

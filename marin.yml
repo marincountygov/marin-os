@@ -6,10 +6,10 @@ project:
   type: platform
   owner: County of Marin
   audience: staff
-  status: active
+  status: beta
 
 platform:
-  marin-ui: 1.18.0
+  marin-ui: 1.19.0
   template: manual
 
 deployment:
