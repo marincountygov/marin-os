@@ -3,10 +3,10 @@
 // No dependencies — this repo has no build step and this check shouldn't add one.
 //
 // Checks, per catalog.json entry: a directory card in index.html exists whose
-// link href matches the entry's url, whose link text matches its name, and
-// whose <p> text matches its description. Also flags any directory card in
-// index.html with no matching catalog.json entry, so the two can't drift in
-// either direction.
+// link href matches the entry's url, whose link text matches its name, whose
+// <p> text matches its description, and whose status badge matches its
+// status. Also flags any directory card in index.html with no matching
+// catalog.json entry, so the two can't drift in either direction.
 
 const fs = require("fs");
 const path = require("path");
@@ -15,14 +15,27 @@ const repoRoot = path.join(__dirname, "..");
 const catalogPath = path.join(repoRoot, "catalog.json");
 const indexPath = path.join(repoRoot, "index.html");
 
+// MarinOS app-maturity status — see index.html's #status section for what
+// each one means. "active"/"prototype" (this file's own values until
+// 2026-10-02, and still what some apps' marin.yml says) are deliberately not
+// in this list: this enum, not a status.json file, so every entry must use
+// exactly one of these, and a value from the earlier, undocumented
+// free-for-all should fail loudly rather than pass through.
+const VALID_STATUSES = ["alpha", "beta", "live"];
+
 function readCatalog() {
   const raw = fs.readFileSync(catalogPath, "utf8");
   const entries = JSON.parse(raw);
   for (const entry of entries) {
-    for (const field of ["id", "name", "url", "description"]) {
+    for (const field of ["id", "name", "url", "description", "status"]) {
       if (!entry[field]) {
         throw new Error(`catalog.json entry ${entry.id || "(no id)"} is missing required field "${field}"`);
       }
+    }
+    if (!VALID_STATUSES.includes(entry.status)) {
+      throw new Error(
+        `catalog.json entry "${entry.id}" has status "${entry.status}", which isn't one of: ${VALID_STATUSES.join(", ")}.`
+      );
     }
   }
   return entries;
@@ -32,6 +45,7 @@ function readCards() {
   const html = fs.readFileSync(indexPath, "utf8");
   const cardPattern = /<article class="app-card directory-card">([\s\S]*?)<\/article>/g;
   const linkPattern = /<h3><a href="([^"]+)">([^<]+)<\/a><\/h3>/;
+  const statusPattern = /<span class="app-status" data-status="([^"]+)">[^<]*<\/span>/;
   const descriptionPattern = /<p>([^<]+)<\/p>/;
 
   const cards = [];
@@ -39,6 +53,7 @@ function readCards() {
   while ((match = cardPattern.exec(html)) !== null) {
     const cardHtml = match[1];
     const linkMatch = linkPattern.exec(cardHtml);
+    const statusMatch = statusPattern.exec(cardHtml);
     const descriptionMatch = descriptionPattern.exec(cardHtml);
     if (!linkMatch) {
       throw new Error(`Found a directory card in index.html with no parseable <h3><a> link:\n${match[0]}`);
@@ -46,6 +61,7 @@ function readCards() {
     cards.push({
       url: linkMatch[1],
       name: linkMatch[2],
+      status: statusMatch ? statusMatch[1] : null,
       description: descriptionMatch ? descriptionMatch[1] : "",
     });
   }
@@ -69,6 +85,11 @@ function main() {
     if (card.description !== entry.description) {
       errors.push(
         `"${entry.url}": catalog.json description is "${entry.description}" but index.html card text is "${card.description}".`
+      );
+    }
+    if (card.status !== entry.status) {
+      errors.push(
+        `"${entry.url}": catalog.json status is "${entry.status}" but index.html card status badge is "${card.status || "(missing)"}".`
       );
     }
   }
