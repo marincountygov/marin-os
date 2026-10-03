@@ -1,7 +1,7 @@
 [
   {
     "id": "marin-magic",
-    "name": "MarinMagic",
+    "name": "Marin Magic",
     "type": "app",
     "url": "https://marincountygov.github.io/marin-magic/",
     "description": "Convert spreadsheet data into CMS-ready structured rich text.",
@@ -15,7 +15,7 @@
   },
   {
     "id": "marin-docs",
-    "name": "MarinDocs",
+    "name": "Marin Docs",
     "type": "docs",
     "url": "https://marincountygov.github.io/marin-docs/",
     "description": "Browse County operational documentation and standard operating procedures.",
