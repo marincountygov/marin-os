@@ -48,7 +48,7 @@
     "url": "https://marincountygov.github.io/marin-mentions/",
     "description": "A live media-monitoring console tracking Bay Area news, video, and social mentions of configured keywords and phrases.",
     "audience": "staff",
-    "status": "beta",
+    "status": "live",
     "owner": "County of Marin",
     "icon": {
       "viewBox": "0 0 24 24",

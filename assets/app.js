@@ -188,3 +188,144 @@
     if (!section.hidden) loadInventory();
   }).observe(section, { attributes: true, attributeFilter: ["hidden"] });
 })();
+
+(() => {
+  // Renders the #projects section's table live from two schemaGov Project
+  // files: projects.json (MarinOS's own projects) and external-projects.json
+  // (everyone else's). Both are same-origin; one failing doesn't blank the
+  // other. Status shows the project's digital service phase (`phase`), not
+  // its active/inactive `status` field. Sorting needs no code here — the
+  // header buttons and data-sort-* row attributes are handled generically by
+  // shared/app-shell.js.
+  const section = document.querySelector("#projects");
+  const status = document.querySelector("[data-projects-status]");
+  const table = document.querySelector("[data-projects-table]");
+  const tbody = document.querySelector("[data-projects-body]");
+  if (!section || !status || !table || !tbody) return;
+
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  const PHASE_BADGES = ["alpha", "beta", "live"];
+  const AUDIENCE_LABELS = { internal: "Internal", external: "External" };
+  const EMPTY = "&mdash;";
+
+  async function readProjects(url) {
+    try {
+      const response = await fetch(url, { cache: "no-store" });
+      if (!response.ok) return null;
+      const projects = await response.json();
+      return Array.isArray(projects) ? projects : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function names(references) {
+    return (Array.isArray(references) ? references : [references])
+      .map((reference) => reference && reference.name)
+      .filter(Boolean)
+      .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }))
+      .join(", ");
+  }
+
+  function rowFor(project) {
+    const title = project.url
+      ? `<a href="${escapeHtml(project.url)}">${escapeHtml(project.name)}</a>`
+      : escapeHtml(project.name);
+    const phaseName = (project.phase && project.phase.name) || "";
+    const phaseCode = String((project.phase && project.phase["@id"]) || "").split("/").pop();
+    const badge = !phaseName
+      ? EMPTY
+      : PHASE_BADGES.includes(phaseCode)
+        ? `<span class="app-status" data-status="${phaseCode}">${escapeHtml(phaseName)}</span>`
+        : escapeHtml(phaseName);
+    const parent = names(project.parentOrganization);
+    const members = names(project.member);
+    const audience = (Array.isArray(project.audience) ? project.audience : [])
+      .map((value) => AUDIENCE_LABELS[value] || value)
+      .join(", ");
+    return (
+      `<tr data-project-status="${escapeHtml(project.status || "")}"` +
+      ` data-sort-title="${escapeHtml(project.name)}"` +
+      ` data-sort-status="${escapeHtml(phaseName)}"` +
+      ` data-sort-parent="${escapeHtml(parent)}">` +
+      `<td>${title}${project.description ? `<br>${escapeHtml(project.description)}` : ""}</td>` +
+      `<td>${badge}</td>` +
+      `<td>${parent ? escapeHtml(parent) : EMPTY}</td>` +
+      `<td>${members ? escapeHtml(members) : EMPTY}</td>` +
+      `<td>${audience ? escapeHtml(audience) : EMPTY}</td></tr>`
+    );
+  }
+
+  // Status tabs filter by the project's ProjectStatus (schemaGov) by hiding
+  // rows rather than re-rendering, so the table's current sort order is kept.
+  const tabs = Array.from(document.querySelectorAll("[data-projects-tabs] [role=tab]"));
+  let activeStatus = "all";
+  let loadMessage = "";
+
+  function applyFilter() {
+    let shown = 0;
+    tbody.querySelectorAll("tr").forEach((row) => {
+      const match = activeStatus === "all" || row.dataset.projectStatus === activeStatus;
+      row.hidden = !match;
+      if (match) shown += 1;
+    });
+    table.hidden = !shown;
+    status.textContent = loadMessage || (shown ? "" : "No projects with this status.");
+  }
+
+  function selectTab(tab) {
+    activeStatus = tab.dataset.projectStatus;
+    tabs.forEach((other) => {
+      other.setAttribute("aria-selected", String(other === tab));
+      other.tabIndex = other === tab ? 0 : -1;
+    });
+    applyFilter();
+  }
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener("click", () => selectTab(tab));
+    tab.addEventListener("keydown", (event) => {
+      const step = { ArrowRight: 1, ArrowLeft: -1 }[event.key];
+      const next = event.key === "Home" ? tabs[0] : event.key === "End" ? tabs[tabs.length - 1] : tabs[(i + step + tabs.length) % tabs.length];
+      if (!step && event.key !== "Home" && event.key !== "End") return;
+      event.preventDefault();
+      next.focus();
+      selectTab(next);
+    });
+  });
+
+  let loaded = false;
+  async function loadProjects() {
+    if (loaded) return;
+    status.textContent = "Loading projects...";
+    const [marinos, external] = await Promise.all([
+      readProjects("projects.json"),
+      readProjects("external-projects.json"),
+    ]);
+    loaded = true;
+    if (!marinos && !external) {
+      status.textContent = "Couldn't load projects right now.";
+      return;
+    }
+    // Alphabetical by title, matching the Title header's initial aria-sort.
+    const projects = [...(marinos || []), ...(external || [])].sort((a, b) =>
+      a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: "base" })
+    );
+    tbody.innerHTML = projects.map(rowFor).join("");
+    loadMessage = !marinos || !external ? "Some projects couldn't be loaded right now." : "";
+    applyFilter();
+  }
+
+  if (!section.hidden) loadProjects();
+
+  new MutationObserver(() => {
+    if (!section.hidden) loadProjects();
+  }).observe(section, { attributes: true, attributeFilter: ["hidden"] });
+})();

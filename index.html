@@ -11,6 +11,9 @@
       .directory-section + .directory-section { margin-top: 2.5rem; }
       .directory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: 1rem; }
       .directory-card { display: flex; flex-direction: column; }
+      .projects-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; border-bottom: 1px solid var(--app-border); padding-bottom: 0.5rem; margin-bottom: 1rem; }
+      .projects-tab { width: auto; margin: 0; background: none; border: none; padding: 0.375rem 0.75rem; border-radius: var(--pico-border-radius); color: var(--app-muted); cursor: pointer; }
+      .projects-tab[aria-selected="true"] { background: var(--app-accent); color: #ffffff; font-weight: 700; }
     </style>
   </head>
   <body>
@@ -21,7 +24,7 @@
       <div id="app-status-message" class="visually-hidden" role="status" aria-live="polite"></div>
       <section class="directory-section" aria-labelledby="apps-heading" data-tab-section="directory"><h2 id="apps-heading">Apps</h2><div class="directory-grid">
         <article class="app-card directory-card"><span class="app-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg></span><h3><a href="https://marincountygov.github.io/marin-magic/">Marin Magic</a></h3><span class="app-status" data-status="live">Live</span><p>Convert spreadsheet data into CMS-ready structured rich text.</p></article>
-        <article class="app-card directory-card"><span class="app-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.341 6.484A10 10 0 0 1 10.266 21.85"/><path d="M3.659 17.516A10 10 0 0 1 13.74 2.152"/><circle cx="12" cy="12" r="3"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/></svg></span><h3><a href="https://marincountygov.github.io/marin-mentions/">Marin Mentions</a></h3><span class="app-status" data-status="beta">Beta</span><p>A live media-monitoring console tracking Bay Area news, video, and social mentions of configured keywords and phrases.</p></article>
+        <article class="app-card directory-card"><span class="app-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.341 6.484A10 10 0 0 1 10.266 21.85"/><path d="M3.659 17.516A10 10 0 0 1 13.74 2.152"/><circle cx="12" cy="12" r="3"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/></svg></span><h3><a href="https://marincountygov.github.io/marin-mentions/">Marin Mentions</a></h3><span class="app-status" data-status="live">Live</span><p>A live media-monitoring console tracking Bay Area news, video, and social mentions of configured keywords and phrases.</p></article>
         <article class="app-card directory-card"><span class="app-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3z"/><circle cx="12" cy="9" r="2.5"/><path d="M7.8 18.4c.8-3 2.2-4.4 4.2-4.4s3.4 1.4 4.2 4.4"/></svg></span><h3><a href="https://marincountygov.github.io/marin-anonymizer/">Marin Anonymizer</a></h3><span class="app-status" data-status="beta">Beta</span><p>Anonymize CSV, JSON, and Excel files locally in your browser.</p></article>
         <article class="app-card directory-card"><span class="app-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v11.5"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M8 12v-1"/><path d="M8 18v-2"/><path d="M8 7V6"/><circle cx="8" cy="20" r="2"/></svg></span><h3><a href="https://marincountygov.github.io/marin-zipper/">Marin Zipper</a></h3><span class="app-status" data-status="beta">Beta</span><p>Compress and encrypt files locally in your browser.</p></article>
         <article class="app-card directory-card"><span class="app-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22v-9"/><path d="M15.17 2.21a1.67 1.67 0 0 1 1.63 0L21 4.57a1.93 1.93 0 0 1 0 3.36L8.82 14.79a1.655 1.655 0 0 1-1.64 0L3 12.43a1.93 1.93 0 0 1 0-3.36z"/><path d="M20 13v3.87a2.06 2.06 0 0 1-1.11 1.83l-6 3.08a1.93 1.93 0 0 1-1.78 0l-6-3.08A2.06 2.06 0 0 1 4 16.87V13"/><path d="M21 12.43a1.93 1.93 0 0 0 0-3.36L8.83 2.2a1.64 1.64 0 0 0-1.63 0L3 4.57a1.93 1.93 0 0 0 0 3.36l12.18 6.86a1.636 1.636 0 0 0 1.63 0z"/></svg></span><h3><a href="https://marincountygov.github.io/marin-unzipper/">Marin Unzipper</a></h3><span class="app-status" data-status="beta">Beta</span><p>Decrypt and decompress ZIP files locally in your browser.</p></article>
@@ -52,6 +55,34 @@
         <h2>Updates</h2>
         <p data-updates-status class="app-help-text" role="status" aria-live="polite" aria-atomic="true">Loading recent commits&hellip;</p>
         <div data-updates-list></div>
+      </section>
+
+      <section id="projects" class="app-card" data-tab-section="projects" hidden>
+        <h2>Projects</h2>
+        <p>Marin County digital, innovation, transformation projects.</p>
+        <!-- Rendered live by assets/app.js from projects.json (MarinOS) and
+             external-projects.json (everything else), both schemaGov Project
+             records: https://schema.govfresh.com/profiles/projects/ -->
+        <p data-projects-status class="app-help-text" role="status" aria-live="polite" aria-atomic="true">Loading projects&hellip;</p>
+        <div role="tablist" aria-label="Project status" class="projects-tabs" data-projects-tabs>
+          <button type="button" role="tab" aria-selected="true" tabindex="0" data-project-status="all" class="projects-tab">All</button>
+          <button type="button" role="tab" aria-selected="false" tabindex="-1" data-project-status="active" class="projects-tab">Active</button>
+          <button type="button" role="tab" aria-selected="false" tabindex="-1" data-project-status="completed" class="projects-tab">Completed</button>
+        </div>
+        <div class="app-table-wrap" role="tabpanel" aria-label="Projects">
+          <table data-projects-table hidden>
+            <thead>
+              <tr>
+                <th scope="col" aria-sort="ascending"><button type="button" class="sort-button" data-sort-key="title">Title</button></th>
+                <th scope="col" aria-sort="none"><button type="button" class="sort-button" data-sort-key="status">Status</button></th>
+                <th scope="col" aria-sort="none"><button type="button" class="sort-button" data-sort-key="parent">Parent organization</button></th>
+                <th scope="col">Member</th>
+                <th scope="col">Audience</th>
+              </tr>
+            </thead>
+            <tbody data-projects-body></tbody>
+          </table>
+        </div>
       </section>
 
       <section id="security" class="app-card" data-tab-section="security" data-security-json="security.json" hidden>
@@ -179,7 +210,7 @@
 
       </section>
     </main>
-    <footer class="app-footer" role="contentinfo"><div class="app-footer__inner"><a href="https://marincountygov.github.io/marin-os/">MarinOS</a> <a href="https://marincountygov.github.io/marin-os/#status">Status</a></div></footer>
+    <footer class="app-footer" role="contentinfo"><div class="app-footer__inner"><a href="https://marincountygov.github.io/marin-os/">MarinOS</a> <a href="https://marincountygov.github.io/marin-os/#projects">Projects</a> <a href="https://marincountygov.github.io/marin-os/#status">Status</a></div></footer>
     <a class="app-feedback" href="https://form.asana.com/?k=qVUT83d5DBmlDiIyi-WAyQ&amp;d=23133298259496" target="_blank" rel="noreferrer">Feedback</a>
     <script src="./shared/app-shell.js"></script>
     <script src="./assets/app.js"></script>
