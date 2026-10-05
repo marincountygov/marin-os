@@ -1,0 +1,621 @@
+{
+  "generatedAt": "2026-10-05T22:45:00.872Z",
+  "source": {
+    "name": "Google Lighthouse",
+    "service": "PageSpeed Insights API",
+    "category": "accessibility"
+  },
+  "standard": "WCAG 2.2 AA",
+  "apps": {
+    "marin-os": {
+      "status": "success",
+      "url": "https://marincountygov.github.io/marin-os/",
+      "score": 100,
+      "testedAt": "2026-10-05T22:43:51.112Z",
+      "lighthouseVersion": "13.5.0",
+      "audits": [
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "status": "manual"
+        }
+      ]
+    },
+    "marin-magic": {
+      "status": "success",
+      "url": "https://marincountygov.github.io/marin-magic/",
+      "score": 100,
+      "testedAt": "2026-10-05T22:44:00.419Z",
+      "lighthouseVersion": "13.5.0",
+      "audits": [
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "status": "manual"
+        }
+      ]
+    },
+    "marin-docs": {
+      "status": "success",
+      "url": "https://marincountygov.github.io/marin-docs/",
+      "score": 100,
+      "testedAt": "2026-10-05T22:44:06.795Z",
+      "lighthouseVersion": "13.5.0",
+      "audits": [
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "status": "manual"
+        }
+      ]
+    },
+    "marin-brand": {
+      "status": "success",
+      "url": "https://marincountygov.github.io/marin-brand/",
+      "score": 100,
+      "testedAt": "2026-10-05T22:44:13.821Z",
+      "lighthouseVersion": "13.5.0",
+      "audits": [
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "status": "manual"
+        }
+      ]
+    },
+    "marin-mentions": {
+      "status": "success",
+      "url": "https://marincountygov.github.io/marin-mentions/",
+      "score": 93,
+      "testedAt": "2026-10-05T22:44:23.169Z",
+      "lighthouseVersion": "13.5.0",
+      "audits": [
+        {
+          "id": "aria-required-children",
+          "title": "Elements with an ARIA `[role]` that require children to contain a specific `[role]` are missing some or all of those required children.",
+          "score": 0,
+          "status": "failed",
+          "items": [
+            {
+              "selector": "section#latest > form#filters > div.search-results > div#content-tabs"
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "score": 0,
+          "status": "failed",
+          "items": [
+            {
+              "selector": "body > nav#page-tabs > a"
+            }
+          ]
+        },
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "status": "manual"
+        }
+      ]
+    },
+    "marin-anonymizer": {
+      "status": "success",
+      "url": "https://marincountygov.github.io/marin-anonymizer/",
+      "score": 100,
+      "testedAt": "2026-10-05T22:44:32.996Z",
+      "lighthouseVersion": "13.5.0",
+      "audits": [
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "status": "manual"
+        }
+      ]
+    },
+    "marin-zipper": {
+      "status": "success",
+      "url": "https://marincountygov.github.io/marin-zipper/",
+      "score": 90,
+      "testedAt": "2026-10-05T22:44:42.730Z",
+      "lighthouseVersion": "13.5.0",
+      "audits": [
+        {
+          "id": "aria-prohibited-attr",
+          "title": "Elements use prohibited ARIA attributes",
+          "score": 0,
+          "status": "failed",
+          "items": [
+            {
+              "selector": "section#start > div.zip-grid > div.app-card > div#file-list"
+            }
+          ]
+        },
+        {
+          "id": "label",
+          "title": "Form elements do not have associated labels",
+          "score": 0,
+          "status": "failed",
+          "items": [
+            {
+              "selector": "div.app-card > div#dropzone > div > input#file-input"
+            },
+            {
+              "selector": "div.app-card > div#dropzone > div > input#folder-input"
+            }
+          ]
+        },
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "status": "manual"
+        }
+      ]
+    },
+    "marin-unzipper": {
+      "status": "success",
+      "url": "https://marincountygov.github.io/marin-unzipper/",
+      "score": 94,
+      "testedAt": "2026-10-05T22:44:50.131Z",
+      "lighthouseVersion": "13.5.0",
+      "audits": [
+        {
+          "id": "label",
+          "title": "Form elements do not have associated labels",
+          "score": 0,
+          "status": "failed",
+          "items": [
+            {
+              "selector": "div.app-card > div#dropzone > div > input#zip-input"
+            }
+          ]
+        },
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "status": "manual"
+        }
+      ]
+    }
+  }
+}
