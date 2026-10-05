@@ -51,3 +51,15 @@ The `#projects` tab lists projects as [schemaGov Project](https://schema.govfres
 - `external-projects.json` — projects that aren't part of MarinOS.
 
 The table's Status column is the project's digital service phase (`phase`: alpha, beta, live), not its active/inactive `status`. `parentOrganization` and `member` entries need a `name` as well as an `@id`. Run `node scripts/check-projects.js` to validate both files.
+
+## Accessibility
+
+County of Marin digital services target [WCAG 2.2 Level AA](https://www.w3.org/TR/WCAG22/). The `#accessibility` tab shows each app's Google Lighthouse accessibility score. A score comes from automated testing and does not determine WCAG conformance.
+
+- **Data:** `data/lighthouse.json` is the one file with every app's result, keyed by `catalog.json` id (MarinOS itself is `marin-os`). Shape: `schemas/lighthouse.schema.json`. Each app's own `#accessibility` section reads this same file from the MarinOS site.
+- **Scanner:** `node scripts/lighthouse.js` runs the PageSpeed Insights API (v5, accessibility category) against each app's production URL. `--app marin-docs` rescans one app and keeps the others. `--dry-run` writes nothing. Check the file with `node scripts/check-lighthouse.js`.
+- **API key:** the `PAGESPEED_API_KEY` GitHub secret. Locally, set the same environment variable. It is never written to the data file or printed. Without it the API still answers, but with a very small shared quota (a `429` error means that quota is used up).
+- **When it runs** (`.github/workflows/lighthouse.yml`): weekly, and on demand from the Actions tab (**Run workflow**, optionally one app id). Both commit `data/lighthouse.json` to `main` as `github-actions[bot]`; that commit uses the built-in token, so it doesn't start another run. Pull requests only run a smoke check (a dry run on MarinOS's live site) because GitHub Pages has no preview sites, so the scan can't test a pull request's own changes.
+- **Statuses:** `success`, `not-tested` (no URL), `unavailable` (the page couldn't be tested), `error` (the scan failed). A failed scan never becomes a score of 0; it keeps the last good score as `lastSuccess`. A score older than 14 days shows as out of date.
+- **Local testing:** the API can't reach `localhost`. To test local changes, run `npx lighthouse http://localhost:8935/ --only-categories=accessibility`.
+- **Troubleshooting:** `429` quota error: set `PAGESPEED_API_KEY`. `unavailable` for one app: open its URL. Every app `error`: check the secret and Google's API status.

@@ -780,4 +780,140 @@
       if (!section.hidden) loadSecurity();
     }).observe(section, { attributes: true, attributeFilter: ["hidden"] });
   });
+  // Builds an accessibility score gauge (see .app-score in app-brand.css) for
+  // an integer 0-100 Lighthouse score: a ring, the number, and the band word.
+  // Bands match Lighthouse's own. Exposed as window.marinScoreGauge so other
+  // scripts (marin-os's score table) draw the identical component.
+  function marinScoreGauge(score, { large = false } = {}) {
+    const value = Math.max(0, Math.min(100, Math.round(Number(score))));
+    const band = value >= 90 ? "good" : value >= 50 ? "needs-improvement" : "poor";
+    const label = { good: "Good", "needs-improvement": "Needs improvement", poor: "Poor" }[band];
+    const SVG = "http://www.w3.org/2000/svg";
+    const svgEl = (name, attrs) => {
+      const el = document.createElementNS(SVG, name);
+      Object.entries(attrs).forEach(([key, val]) => el.setAttribute(key, val));
+      return el;
+    };
+
+    const wrapper = document.createElement("span");
+    wrapper.className = `app-score${large ? " app-score--large" : ""}`;
+    wrapper.dataset.band = band;
+
+    // r = 100 / (2 * PI), so the circumference is exactly 100 and the arc's
+    // dash length is simply the score.
+    const ring = svgEl("svg", { class: "app-score__ring", viewBox: "0 0 36 36", "aria-hidden": "true", focusable: "false" });
+    ring.append(
+      svgEl("circle", { class: "app-score__track", cx: 18, cy: 18, r: 15.9155 }),
+      svgEl("circle", {
+        class: "app-score__arc",
+        cx: 18,
+        cy: 18,
+        r: 15.9155,
+        transform: "rotate(-90 18 18)",
+        "stroke-dasharray": `${value} 100`,
+      })
+    );
+    const number = svgEl("text", { class: "app-score__number", x: 18, y: 18 });
+    number.textContent = String(value);
+    ring.append(number);
+
+    const text = document.createElement("span");
+    text.className = "app-score__label";
+    const hidden = document.createElement("span");
+    hidden.className = "visually-hidden";
+    hidden.textContent = `Accessibility score ${value} out of 100: `;
+    text.append(hidden, document.createTextNode(label));
+
+    wrapper.append(ring, text);
+    return wrapper;
+  }
+  window.marinScoreGauge = marinScoreGauge;
+
+  // Accessibility: any [data-accessibility-scores] section lazy-loads the
+  // shared MarinOS Lighthouse results (marin-os's data/lighthouse.json, one
+  // file for every app, keyed by catalog id) the first time it becomes
+  // visible and shows this app's own entry in its [data-accessibility-content],
+  // with progress in [data-accessibility-status]. The app is found by
+  // data-accessibility-app-id on the section, else <body data-app-id>.
+  // Automated testing only — never labelled as WCAG conformance. A failed scan
+  // isn't shown as a low score: the last good result stays visible with its
+  // date, or "not available" if there is none.
+  document.querySelectorAll("[data-accessibility-scores]").forEach((section) => {
+    const status = section.querySelector("[data-accessibility-status]");
+    const content = section.querySelector("[data-accessibility-content]");
+    if (!status || !content) return;
+
+    const STALE_AFTER_DAYS = 14;
+    const scoresUrl = `${MARINOS_HOMEPAGE_URL}data/lighthouse.json`;
+    const appId = section.dataset.accessibilityAppId || document.body.dataset.appId || "";
+    let loaded = false;
+
+    function formatDate(iso) {
+      const date = new Date(iso);
+      return Number.isNaN(date.getTime())
+        ? ""
+        : date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+    }
+
+    function show(entry) {
+      const good =
+        entry && entry.status === "success"
+          ? { score: entry.score, testedAt: entry.testedAt }
+          : (entry && entry.lastSuccess) || null;
+      content.replaceChildren();
+      if (!good) {
+        status.textContent = "An accessibility score isn't available for this application yet.";
+        return;
+      }
+      const scoreLine = document.createElement("p");
+      scoreLine.append(marinScoreGauge(good.score, { large: true }));
+      const source = document.createElement("p");
+      source.className = "app-help-text";
+      const notes = [];
+      if (entry.status !== "success") notes.push("The latest scan didn't finish, so this is the last successful result.");
+      else if (Date.now() - new Date(good.testedAt).getTime() > STALE_AFTER_DAYS * 86400000) notes.push("This result is out of date.");
+      source.textContent = ["Google Lighthouse", `Tested ${formatDate(good.testedAt)}`, ...notes].join(". ") + (notes.length ? "" : ".");
+      content.append(scoreLine, source);
+      // The same test, run live: PageSpeed Insights' own results page for the
+      // tested address (mobile, matching how the stored score was produced).
+      const tested = entry.url;
+      if (tested) {
+        const report = document.createElement("p");
+        const link = document.createElement("a");
+        link.href = `https://pagespeed.web.dev/analysis?url=${encodeURIComponent(tested)}&form_factor=mobile`;
+        link.target = "_blank";
+        link.rel = "noreferrer";
+        link.textContent = "Lighthouse results";
+        report.append(link);
+        content.append(report);
+      }
+      status.textContent = "";
+    }
+
+    async function loadScore() {
+      if (loaded) return;
+      status.textContent = "Loading accessibility score...";
+      try {
+        const response = await fetch(scoresUrl, { cache: "no-store" });
+        loaded = true;
+        if (response.status === 404) {
+          status.textContent = "Accessibility scores haven't been collected yet.";
+          return;
+        }
+        if (!response.ok) throw new Error(`scores fetch failed: ${response.status}`);
+        const data = await response.json();
+        show(appId && data && data.apps ? data.apps[appId] : null);
+      } catch (error) {
+        loaded = true;
+        console.error(error);
+        status.textContent = "Couldn't load the accessibility score right now.";
+      }
+    }
+
+    if (!section.hidden) loadScore();
+
+    new MutationObserver(() => {
+      if (!section.hidden) loadScore();
+    }).observe(section, { attributes: true, attributeFilter: ["hidden"] });
+  });
 })();

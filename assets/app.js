@@ -329,3 +329,100 @@
     if (!section.hidden) loadProjects();
   }).observe(section, { attributes: true, attributeFilter: ["hidden"] });
 })();
+
+(() => {
+  // Renders the #accessibility section's score table live from
+  // data/lighthouse.json (Google Lighthouse via the PageSpeed Insights API,
+  // written by scripts/lighthouse.js). Names and URLs come from catalog.json;
+  // results are joined by catalog id. Never labels a score as WCAG
+  // conformance — it's automated testing only. A failed scan is shown as
+  // "Not available", not as a low score, and keeps showing the last good
+  // result (with its date) when there is one.
+  const section = document.querySelector("#accessibility");
+  const status = document.querySelector("[data-accessibility-status]");
+  const table = document.querySelector("[data-accessibility-table]");
+  const tbody = document.querySelector("[data-accessibility-body]");
+  if (!section || !status || !table || !tbody) return;
+
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  const STALE_AFTER_DAYS = 14;
+  const MONTHS = ["Jan.", "Feb.", "March", "April", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
+
+  function formatDate(iso) {
+    const date = new Date(iso);
+    if (Number.isNaN(date.getTime())) return "";
+    return `${MONTHS[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+  }
+
+  // What to show for one app: { score, testedAt, note } — score is null when
+  // there's nothing trustworthy to show.
+  function describe(entry) {
+    if (!entry) return { score: null };
+    const good =
+      entry.status === "success"
+        ? { score: entry.score, testedAt: entry.testedAt }
+        : entry.lastSuccess || null;
+    if (!good) return { score: null };
+    let note = "";
+    if (entry.status !== "success") note = "latest scan didn't finish";
+    else if (Date.now() - new Date(good.testedAt).getTime() > STALE_AFTER_DAYS * 86400000) note = "out of date";
+    return { ...good, note };
+  }
+
+  function rowFor(app, entry) {
+    const href = app.self ? "#accessibility" : new URL("#accessibility", app.url).href;
+    const nameCell = `<a href="${escapeHtml(href)}">${escapeHtml(app.name)}</a>`;
+    const result = describe(entry);
+    if (result.score === null) return `<tr><td>${nameCell}</td><td>Not available</td><td>&mdash;</td></tr>`;
+    const tested = escapeHtml(formatDate(result.testedAt)) + (result.note ? ` (${escapeHtml(result.note)})` : "");
+    // The shared gauge (marin-ui, shared/app-shell.js): ring, number, and the
+    // band word, so color is never the only signal.
+    const gauge = window.marinScoreGauge ? window.marinScoreGauge(result.score).outerHTML : `${escapeHtml(result.score)} / 100`;
+    // PageSpeed Insights' own results page for the same address, mobile —
+    // a live re-run of the test, so it can differ slightly from the stored score.
+    const reportUrl = `https://pagespeed.web.dev/analysis?url=${encodeURIComponent((entry && entry.url) || (app.self ? "https://marincountygov.github.io/marin-os/" : app.url))}&form_factor=mobile`;
+    const report = ` <a href="${escapeHtml(reportUrl)}" target="_blank" rel="noreferrer">Lighthouse results</a>`;
+    return `<tr><td>${nameCell}</td><td>${gauge}${report}</td><td>${tested}</td></tr>`;
+  }
+
+  let loaded = false;
+  async function loadScores() {
+    if (loaded) return;
+    status.textContent = "Loading accessibility scores...";
+    try {
+      const [catalogResponse, dataResponse] = await Promise.all([
+        fetch("catalog.json", { cache: "no-store" }),
+        fetch("data/lighthouse.json", { cache: "no-store" }),
+      ]);
+      if (!catalogResponse.ok) throw new Error(`catalog fetch failed: ${catalogResponse.status}`);
+      const catalog = await catalogResponse.json();
+      // 404 is a real, expected state: no scan has run yet.
+      const data = dataResponse.ok ? await dataResponse.json() : null;
+      if (!dataResponse.ok && dataResponse.status !== 404) throw new Error(`scores fetch failed: ${dataResponse.status}`);
+
+      // MarinOS is in scope but doesn't list itself in its own catalog.
+      const apps = [{ id: "marin-os", name: "MarinOS", url: "./", self: true }, ...catalog];
+      loaded = true;
+      tbody.innerHTML = apps.map((app) => rowFor(app, data && data.apps && data.apps[app.id])).join("");
+      table.hidden = false;
+      status.textContent = data ? "" : "Scores haven't been collected yet.";
+    } catch (error) {
+      loaded = true;
+      console.error(error);
+      status.textContent = "Couldn't load accessibility scores right now.";
+    }
+  }
+
+  if (!section.hidden) loadScores();
+
+  new MutationObserver(() => {
+    if (!section.hidden) loadScores();
+  }).observe(section, { attributes: true, attributeFilter: ["hidden"] });
+})();

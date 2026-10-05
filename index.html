@@ -85,6 +85,41 @@
         </div>
       </section>
 
+      <section id="accessibility" class="app-card" data-tab-section="accessibility" hidden>
+        <h2>Accessibility</h2>
+        <p>MarinOS applications target <a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2 Level AA</a>. We use automated accessibility testing as one part of our accessibility practices.</p>
+
+        <h3>Accessibility scores</h3>
+        <!-- Rendered live by assets/app.js from data/lighthouse.json (written by
+             scripts/lighthouse.js, refreshed weekly by .github/workflows/lighthouse.yml). -->
+        <p data-accessibility-status class="app-help-text" role="status" aria-live="polite" aria-atomic="true">Loading accessibility scores&hellip;</p>
+        <div class="app-table-wrap">
+          <table data-accessibility-table hidden>
+            <caption class="visually-hidden">Google Lighthouse accessibility score for each MarinOS application</caption>
+            <thead>
+              <tr>
+                <th scope="col">Application</th>
+                <th scope="col">Lighthouse score</th>
+                <th scope="col">Tested</th>
+              </tr>
+            </thead>
+            <tbody data-accessibility-body></tbody>
+          </table>
+        </div>
+
+        <p class="app-help-text">Score bands: 90&ndash;100 good, 50&ndash;89 needs improvement, 0&ndash;49 poor.</p>
+
+        <h3>About the score</h3>
+        <p>Scores come from Google Lighthouse accessibility testing through the PageSpeed Insights API. Scores range from 0&ndash;100. Automated testing can identify many accessibility issues, but a score does not determine WCAG conformance. Read how <a href="https://developer.chrome.com/docs/lighthouse/accessibility/scoring">Lighthouse scores accessibility</a> and about the <a href="https://developers.google.com/speed/docs/insights/v5/about">PageSpeed Insights API</a>.</p>
+
+        <h3>Accessibility standard</h3>
+        <p>County of Marin digital services target <a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2 Level AA</a>. WCAG provides internationally recognized requirements for making web content accessible to people with disabilities.</p>
+
+        <h3>Report an issue</h3>
+        <p>If you experience an accessibility problem with a MarinOS application, report the issue so we can review it.</p>
+        <p><a href="https://form.asana.com/?k=qVUT83d5DBmlDiIyi-WAyQ&amp;d=23133298259496" target="_blank" rel="noreferrer">Report an accessibility issue</a></p>
+      </section>
+
       <section id="security" class="app-card" data-tab-section="security" data-security-json="security.json" hidden>
 <h2>Security</h2>
 <p>MarinOS applications are designed to be secure by default. Most MarinOS apps are hosted as static websites on GitHub Pages, which means they do not run server-side application code or maintain their own databases.</p>
@@ -210,7 +245,7 @@
 
       </section>
     </main>
-    <footer class="app-footer" role="contentinfo"><div class="app-footer__inner"><a href="https://marincountygov.github.io/marin-os/">MarinOS</a> <a href="https://marincountygov.github.io/marin-os/#projects">Projects</a> <a href="https://marincountygov.github.io/marin-os/#status">Status</a></div></footer>
+    <footer class="app-footer" role="contentinfo"><div class="app-footer__inner"><a href="https://marincountygov.github.io/marin-os/">MarinOS</a> <a href="https://marincountygov.github.io/marin-os/#projects">Projects</a> <a href="https://marincountygov.github.io/marin-os/#accessibility">Accessibility</a> <a href="https://marincountygov.github.io/marin-os/#status">Status</a></div></footer>
     <a class="app-feedback" href="https://form.asana.com/?k=qVUT83d5DBmlDiIyi-WAyQ&amp;d=23133298259496" target="_blank" rel="noreferrer">Feedback</a>
     <script src="./shared/app-shell.js"></script>
     <script src="./assets/app.js"></script>

@@ -16,3 +16,4 @@ jobs:
           node-version: "20"
       - run: node scripts/check-catalog-sync.js
       - run: node scripts/check-projects.js
+      - run: node scripts/check-lighthouse.js
