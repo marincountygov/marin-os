@@ -1,0 +1,181 @@
+[
+  {
+    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-magic",
+    "@type": "Project",
+    "name": "Marin Magic",
+    "description": "Convert spreadsheet data into CMS-ready structured rich text.",
+    "url": "https://marincountygov.github.io/marin-magic/",
+    "status": "completed",
+    "phase": {
+      "@id": "https://schema.govfresh.com/v1/dsphase/live",
+      "@type": "DefinedTerm",
+      "name": "Live"
+    },
+    "parentOrganization": {
+      "@id": "https://marincountygov.github.io/marin-os/id/organization/digital-innovation-and-transformation-office",
+      "name": "Digital, Innovation and Transformation"
+    },
+    "member": [
+      {
+        "@id": "https://marincountygov.github.io/marin-os/id/organization/community-development-agency",
+        "name": "Community Development Agency"
+      }
+    ],
+    "audience": [
+      "internal",
+      "external"
+    ]
+  },
+  {
+    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-docs",
+    "@type": "Project",
+    "name": "Marin Docs",
+    "description": "Browse County operational documentation and standard operating procedures.",
+    "url": "https://marincountygov.github.io/marin-docs/",
+    "status": "active",
+    "phase": {
+      "@id": "https://schema.govfresh.com/v1/dsphase/alpha",
+      "@type": "DefinedTerm",
+      "name": "Alpha"
+    },
+    "parentOrganization": {
+      "@id": "https://marincountygov.github.io/marin-os/id/organization/digital-innovation-and-transformation-office",
+      "name": "Digital, Innovation and Transformation"
+    },
+    "member": [
+      {
+        "@id": "https://marincountygov.github.io/marin-os/id/organization/county-executive",
+        "name": "County Executive"
+      }
+    ],
+    "audience": [
+      "internal",
+      "external"
+    ]
+  },
+  {
+    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-brand",
+    "@type": "Project",
+    "name": "Marin Brand Center",
+    "description": "Logo, color, and typography reference for Marin brands.",
+    "url": "https://marincountygov.github.io/marin-brand/",
+    "status": "active",
+    "phase": {
+      "@id": "https://schema.govfresh.com/v1/dsphase/alpha",
+      "@type": "DefinedTerm",
+      "name": "Alpha"
+    },
+    "parentOrganization": {
+      "@id": "https://marincountygov.github.io/marin-os/id/organization/digital-innovation-and-transformation-office",
+      "name": "Digital, Innovation and Transformation"
+    },
+    "member": [
+      {
+        "@id": "https://marincountygov.github.io/marin-os/id/organization/county-executive",
+        "name": "County Executive"
+      }
+    ],
+    "audience": [
+      "internal",
+      "external"
+    ]
+  },
+  {
+    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-mentions",
+    "@type": "Project",
+    "name": "Marin Mentions",
+    "description": "A live media-monitoring console tracking Bay Area news, video, and social mentions of configured keywords and phrases.",
+    "url": "https://marincountygov.github.io/marin-mentions/",
+    "status": "completed",
+    "phase": {
+      "@id": "https://schema.govfresh.com/v1/dsphase/live",
+      "@type": "DefinedTerm",
+      "name": "Live"
+    },
+    "parentOrganization": {
+      "@id": "https://marincountygov.github.io/marin-os/id/organization/digital-innovation-and-transformation-office",
+      "name": "Digital, Innovation and Transformation"
+    },
+    "member": [
+      {
+        "@id": "https://marincountygov.github.io/marin-os/id/organization/cultural-services",
+        "name": "Cultural Services"
+      },
+      {
+        "@id": "https://marincountygov.github.io/marin-os/id/organization/fire-department",
+        "name": "Fire Department"
+      },
+      {
+        "@id": "https://marincountygov.github.io/marin-os/id/organization/county-executive",
+        "name": "County Executive"
+      }
+    ],
+    "audience": [
+      "internal",
+      "external"
+    ]
+  },
+  {
+    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-anonymizer",
+    "@type": "Project",
+    "name": "Marin Anonymizer",
+    "description": "Anonymize CSV, JSON, and Excel files locally in your browser.",
+    "url": "https://marincountygov.github.io/marin-anonymizer/",
+    "status": "completed",
+    "phase": {
+      "@id": "https://schema.govfresh.com/v1/dsphase/beta",
+      "@type": "DefinedTerm",
+      "name": "Beta"
+    },
+    "parentOrganization": {
+      "@id": "https://marincountygov.github.io/marin-os/id/organization/health-and-human-services",
+      "name": "Health and Human Services"
+    },
+    "audience": [
+      "internal",
+      "external"
+    ]
+  },
+  {
+    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-zipper",
+    "@type": "Project",
+    "name": "Marin Zipper",
+    "description": "Compress and encrypt files locally in your browser.",
+    "url": "https://marincountygov.github.io/marin-zipper/",
+    "status": "completed",
+    "phase": {
+      "@id": "https://schema.govfresh.com/v1/dsphase/beta",
+      "@type": "DefinedTerm",
+      "name": "Beta"
+    },
+    "parentOrganization": {
+      "@id": "https://marincountygov.github.io/marin-os/id/organization/health-and-human-services",
+      "name": "Health and Human Services"
+    },
+    "audience": [
+      "internal",
+      "external"
+    ]
+  },
+  {
+    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-unzipper",
+    "@type": "Project",
+    "name": "Marin Unzipper",
+    "description": "Decrypt and decompress ZIP files locally in your browser.",
+    "url": "https://marincountygov.github.io/marin-unzipper/",
+    "status": "completed",
+    "phase": {
+      "@id": "https://schema.govfresh.com/v1/dsphase/beta",
+      "@type": "DefinedTerm",
+      "name": "Beta"
+    },
+    "parentOrganization": {
+      "@id": "https://marincountygov.github.io/marin-os/id/organization/health-and-human-services",
+      "name": "Health and Human Services"
+    },
+    "audience": [
+      "internal",
+      "external"
+    ]
+  }
+]

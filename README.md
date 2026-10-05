@@ -22,7 +22,8 @@ This is the entire process — everything else updates itself:
 
 1. Add an entry to `catalog.json`: id, name, type, url, description, audience, status, owner, and `icon` (`{viewBox, markup}` — reuse the icon already in the app's own MarinOS banner markup, so the directory and the banner show the same icon).
 2. Add the matching directory card to `index.html` (same url/name/description as the `catalog.json` entry — `check-catalog-sync.js` enforces this).
-3. Run `node scripts/check-catalog-sync.js` locally, commit both files together, push.
+3. Add the app's project record to `projects.json` (same name/url; `phase` matches its status).
+4. Run `node scripts/check-catalog-sync.js` and `node scripts/check-projects.js` locally, commit the files together, push.
 
 That's it — do not go and edit every other MarinOS app's `index.html`. Every consumer's MarinOS banner menu (the "MarinOS" dropdown, not the directory page itself) reads `catalog.json` at runtime via `marin-ui/shared/app-shell.js` and picks up the new entry automatically, typically within its 6-hour cache window. No other repo needs a commit for a new app to appear in every other app's banner. (The directory page itself, `index.html`, is intentionally static and does need step 2 above — see "Directory entries.")
 
@@ -41,3 +42,12 @@ MarinOS follows the same security standard it defines for every application — 
 ## Testing with WAVE
 
 Prefer testing a locally served HTTP URL such as `http://localhost:8000/` (`python3 -m http.server 8000`) instead of opening the page with `file://`. Firefox extensions, including WAVE, generally cannot evaluate `file://` pages unless "Allow access to file URLs" is enabled for the extension in `about:addons`. A page that stays gray after WAVE is selected usually means the extension could not evaluate the local page, not that the site added an overlay.
+
+## Projects
+
+The `#projects` tab lists projects as [schemaGov Project](https://schema.govfresh.com/profiles/projects/) records, read live by `assets/app.js`:
+
+- `projects.json` — MarinOS's own projects (one per catalog app).
+- `external-projects.json` — projects that aren't part of MarinOS.
+
+The table's Status column is the project's digital service phase (`phase`: alpha, beta, live), not its active/inactive `status`. `parentOrganization` and `member` entries need a `name` as well as an `@id`. Run `node scripts/check-projects.js` to validate both files.

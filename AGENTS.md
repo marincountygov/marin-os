@@ -6,13 +6,13 @@ MarinOS is the app/docs directory for the County of Marin digital platform — a
 
 ## Before making changes
 
-1. Registering a new app means adding it to **both** `catalog.json` and the matching directory card in `index.html` — `scripts/check-catalog-sync.js` verifies they agree.
+1. Registering a new app means adding it to **both** `catalog.json` and the matching directory card in `index.html` — `scripts/check-catalog-sync.js` verifies they agree. It also needs a matching entry in `projects.json` — `scripts/check-projects.js` verifies that.
 2. Check `marin-ui/docs/components.md` before writing new CSS or JS.
 3. Keep the default view (the directory) immediately functional; ecosystem/ "start here" links and about-MarinOS content belong in the About tab.
 
 ## Before finishing
 
-Run `node scripts/check-catalog-sync.js` and resolve any mismatch. There is no broader automated check command yet.
+Run `node scripts/check-catalog-sync.js` and `node scripts/check-projects.js` and resolve any mismatch. There is no broader automated check command yet.
 
 ## References
 

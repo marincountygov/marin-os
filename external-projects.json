@@ -1,0 +1,27 @@
+[
+  {
+    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-cal-card",
+    "@type": "Project",
+    "name": "Marin CAL-Card",
+    "description": "Streamlining the CAL-Card receipt-transaction process.",
+    "status": "active",
+    "phase": {
+      "@id": "https://schema.govfresh.com/v1/dsphase/beta",
+      "@type": "DefinedTerm",
+      "name": "Beta"
+    },
+    "parentOrganization": {
+      "@id": "https://marincountygov.github.io/marin-os/id/organization/digital-innovation-and-transformation-office",
+      "name": "Digital, Innovation and Transformation"
+    },
+    "member": [
+      {
+        "@id": "https://marincountygov.github.io/marin-os/id/organization/county-executive",
+        "name": "County Executive"
+      }
+    ],
+    "audience": [
+      "internal"
+    ]
+  }
+]
