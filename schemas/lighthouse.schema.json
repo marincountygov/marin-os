@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/marincountygov/marin-os/main/schemas/lighthouse.schema.json",
+  "title": "MarinOS data/lighthouse.json",
+  "description": "Google Lighthouse accessibility results for every MarinOS app, written by scripts/lighthouse.js. Apps are keyed by catalog.json id (MarinOS itself is \"marin-os\"). Names and URLs live in catalog.json; the url here is the address that was tested. A score is automated testing only and is not WCAG conformance. A failed scan is never recorded as score 0 — it keeps the last good result under lastSuccess. \"Stale\" is not stored: pages derive it from testedAt.",
+  "type": "object",
+  "required": ["generatedAt", "source", "standard", "apps"],
+  "additionalProperties": false,
+  "properties": {
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "source": {
+      "type": "object",
+      "required": ["name", "service", "category"],
+      "properties": {
+        "name": { "const": "Google Lighthouse" },
+        "service": { "const": "PageSpeed Insights API" },
+        "category": { "const": "accessibility" }
+      }
+    },
+    "standard": { "const": "WCAG 2.2 AA" },
+    "apps": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["status"],
+        "properties": {
+          "status": {
+            "enum": ["success", "not-tested", "unavailable", "error"],
+            "description": "success: scored. not-tested: no public URL. unavailable: the page couldn't be tested. error: the scan itself failed."
+          },
+          "url": { "type": "string" },
+          "score": { "type": "integer", "minimum": 0, "maximum": 100, "description": "0-100 (Lighthouse's 0-1 times 100). Only on success." },
+          "testedAt": { "type": "string", "format": "date-time", "description": "When the score was produced. Only on success." },
+          "attemptedAt": { "type": "string", "format": "date-time", "description": "When a failed scan was attempted." },
+          "lighthouseVersion": { "type": "string" },
+          "error": { "type": "string" },
+          "lastSuccess": {
+            "type": "object",
+            "required": ["score", "testedAt"],
+            "properties": { "score": { "type": "integer" }, "testedAt": { "type": "string" } }
+          },
+          "audits": {
+            "type": "array",
+            "description": "Only failed and manual-check audits.",
+            "items": {
+              "type": "object",
+              "required": ["id", "title", "status"],
+              "properties": {
+                "id": { "type": "string" },
+                "title": { "type": "string" },
+                "score": { "type": ["number", "null"] },
+                "status": { "enum": ["failed", "manual"] },
+                "items": { "type": "array", "items": { "type": "object", "properties": { "selector": { "type": "string" } } } }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

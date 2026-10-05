@@ -12,7 +12,11 @@ MarinOS is the app/docs directory for the County of Marin digital platform — a
 
 ## Before finishing
 
-Run `node scripts/check-catalog-sync.js` and `node scripts/check-projects.js` and resolve any mismatch. There is no broader automated check command yet.
+Run `node scripts/check-catalog-sync.js`, `node scripts/check-projects.js` and `node scripts/check-lighthouse.js` and resolve any mismatch. There is no broader automated check command yet.
+
+## Accessibility data
+
+`data/lighthouse.json` is written by `scripts/lighthouse.js` (weekly workflow). Don't hand-edit it. A new app in `catalog.json` gets an entry on the next scan (`node scripts/lighthouse.js --app <id>`).
 
 ## References
 

@@ -9,7 +9,7 @@ project:
   status: beta
 
 platform:
-  marin-ui: 1.19.0
+  marin-ui: 1.21.0
   template: manual
 
 deployment:

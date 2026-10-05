@@ -1,0 +1,83 @@
+name: Lighthouse accessibility
+
+# Runs scripts/lighthouse.js — Google Lighthouse accessibility testing through
+# the PageSpeed Insights API — and keeps data/lighthouse.json current.
+#   Weekly + "Run workflow": scan, then commit the data file to main.
+#   Pull requests: smoke check only (does the scan run?). Nothing is written,
+#   and a low score never fails the check. GitHub Pages has no previews, so
+#   this tests what's live now, not the pull request's own changes.
+
+on:
+  schedule:
+    - cron: "17 9 * * 1"
+  workflow_dispatch:
+    inputs:
+      app:
+        description: "Only scan this app id (leave blank to scan everything)"
+        required: false
+        default: ""
+  pull_request:
+    branches: [main]
+    paths:
+      - scripts/lighthouse.js
+      - scripts/check-lighthouse.js
+      - schemas/lighthouse.schema.json
+      - catalog.json
+      - .github/workflows/lighthouse.yml
+
+concurrency:
+  group: lighthouse
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    # Commits the result to main, so only scheduled/manual runs need write access.
+    permissions:
+      contents: write
+    env:
+      PAGESPEED_API_KEY: ${{ secrets.PAGESPEED_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Smoke check (pull request)
+        if: github.event_name == 'pull_request'
+        run: |
+          if [ -z "$PAGESPEED_API_KEY" ]; then
+            echo "No PAGESPEED_API_KEY available to this run (for example, a pull request from a fork) — skipping the scan."
+            exit 0
+          fi
+          node scripts/lighthouse.js --app marin-os --dry-run
+
+      - name: Scan
+        if: github.event_name != 'pull_request'
+        env:
+          APP_ID: ${{ inputs.app }}
+        run: |
+          if [ -n "$APP_ID" ]; then
+            node scripts/lighthouse.js --app "$APP_ID"
+          else
+            node scripts/lighthouse.js
+          fi
+
+      - name: Validate
+        if: github.event_name != 'pull_request'
+        run: node scripts/check-lighthouse.js
+
+      # Pushes made with the built-in GITHUB_TOKEN don't start other workflow
+      # runs, so this commit can't trigger another scan or loop.
+      - name: Commit results
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/lighthouse.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update accessibility scores"
+            git push
+          fi
