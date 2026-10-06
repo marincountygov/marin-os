@@ -70,6 +70,23 @@ function main() {
 
   if (fs.existsSync(securityJsonPath)) {
     const config = JSON.parse(fs.readFileSync(securityJsonPath, "utf8"));
+    // The #security section's "profile" line tells readers who the app is for,
+    // so the security profile must agree with marin.yml's project.audience.
+    const AUDIENCE_PROFILES = {
+      staff: ["internal"],
+      public: ["public-web", "public-api"],
+      developers: ["internal", "public-web", "custom"],
+    };
+    const marinYml = path.join(repoRoot, "marin.yml");
+    if (fs.existsSync(marinYml)) {
+      const audience = (fs.readFileSync(marinYml, "utf8").match(/^\s+audience:\s*(\S+)/m) || [])[1];
+      const allowed = AUDIENCE_PROFILES[audience];
+      if (allowed && !allowed.includes(config.profile)) {
+        errors.push(
+          `security.json profile "${config.profile}" does not match marin.yml audience "${audience}" (expected ${allowed.join(" or ")}).`
+        );
+      }
+    }
     if (config.securityTxt && config.securityTxt.enabled) {
       const securityTxtPath = path.join(repoRoot, ".well-known", "security.txt");
       if (!fs.existsSync(securityTxtPath)) {
