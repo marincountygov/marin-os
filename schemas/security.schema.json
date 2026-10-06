@@ -243,7 +243,7 @@
       "description": "The only part of this file a public #security section may render. Never generate #security from the full document.",
       "additionalProperties": false,
       "properties": {
-        "profile": { "type": "string" },
+        "profile": { "type": "string", "description": "Deprecated: no longer shown. The #security section builds its \"Built for\" line from project.audience in marin.yml." },
         "lastReviewed": { "type": "string", "format": "date" },
         "controls": {
           "type": "array",

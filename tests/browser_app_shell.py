@@ -193,7 +193,7 @@ def check_structure(page: Page, width: int, scheme: str) -> None:
         elif route == "security":
             page.locator("[data-inventory-table]").wait_for()
             require(page.locator("[data-inventory-body] tr").count() == len(CATALOG) + 1, "Security inventory must include MarinOS")
-            page.wait_for_function("document.querySelector('[data-security-content]').textContent.includes('Security profile:')")
+            page.wait_for_function("document.querySelector('[data-security-content]').textContent.includes('Built for:')")
         elif route == "accessibility":
             page.locator("[data-accessibility-table]").wait_for()
             require(page.locator("[data-accessibility-body] tr").count() == len(CATALOG) + 1, "Platform accessibility inventory lost")
