@@ -262,22 +262,13 @@
     activeStatus = tab.dataset.projectStatus;
     tabs.forEach((other) => {
       other.setAttribute("aria-selected", String(other === tab));
-      other.tabIndex = other === tab ? 0 : -1;
     });
     applyFilter();
   }
 
-  tabs.forEach((tab, i) => {
-    tab.addEventListener("click", () => selectTab(tab));
-    tab.addEventListener("keydown", (event) => {
-      const step = { ArrowRight: 1, ArrowLeft: -1 }[event.key];
-      const next = event.key === "Home" ? tabs[0] : event.key === "End" ? tabs[tabs.length - 1] : tabs[(i + step + tabs.length) % tabs.length];
-      if (!step && event.key !== "Home" && event.key !== "End") return;
-      event.preventDefault();
-      next.focus();
-      selectTab(next);
-    });
-  });
+  // Arrow keys / Home / End and the one-tab-stop behavior come from the shared
+  // shell (any [role="tablist"]); a click is all this needs to handle.
+  tabs.forEach((tab) => tab.addEventListener("click", () => selectTab(tab)));
 
   let loaded = false;
   async function loadProjects() {

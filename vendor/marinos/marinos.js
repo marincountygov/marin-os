@@ -6,7 +6,7 @@
     return;
   }
 
-  const SHELL_VERSION = "1.5.0";
+  const SHELL_VERSION = "1.6.0";
   const MARIN_UI_VERSION = "1.19.0";
   const MARINOS_URL = "https://marincountygov.github.io/marin-os/";
   const MARINOS_STATUS_URL = `${MARINOS_URL}#status`;
@@ -1216,6 +1216,62 @@
         if (status) status.textContent = "Couldn't copy — copy the address bar link instead";
       }
     });
+  });
+
+  // Tabs: every [role="tablist"] gets the ARIA tabs keyboard pattern with no
+  // per-page JavaScript — one tab in the Tab order at a time (the selected
+  // one, or the first if none is selected), Left/Right (Up/Down when
+  // aria-orientation="vertical") move between tabs and wrap, Home/End jump to
+  // the first/last, and moving to a tab selects it (focus, then click(), so
+  // the app's own click handling runs). The Tab-order sync follows
+  // aria-selected, however an app sets it. An app that handles these keys
+  // itself just calls preventDefault() on them and this stands down. Tablists
+  // added after load get the arrow keys but not the Tab-order sync.
+  function enabledTabs(tablist) {
+    return Array.from(tablist.querySelectorAll('[role="tab"]')).filter(
+      (tab) => !tab.disabled && tab.getAttribute("aria-disabled") !== "true"
+    );
+  }
+
+  function syncTabStops(tablist) {
+    const tabs = enabledTabs(tablist);
+    if (!tabs.length) return;
+    const stop = tabs.find((tab) => tab.getAttribute("aria-selected") === "true") || tabs[0];
+    tabs.forEach((tab) => {
+      tab.tabIndex = tab === stop ? 0 : -1;
+    });
+  }
+
+  document.querySelectorAll('[role="tablist"]').forEach((tablist) => {
+    syncTabStops(tablist);
+    new MutationObserver(() => syncTabStops(tablist)).observe(tablist, {
+      attributes: true,
+      attributeFilter: ["aria-selected"],
+      childList: true,
+      subtree: true,
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
+    const current = event.target instanceof Element ? event.target.closest('[role="tab"]') : null;
+    const tablist = current && current.closest('[role="tablist"]');
+    if (!tablist) return;
+    const tabs = enabledTabs(tablist);
+    const index = tabs.indexOf(current);
+    if (index === -1) return;
+    const vertical = tablist.getAttribute("aria-orientation") === "vertical";
+    const forward = vertical ? "ArrowDown" : "ArrowRight";
+    const back = vertical ? "ArrowUp" : "ArrowLeft";
+    let next;
+    if (event.key === forward) next = tabs[(index + 1) % tabs.length];
+    else if (event.key === back) next = tabs[(index - 1 + tabs.length) % tabs.length];
+    else if (event.key === "Home") next = tabs[0];
+    else if (event.key === "End") next = tabs[tabs.length - 1];
+    else return;
+    event.preventDefault();
+    next.focus();
+    next.click();
   });
 
   // Tab sections: elements sharing a data-tab-section="name" show together,
