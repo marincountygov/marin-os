@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T22:45:00.872Z",
+  "generatedAt": "2026-10-06T19:27:32.450Z",
   "source": {
     "name": "Google Lighthouse",
     "service": "PageSpeed Insights API",
@@ -11,7 +11,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-os/",
       "score": 100,
-      "testedAt": "2026-10-05T22:43:51.112Z",
+      "testedAt": "2026-10-06T19:26:14.695Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -80,7 +80,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-magic/",
       "score": 100,
-      "testedAt": "2026-10-05T22:44:00.419Z",
+      "testedAt": "2026-10-06T19:26:22.977Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -149,7 +149,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-docs/",
       "score": 100,
-      "testedAt": "2026-10-05T22:44:06.795Z",
+      "testedAt": "2026-10-06T19:26:31.198Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -218,7 +218,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-brand/",
       "score": 100,
-      "testedAt": "2026-10-05T22:44:13.821Z",
+      "testedAt": "2026-10-06T19:26:38.696Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -286,32 +286,10 @@
     "marin-mentions": {
       "status": "success",
       "url": "https://marincountygov.github.io/marin-mentions/",
-      "score": 93,
-      "testedAt": "2026-10-05T22:44:23.169Z",
+      "score": 100,
+      "testedAt": "2026-10-06T19:26:47.775Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
-        {
-          "id": "aria-required-children",
-          "title": "Elements with an ARIA `[role]` that require children to contain a specific `[role]` are missing some or all of those required children.",
-          "score": 0,
-          "status": "failed",
-          "items": [
-            {
-              "selector": "section#latest > form#filters > div.search-results > div#content-tabs"
-            }
-          ]
-        },
-        {
-          "id": "color-contrast",
-          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
-          "score": 0,
-          "status": "failed",
-          "items": [
-            {
-              "selector": "body > nav#page-tabs > a"
-            }
-          ]
-        },
         {
           "id": "focusable-controls",
           "title": "Interactive controls are keyboard focusable",
@@ -378,7 +356,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-anonymizer/",
       "score": 100,
-      "testedAt": "2026-10-05T22:44:32.996Z",
+      "testedAt": "2026-10-06T19:27:09.560Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -446,35 +424,10 @@
     "marin-zipper": {
       "status": "success",
       "url": "https://marincountygov.github.io/marin-zipper/",
-      "score": 90,
-      "testedAt": "2026-10-05T22:44:42.730Z",
+      "score": 100,
+      "testedAt": "2026-10-06T19:27:17.564Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
-        {
-          "id": "aria-prohibited-attr",
-          "title": "Elements use prohibited ARIA attributes",
-          "score": 0,
-          "status": "failed",
-          "items": [
-            {
-              "selector": "section#start > div.zip-grid > div.app-card > div#file-list"
-            }
-          ]
-        },
-        {
-          "id": "label",
-          "title": "Form elements do not have associated labels",
-          "score": 0,
-          "status": "failed",
-          "items": [
-            {
-              "selector": "div.app-card > div#dropzone > div > input#file-input"
-            },
-            {
-              "selector": "div.app-card > div#dropzone > div > input#folder-input"
-            }
-          ]
-        },
         {
           "id": "focusable-controls",
           "title": "Interactive controls are keyboard focusable",
@@ -540,21 +493,10 @@
     "marin-unzipper": {
       "status": "success",
       "url": "https://marincountygov.github.io/marin-unzipper/",
-      "score": 94,
-      "testedAt": "2026-10-05T22:44:50.131Z",
+      "score": 100,
+      "testedAt": "2026-10-06T19:27:24.635Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
-        {
-          "id": "label",
-          "title": "Form elements do not have associated labels",
-          "score": 0,
-          "status": "failed",
-          "items": [
-            {
-              "selector": "div.app-card > div#dropzone > div > input#zip-input"
-            }
-          ]
-        },
         {
           "id": "focusable-controls",
           "title": "Interactive controls are keyboard focusable",
