@@ -63,3 +63,7 @@ One bonus feature (`secret_scanning_validity_checks`) still reports `disabled` v
 `marin-anonymizer` and `marin-unzipper` were missing `marin.yml` entirely — added, matching the existing pattern from sibling apps. `security.json` assumes every in-scope repo already has one.
 
 While confirming this, found and fixed unrelated drift: `BRAND_VERSION` (and each `marin.yml`'s `platform.marin-ui` field) had gone stale at `1.16.2`/`1.16.3` across every app even though the actual vendored `shared/app-brand.css`/`shared/app-shell.js` content was already current at `1.17.4` — caused by files being synced by hand instead of via `marin-ui/scripts/sync-consumer.sh`, which also copies `BRAND_VERSION`. Corrected across all 8 in-scope repos so `app-maintainer`'s drift check (which compares recorded `BRAND_VERSION` against `marin-ui`'s current one) reads accurately going forward.
+
+## Who the app is for
+
+The public `#security` section opens with a "Built for" line, such as "Built for: County staff". The App Shell builds it from `project.audience` in the app's own `marin.yml` (`staff`, `public`, or `developers`), so `security.json` carries no label of its own. `scripts/check-security.js` fails when `security.json`'s `profile` does not fit the audience: `staff` needs `internal`, `public` needs `public-web` or `public-api`, and `developers` allows `internal`, `public-web`, or `custom`.
