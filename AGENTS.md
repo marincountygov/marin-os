@@ -2,25 +2,33 @@
 
 ## Architecture
 
-MarinOS is the app/docs directory for the County of Marin digital platform — a consumer of the `marin-ui` brand bundle like any other app, plus `catalog.json`, the machine-readable list of registered apps that backs the directory cards in `index.html`.
+MarinOS consumes a pinned, locally vendored Marin App Shell. The shell owns the banner, header, routing, Updates, footer, Feedback, shared styling, and common helpers. MarinOS owns its static app/docs directory, catalog/project data, About, Projects, Security and Status inventories, and platform-wide Accessibility score table.
+
+`marin.yml` records `project.type: platform`, the authoritative `project.status`, and `platform.shell`. The explicit banner label must match project.status. Do not change project maturity as part of a shell upgrade.
 
 ## Before making changes
 
-1. Registering a new app means adding it to **both** `catalog.json` and the matching directory card in `index.html` — `scripts/check-catalog-sync.js` verifies they agree. It also needs a matching entry in `projects.json` — `scripts/check-projects.js` verifies that.
-2. Check `marin-ui/docs/components.md` before writing new CSS or JS.
-3. Keep the default view (the directory) immediately functional; ecosystem/ "start here" links and about-MarinOS content belong in the About tab.
+1. Register an app in `catalog.json`, its matching static card in `index.html`, and `projects.json` together. Preserve name/URL/description/status and icon parity. Never convert the no-JavaScript directory into runtime-only rendering as part of maintenance.
+2. Read the pinned App Shell component/integration documentation before adding shared behavior. Never edit `vendor/marinos/` or copy shell CSS/JS into `assets/`. Upgrade through the shell installer.
+3. Keep the directory as the first `data-tab-section` group. Leave the platform-specific About, Projects, Security, Status, and Accessibility content in the app. `marin-app-info` generates only Updates to avoid duplicate IDs or replacing the platform inventories.
+4. The header must contain only About and Updates. Security stays accessible from About and the required footer link, not the header.
+5. Preserve the footer's `hide-platform-link` attribute and `template[data-footer-links]` containing Projects then Status. The shell supplies About, Security, Accessibility, Updates; the app name is plain text.
+6. Only the header title text links to `./`; do not wrap the icon, subtitle, or status badge in the home link. Use the supplied layout-grid SVG for header/favicon identity.
 
 ## Before finishing
 
-Run `node scripts/check-catalog-sync.js`, `node scripts/check-projects.js` and `node scripts/check-lighthouse.js` and resolve any mismatch. There is no broader automated check command yet.
+Run `bash scripts/check.sh`. It includes the existing catalog, project, Lighthouse, and security validators plus the new App Shell integration and managed-asset checks. Run `bash scripts/check.sh --browser` when Python Playwright and Chromium are available. State skipped or limited tests accurately; in-memory fixtures are not HTTP browser tests.
+
+Review no-JavaScript directory use, all six footer destinations, project filtering/sorting, the platform inventories, keyboard focus and Escape, narrow widths, and light/dark mode. Preserve `.nojekyll`, security files and reporting contacts. A shell upgrade is not a new security or accessibility review.
 
 ## Accessibility data
 
-`data/lighthouse.json` is written by `scripts/lighthouse.js` (weekly workflow). Don't hand-edit it. A new app in `catalog.json` gets an entry on the next scan (`node scripts/lighthouse.js --app <id>`).
+`data/lighthouse.json` is written by `scripts/lighthouse.js` and the weekly workflow. Do not hand-edit scores. The platform table uses this file and the App Shell `window.marinScoreGauge` helper. Do not replace it with a single-app score panel.
 
-## References
+## Reference repositories
 
-- `marin-ui` — shared components, tokens, app shell: https://github.com/marincountygov/marin-ui
-- `marin-digital-standards` — accessibility, content, brand, and product-design requirements: https://github.com/marincountygov/marin-digital-standards
-- `marin-skills` — AI workflows for building and reviewing Marin applications, including `marin-app-builder` and `app-maintainer`: https://github.com/marincountygov/marin-skills
-- `marin-app-template` — the scaffold new apps are built from: https://github.com/marincountygov/marin-app-template
+- `marin-app-shell`: component/runtime API, release installer, tests, and shared UI behavior.
+- `marin-ui`: upstream design system, consumed through the shell rather than independently synced.
+- `marin-digital-standards`: canonical content, accessibility, brand, and security standards.
+- `marin-skills`: agent workflows for building and maintaining the apps.
+- `marin-app-template`: starter for new apps, not an update source for existing applications.

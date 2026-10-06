@@ -1,34 +1,12 @@
 (() => {
-  // MarinOS's own status — shown in two places on this page (the banner
-  // toggle and this page's own <h1>), and they used to be two separately
-  // hardcoded badges that had already drifted apart (banner said Alpha,
-  // title said Live). MarinOS doesn't list itself in its own catalog.json
-  // (see the #security/#status inventory loaders below, which both inject
-  // a synthetic self-entry for the same reason), so there's no catalog
-  // value for shared/app-shell.js's generic renderOwnStatusBadge() to find
-  // for this page specifically — this constant is that single source
-  // instead, for just this one self-referential case. Change it here only;
-  // every [data-marinos-own-status] element on this page reads from it.
-  const MARINOS_OWN_STATUS = "beta";
-  const MARINOS_OWN_STATUS_LABELS = { alpha: "Alpha", beta: "Beta", live: "Live" };
-  const ownStatusLabel = MARINOS_OWN_STATUS_LABELS[MARINOS_OWN_STATUS];
-  if (ownStatusLabel) {
-    document.querySelectorAll("[data-marinos-own-status]").forEach((el) => {
-      el.dataset.status = MARINOS_OWN_STATUS;
-      el.textContent = ownStatusLabel;
-    });
-  }
-})();
-
-(() => {
   // Renders the #security section's "Applications" table live: catalog.json
   // (same-origin) gives the list of apps, then each app's own security.json
   // is read straight from its Pages site (GitHub Pages serves
   // access-control-allow-origin: *). Nothing is generated or committed, so
   // the table can't go stale — each app stays the single source of truth for
   // its own security information. MarinOS-specific, so it lives here and not
-  // in shared/app-shell.js. Lazy-loads once #security becomes visible, the
-  // same way shared/app-shell.js's Updates and per-app Security features do.
+  // in vendor/marinos/marinos.js. Lazy-loads once #security becomes visible, the
+  // same way vendor/marinos/marinos.js's Updates and per-app Security features do.
   const section = document.querySelector("#security");
   const status = document.querySelector("[data-inventory-status]");
   const table = document.querySelector("[data-inventory-table]");
@@ -145,7 +123,7 @@
 
   // The one place the badge's visible label text is set — must match the
   // Alpha/Beta/Live headings hand-authored above in this same section, and
-  // the data-status values shared/app-brand.css's .app-status rules support.
+  // the data-status values vendor/marinos/marinos.css's .app-status rules support.
   const STATUS_LABELS = { alpha: "Alpha", beta: "Beta", live: "Live" };
 
   function renderStatusBadge(appStatus) {
@@ -196,7 +174,7 @@
   // other. Status shows the project's digital service phase (`phase`), not
   // its active/inactive `status` field. Sorting needs no code here — the
   // header buttons and data-sort-* row attributes are handled generically by
-  // shared/app-shell.js.
+  // vendor/marinos/marinos.js.
   const section = document.querySelector("#projects");
   const status = document.querySelector("[data-projects-status]");
   const table = document.querySelector("[data-projects-table]");
@@ -382,7 +360,7 @@
     const result = describe(entry);
     if (result.score === null) return `<tr><td>${nameCell}</td><td>Not available</td><td>&mdash;</td></tr>`;
     const tested = escapeHtml(formatDate(result.testedAt)) + (result.note ? ` (${escapeHtml(result.note)})` : "");
-    // The shared gauge (marin-ui, shared/app-shell.js): ring, number, and the
+    // The shared App Shell gauge (vendor/marinos/marinos.js): ring, number, and the
     // band word, so color is never the only signal.
     const gauge = window.marinScoreGauge ? window.marinScoreGauge(result.score).outerHTML : `${escapeHtml(result.score)} / 100`;
     // PageSpeed Insights' own results page for the same address, mobile —
