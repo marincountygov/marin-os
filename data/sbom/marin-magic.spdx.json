@@ -3,13 +3,13 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-magic",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/f755aca7-34dc-4705-bc93-b123c3ac21d6",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/2aa3d72a-e0d0-4b97-b947-ea26dcfb189d",
   "creationInfo": {
     "creators": [
       "Tool: protobom-v0.0.0-20261007163436-5c519528b9fc+dirty",
       "Tool: GitHub.com-Dependency-Graph"
     ],
-    "created": "2026-10-07T22:26:29Z"
+    "created": "2026-10-07T22:35:35Z"
   },
   "packages": [
     {
