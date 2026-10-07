@@ -1,0 +1,528 @@
+{
+  "generatedAt": "2026-10-07T21:25:21.640Z",
+  "source": {
+    "name": "GitHub",
+    "apis": [
+      "repository",
+      "languages",
+      "dependency-graph/sbom"
+    ]
+  },
+  "apps": {
+    "marin-os": {
+      "repository": "marincountygov/marin-os",
+      "url": "https://github.com/marincountygov/marin-os",
+      "metadata": {
+        "status": "unavailable",
+        "error": "GitHub API returned 403 for /repos/marincountygov/marin-os (rate limited)",
+        "attemptedAt": "2026-10-07T21:25:05.518Z"
+      },
+      "languages": {
+        "status": "success",
+        "fetchedAt": "2026-10-07T21:25:08.752Z",
+        "percentages": {
+          "JavaScript": 59.3,
+          "Python": 20.6,
+          "HTML": 18.5,
+          "Shell": 0.9,
+          "CSS": 0.8
+        },
+        "primary": "JavaScript"
+      },
+      "dependencies": {
+        "status": "success",
+        "total": 2,
+        "direct": 2,
+        "transitive": 0,
+        "byEcosystem": {
+          "githubactions": 2
+        },
+        "licenses": [],
+        "sbom": {
+          "format": "SPDX",
+          "version": "2.3",
+          "generated": "2026-10-07T21:25:09Z",
+          "source": "GitHub dependency graph",
+          "packages": 3,
+          "path": "data/sbom/marin-os.spdx.json"
+        }
+      },
+      "bundled": {
+        "status": "success",
+        "components": [
+          {
+            "name": "Marin App Shell",
+            "version": "1.8.0",
+            "license": "MIT"
+          },
+          {
+            "name": "Marin UI",
+            "version": "1.19.0",
+            "license": "MIT"
+          }
+        ]
+      },
+      "declaredRepo": "marin-os",
+      "ai": {
+        "status": "documented",
+        "used": false
+      }
+    },
+    "marin-magic": {
+      "repository": "marincountygov/marin-magic",
+      "url": "https://github.com/marincountygov/marin-magic",
+      "license": "MIT",
+      "pushedAt": "2026-10-06T21:41:24Z",
+      "languages": {
+        "status": "success",
+        "fetchedAt": "2026-10-07T21:25:09.630Z",
+        "percentages": {
+          "HTML": 100
+        },
+        "primary": "HTML"
+      },
+      "dependencies": {
+        "status": "success",
+        "total": 0,
+        "direct": 0,
+        "transitive": 0,
+        "byEcosystem": {},
+        "licenses": [],
+        "sbom": {
+          "format": "SPDX",
+          "version": "2.3",
+          "generated": "2026-10-07T21:25:10Z",
+          "source": "GitHub dependency graph",
+          "packages": 1,
+          "path": "data/sbom/marin-magic.spdx.json"
+        }
+      },
+      "bundled": {
+        "status": "success",
+        "components": [
+          {
+            "name": "Marin App Shell",
+            "version": "1.8.0",
+            "license": "MIT"
+          },
+          {
+            "name": "Marin UI",
+            "version": "1.19.0",
+            "license": "MIT"
+          },
+          {
+            "name": "SheetJS Community Edition",
+            "version": "0.18.5",
+            "license": "Apache License 2.0 / SheetJS License"
+          },
+          {
+            "name": "Lucide icons",
+            "license": "ISC License and MIT License, as applicable"
+          },
+          {
+            "name": "Open Sans",
+            "license": "SIL Open Font License 1.1"
+          }
+        ]
+      },
+      "declaredRepo": "marin-magic",
+      "ai": {
+        "status": "documented",
+        "used": false
+      }
+    },
+    "marin-docs": {
+      "repository": "marincountygov/marin-docs",
+      "url": "https://github.com/marincountygov/marin-docs",
+      "license": "MIT",
+      "pushedAt": "2026-10-06T21:41:33Z",
+      "languages": {
+        "status": "success",
+        "fetchedAt": "2026-10-07T21:25:10.558Z",
+        "percentages": {
+          "HTML": 80.1,
+          "JavaScript": 15.8,
+          "CSS": 4.1
+        },
+        "primary": "HTML"
+      },
+      "dependencies": {
+        "status": "success",
+        "total": 0,
+        "direct": 0,
+        "transitive": 0,
+        "byEcosystem": {},
+        "licenses": [],
+        "sbom": {
+          "format": "SPDX",
+          "version": "2.3",
+          "generated": "2026-10-07T21:25:11Z",
+          "source": "GitHub dependency graph",
+          "packages": 1,
+          "path": "data/sbom/marin-docs.spdx.json"
+        }
+      },
+      "bundled": {
+        "status": "success",
+        "components": [
+          {
+            "name": "Marin App Shell",
+            "version": "1.8.0",
+            "license": "MIT"
+          },
+          {
+            "name": "Marin UI",
+            "version": "1.19.0",
+            "license": "MIT"
+          },
+          {
+            "name": "Lucide icons",
+            "license": "ISC License and MIT License, as applicable"
+          },
+          {
+            "name": "Open Sans",
+            "license": "SIL Open Font License 1.1"
+          }
+        ]
+      },
+      "declaredRepo": "marin-docs",
+      "ai": {
+        "status": "documented",
+        "used": false
+      }
+    },
+    "marin-brand": {
+      "repository": "marincountygov/marin-brand",
+      "url": "https://github.com/marincountygov/marin-brand",
+      "license": "MIT",
+      "pushedAt": "2026-10-06T21:45:14Z",
+      "languages": {
+        "status": "success",
+        "fetchedAt": "2026-10-07T21:25:11.572Z",
+        "percentages": {
+          "HTML": 60.7,
+          "JavaScript": 31.7,
+          "CSS": 7.6
+        },
+        "primary": "HTML"
+      },
+      "dependencies": {
+        "status": "success",
+        "total": 0,
+        "direct": 0,
+        "transitive": 0,
+        "byEcosystem": {},
+        "licenses": [],
+        "sbom": {
+          "format": "SPDX",
+          "version": "2.3",
+          "generated": "2026-10-07T21:25:11Z",
+          "source": "GitHub dependency graph",
+          "packages": 1,
+          "path": "data/sbom/marin-brand.spdx.json"
+        }
+      },
+      "bundled": {
+        "status": "success",
+        "components": [
+          {
+            "name": "Marin App Shell",
+            "version": "1.8.0",
+            "license": "MIT"
+          },
+          {
+            "name": "Marin UI",
+            "version": "1.19.0",
+            "license": "MIT"
+          },
+          {
+            "name": "Lucide icons",
+            "license": "ISC License and MIT License, as applicable"
+          },
+          {
+            "name": "Open Sans",
+            "license": "SIL Open Font License 1.1"
+          }
+        ]
+      },
+      "declaredRepo": "marin-brand",
+      "ai": {
+        "status": "documented",
+        "used": false
+      }
+    },
+    "marin-mentions": {
+      "repository": "marincountygov/marin-mentions",
+      "url": "https://github.com/marincountygov/marin-mentions",
+      "license": "MIT",
+      "pushedAt": "2026-10-06T21:41:26Z",
+      "languages": {
+        "status": "success",
+        "fetchedAt": "2026-10-07T21:25:21.608Z",
+        "percentages": {
+          "JavaScript": 82.3,
+          "HTML": 9.9,
+          "CSS": 7.8
+        },
+        "primary": "JavaScript"
+      },
+      "dependencies": {
+        "status": "success",
+        "total": 14,
+        "direct": 6,
+        "transitive": 8,
+        "byEcosystem": {
+          "npm": 10,
+          "githubactions": 4
+        },
+        "licenses": [
+          "MIT",
+          "Python-2.0"
+        ],
+        "sbom": {
+          "format": "SPDX",
+          "version": "2.3",
+          "generated": "2026-10-07T21:25:12Z",
+          "source": "GitHub dependency graph",
+          "packages": 15,
+          "path": "data/sbom/marin-mentions.spdx.json"
+        }
+      },
+      "bundled": {
+        "status": "success",
+        "components": [
+          {
+            "name": "Marin App Shell",
+            "version": "1.8.0",
+            "license": "MIT"
+          },
+          {
+            "name": "Marin UI",
+            "version": "1.19.0",
+            "license": "MIT"
+          },
+          {
+            "name": "Chart.js",
+            "version": "4.5.1",
+            "license": "MIT License"
+          }
+        ]
+      },
+      "declaredRepo": "marin-mentions",
+      "ai": {
+        "status": "documented",
+        "used": false
+      }
+    },
+    "marin-anonymizer": {
+      "repository": "marincountygov/marin-anonymizer",
+      "url": "https://github.com/marincountygov/marin-anonymizer",
+      "license": "MIT",
+      "pushedAt": "2026-10-06T21:41:18Z",
+      "languages": {
+        "status": "success",
+        "fetchedAt": "2026-10-07T21:25:13.418Z",
+        "percentages": {
+          "JavaScript": 64.6,
+          "HTML": 25.3,
+          "CSS": 10.1
+        },
+        "primary": "JavaScript"
+      },
+      "dependencies": {
+        "status": "success",
+        "total": 0,
+        "direct": 0,
+        "transitive": 0,
+        "byEcosystem": {},
+        "licenses": [],
+        "sbom": {
+          "format": "SPDX",
+          "version": "2.3",
+          "generated": "2026-10-07T21:25:13Z",
+          "source": "GitHub dependency graph",
+          "packages": 1,
+          "path": "data/sbom/marin-anonymizer.spdx.json"
+        }
+      },
+      "bundled": {
+        "status": "success",
+        "components": [
+          {
+            "name": "Marin App Shell",
+            "version": "1.8.0",
+            "license": "MIT"
+          },
+          {
+            "name": "Marin UI",
+            "version": "1.19.0",
+            "license": "MIT"
+          },
+          {
+            "name": "Papa Parse",
+            "version": "5.4.1",
+            "license": "MIT License"
+          },
+          {
+            "name": "SheetJS Community Edition",
+            "version": "0.18.5",
+            "license": "Apache License 2.0"
+          },
+          {
+            "name": "CryptoJS",
+            "version": "4.1.1",
+            "license": "MIT License"
+          },
+          {
+            "name": "Faker",
+            "version": "3.1.0",
+            "license": "MIT License"
+          },
+          {
+            "name": "Lucide icons",
+            "license": "ISC License and MIT License, as applicable"
+          },
+          {
+            "name": "Open Sans",
+            "license": "SIL Open Font License 1.1"
+          }
+        ]
+      },
+      "declaredRepo": "marin-anonymizer",
+      "ai": {
+        "status": "documented",
+        "used": false
+      }
+    },
+    "marin-zipper": {
+      "repository": "marincountygov/marin-zipper",
+      "url": "https://github.com/marincountygov/marin-zipper",
+      "license": "MIT",
+      "pushedAt": "2026-10-06T21:41:31Z",
+      "languages": {
+        "status": "success",
+        "fetchedAt": "2026-10-07T21:25:14.257Z",
+        "percentages": {
+          "JavaScript": 63.8,
+          "HTML": 25.4,
+          "CSS": 10.7
+        },
+        "primary": "JavaScript"
+      },
+      "dependencies": {
+        "status": "success",
+        "total": 0,
+        "direct": 0,
+        "transitive": 0,
+        "byEcosystem": {},
+        "licenses": [],
+        "sbom": {
+          "format": "SPDX",
+          "version": "2.3",
+          "generated": "2026-10-07T21:25:14Z",
+          "source": "GitHub dependency graph",
+          "packages": 1,
+          "path": "data/sbom/marin-zipper.spdx.json"
+        }
+      },
+      "bundled": {
+        "status": "success",
+        "components": [
+          {
+            "name": "Marin App Shell",
+            "version": "1.8.0",
+            "license": "MIT"
+          },
+          {
+            "name": "Marin UI",
+            "version": "1.19.0",
+            "license": "MIT"
+          },
+          {
+            "name": "Lucide Icons",
+            "license": "ISC License / MIT License"
+          },
+          {
+            "name": "Open Sans",
+            "license": "SIL Open Font License 1.1"
+          },
+          {
+            "name": "zip.js",
+            "version": "2.8.60",
+            "license": "BSD 3-Clause License"
+          }
+        ]
+      },
+      "declaredRepo": "marin-zipper",
+      "ai": {
+        "status": "documented",
+        "used": false
+      }
+    },
+    "marin-unzipper": {
+      "repository": "marincountygov/marin-unzipper",
+      "url": "https://github.com/marincountygov/marin-unzipper",
+      "license": "MIT",
+      "pushedAt": "2026-10-06T21:41:29Z",
+      "languages": {
+        "status": "success",
+        "fetchedAt": "2026-10-07T21:25:15.151Z",
+        "percentages": {
+          "JavaScript": 61.7,
+          "HTML": 26.5,
+          "CSS": 11.9
+        },
+        "primary": "JavaScript"
+      },
+      "dependencies": {
+        "status": "success",
+        "total": 0,
+        "direct": 0,
+        "transitive": 0,
+        "byEcosystem": {},
+        "licenses": [],
+        "sbom": {
+          "format": "SPDX",
+          "version": "2.3",
+          "generated": "2026-10-07T21:25:15Z",
+          "source": "GitHub dependency graph",
+          "packages": 1,
+          "path": "data/sbom/marin-unzipper.spdx.json"
+        }
+      },
+      "bundled": {
+        "status": "success",
+        "components": [
+          {
+            "name": "Marin App Shell",
+            "version": "1.8.0",
+            "license": "MIT"
+          },
+          {
+            "name": "Marin UI",
+            "version": "1.19.0",
+            "license": "MIT"
+          },
+          {
+            "name": "Lucide Icons",
+            "license": "ISC License / MIT License"
+          },
+          {
+            "name": "Open Sans",
+            "license": "SIL Open Font License 1.1"
+          },
+          {
+            "name": "zip.js",
+            "version": "2.8.60",
+            "license": "BSD 3-Clause License"
+          }
+        ]
+      },
+      "declaredRepo": "marin-unzipper",
+      "ai": {
+        "status": "documented",
+        "used": false
+      }
+    }
+  }
+}

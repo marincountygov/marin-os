@@ -15,6 +15,7 @@ node --check assets/app.js
 node scripts/check-catalog-sync.js
 node scripts/check-projects.js
 node scripts/check-lighthouse.js
+node scripts/check-tech.js
 node scripts/check-security.js
 node scripts/check-app-shell.js
 if [[ "$BROWSER" == 1 ]]; then

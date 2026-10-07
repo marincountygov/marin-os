@@ -395,3 +395,87 @@
     if (!section.hidden) loadScores();
   }).observe(section, { attributes: true, attributeFilter: ["hidden"] });
 })();
+
+(() => {
+  // Renders the #tech section's portfolio table live from data/tech.json
+  // (written by scripts/tech.js). Names and URLs come from catalog.json;
+  // results are joined by catalog id. Missing data is never shown as zero or
+  // "No": it reads "Not available", and an AI declaration that was never made
+  // reads "Not documented". The platform's own detail block below the table is
+  // filled by the App Shell.
+  const section = document.querySelector("#tech");
+  const status = document.querySelector("[data-tech-summary-status]");
+  const table = document.querySelector("[data-tech-table]");
+  const tbody = document.querySelector("[data-tech-body]");
+  if (!section || !status || !table || !tbody) return;
+
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function languages(entry) {
+    const langs = entry && entry.languages;
+    const data = langs && (langs.status === "success" ? langs : langs.lastSuccess);
+    if (data && data.percentages) return escapeHtml(Object.keys(data.percentages).slice(0, 3).join(", "));
+    return langs && langs.status === "none-detected" ? "None detected" : "Not available";
+  }
+
+  function dependencies(entry) {
+    const deps = entry && entry.dependencies;
+    return deps && deps.status === "success" ? String(deps.total) : "Not available";
+  }
+
+  function ai(entry) {
+    const declared = entry && entry.ai;
+    let label = "AI: Not documented";
+    if (declared && declared.status === "documented") label = declared.used ? "AI: Yes" : "AI: No";
+    else if (declared && declared.status === "unavailable") label = "AI: Not available";
+    return `<span class="app-badge">${label}</span>`;
+  }
+
+  function rowFor(app, entry) {
+    const href = app.self ? "#tech" : new URL("#tech", app.url).href;
+    return (
+      `<tr><td><a href="${escapeHtml(href)}">${escapeHtml(app.name)}</a></td>` +
+      `<td>${languages(entry)}</td><td>${dependencies(entry)}</td><td>${ai(entry)}</td></tr>`
+    );
+  }
+
+  let loaded = false;
+  async function loadTech() {
+    if (loaded) return;
+    status.textContent = "Loading technology information...";
+    try {
+      const [catalogResponse, dataResponse] = await Promise.all([
+        fetch("catalog.json", { cache: "no-store" }),
+        fetch("data/tech.json", { cache: "no-store" }),
+      ]);
+      if (!catalogResponse.ok) throw new Error(`catalog fetch failed: ${catalogResponse.status}`);
+      const catalog = await catalogResponse.json();
+      // 404 is a real, expected state: nothing has been collected yet.
+      const data = dataResponse.ok ? await dataResponse.json() : null;
+      if (!dataResponse.ok && dataResponse.status !== 404) throw new Error(`tech fetch failed: ${dataResponse.status}`);
+
+      // MarinOS is in scope but doesn't list itself in its own catalog.
+      const apps = [{ id: "marin-os", name: "MarinOS", url: "./", self: true }, ...catalog];
+      loaded = true;
+      tbody.innerHTML = apps.map((app) => rowFor(app, data && data.apps && data.apps[app.id])).join("");
+      table.hidden = false;
+      status.textContent = data ? "" : "Technology information hasn't been collected yet.";
+    } catch (error) {
+      loaded = true;
+      console.error(error);
+      status.textContent = "Unable to retrieve technology information right now.";
+    }
+  }
+
+  if (!section.hidden) loadTech();
+
+  new MutationObserver(() => {
+    if (!section.hidden) loadTech();
+  }).observe(section, { attributes: true, attributeFilter: ["hidden"] });
+})();
