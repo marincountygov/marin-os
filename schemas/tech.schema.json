@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/marincountygov/marin-os/main/schemas/tech.schema.json",
+  "title": "MarinOS data/tech.json",
+  "description": "Technology facts for every MarinOS app, written by scripts/tech.js. Apps are keyed by catalog.json id (MarinOS itself is \"marin-os\"). Languages, dependencies and the SBOM come from GitHub; bundled components come from the app's vendor/marinos/manifest.json and THIRD_PARTY_NOTICES.md; AI comes from the `ai:` block in the app's own marin.yml and is declared, never inferred. Complete SBOMs are not duplicated here: they are stored as-is in data/sbom/<id>.spdx.json. A failed collection is never recorded as zero or \"none\": the part becomes status \"unavailable\" and keeps the last good result under lastSuccess. A missing AI declaration is status \"not-documented\" and is never treated as \"used: false\".",
+  "type": "object",
+  "required": ["generatedAt", "source", "apps"],
+  "properties": {
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "source": { "type": "object" },
+    "apps": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["repository", "languages", "dependencies", "bundled", "ai"],
+        "properties": {
+          "repository": { "type": "string", "pattern": "^marincountygov/[a-z0-9-]+$" },
+          "url": { "type": "string" },
+          "license": { "type": ["string", "null"], "description": "SPDX id from GitHub, or null when none is detected." },
+          "pushedAt": { "type": "string", "format": "date-time" },
+          "declaredRepo": { "type": "string", "description": "project.repo from the app's marin.yml; must equal the app id." },
+          "languages": {
+            "type": "object",
+            "required": ["status"],
+            "properties": {
+              "status": { "enum": ["success", "none-detected", "unavailable"] },
+              "percentages": { "type": "object", "additionalProperties": { "type": "number" }, "description": "Language bytes / total bytes x 100, one decimal. Only on success." },
+              "primary": { "type": "string" }
+            }
+          },
+          "dependencies": {
+            "type": "object",
+            "required": ["status"],
+            "properties": {
+              "status": { "enum": ["success", "unavailable"] },
+              "total": { "type": "integer", "minimum": 0, "description": "Packages other than the repository itself. 0 on success means GitHub found none; it never means failure." },
+              "direct": { "type": "integer", "minimum": 0 },
+              "transitive": { "type": "integer", "minimum": 0 },
+              "byEcosystem": { "type": "object", "additionalProperties": { "type": "integer" } },
+              "licenses": { "type": "array", "items": { "type": "string" } },
+              "sbom": {
+                "type": "object",
+                "required": ["format", "version", "generated", "source", "packages", "path"],
+                "properties": {
+                  "format": { "const": "SPDX" },
+                  "version": { "type": "string" },
+                  "generated": { "type": "string" },
+                  "source": { "type": "string" },
+                  "packages": { "type": "integer", "description": "Packages in the SPDX file, including the repository itself." },
+                  "path": { "type": "string", "pattern": "^data/sbom/[a-z0-9-]+\\.spdx\\.json$" }
+                }
+              }
+            }
+          },
+          "bundled": {
+            "type": "object",
+            "required": ["status"],
+            "properties": {
+              "status": { "enum": ["success", "none-detected", "unavailable"] },
+              "components": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["name"],
+                  "properties": { "name": { "type": "string" }, "version": { "type": "string" }, "license": { "type": "string" } }
+                }
+              }
+            }
+          },
+          "ai": {
+            "type": "object",
+            "required": ["status"],
+            "properties": {
+              "status": { "enum": ["documented", "not-documented", "unavailable"] },
+              "used": { "type": "boolean", "description": "Only when status is documented." },
+              "description": { "type": "string", "description": "Required when used is true." },
+              "provider": { "type": "string" },
+              "features": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    }
+  }
+}

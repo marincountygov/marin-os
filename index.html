@@ -126,6 +126,38 @@
         <p><a href="https://form.asana.com/?k=qVUT83d5DBmlDiIyi-WAyQ&amp;d=23133298259496" target="_blank" rel="noreferrer">Report an accessibility issue</a></p>
       </section>
 
+      <section id="tech" class="app-card" data-tab-section="tech" hidden>
+        <h2>Tech</h2>
+        <p>MarinOS applications use open technologies and reusable components to deliver County digital services. This page documents the technology, software dependencies, and use of artificial intelligence across MarinOS applications.</p>
+
+        <h3>Applications</h3>
+        <!-- Rendered live by assets/app.js from data/tech.json (written by
+             scripts/tech.js, refreshed weekly by .github/workflows/update-tech.yml). -->
+        <p data-tech-summary-status class="app-help-text" role="status" aria-live="polite" aria-atomic="true">Loading technology information&hellip;</p>
+        <div class="app-table-wrap">
+          <table data-tech-table hidden>
+            <caption class="visually-hidden">Languages, dependencies, and AI use for each MarinOS application</caption>
+            <thead>
+              <tr>
+                <th scope="col">Application</th>
+                <th scope="col">Languages</th>
+                <th scope="col">Dependencies</th>
+                <th scope="col">AI</th>
+              </tr>
+            </thead>
+            <tbody data-tech-body></tbody>
+          </table>
+        </div>
+        <p class="app-help-text">Dependencies counts software packages and GitHub Actions found by GitHub&rsquo;s dependency graph. Libraries copied into an application are listed on its own Tech page. AI means AI functionality in the deployed application, not tools used to build it, and is declared by each application&rsquo;s team.</p>
+
+        <h3>MarinOS platform</h3>
+        <!-- The App Shell fills this block (same as every application's Tech section). -->
+        <div data-tech-data data-tech-app-id="marin-os">
+          <p class="app-help-text" role="status" aria-live="polite" aria-atomic="true" data-tech-status>Loading technology information&hellip;</p>
+          <div data-tech-content></div>
+        </div>
+      </section>
+
       <section id="security" class="app-card" data-tab-section="security" data-security-json="security.json" hidden>
 <h2>Security</h2>
 <p>MarinOS applications are designed to be secure by default. Most MarinOS apps are hosted as static websites on GitHub Pages, which means they do not run server-side application code or maintain their own databases.</p>

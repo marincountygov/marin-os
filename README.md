@@ -29,7 +29,7 @@ That's it — do not go and edit every other MarinOS app's `index.html`. Every c
 
 ## App Shell
 
-MarinOS vendors **Marin App Shell 1.5.0**, pinned by `platform.shell` in `marin.yml`. Shared runtime files live in `vendor/marinos/` and must not be edited inside this app. App Shell includes the shared CSS/Pico baseline, navigation, title status badge, Updates, footer, Feedback, table sorting, and accessibility score-gauge helper.
+MarinOS vendors **Marin App Shell 1.8.0**, pinned by `platform.shell` in `marin.yml`. Shared runtime files live in `vendor/marinos/` and must not be edited inside this app. App Shell includes the shared CSS/Pico baseline, navigation, title status badge, Updates, footer, Feedback, table sorting, and accessibility score-gauge helper.
 
 MarinOS owns the static directory, About content, Projects UI, app-status definitions/inventory, platform security inventory, and the platform-wide accessibility score table. The latest source includes that full accessibility inventory, so `marin-app-info sections="updates"` creates only Updates; it does not replace the custom Accessibility, About, or Security sections.
 
@@ -46,7 +46,7 @@ The platform-home footer is configured as:
 </marin-app-footer>
 ```
 
-The footer renders the plain-text MarinOS name, then **Projects, Status, About, Security, Accessibility, Updates**. App Shell appends the four required links; the template only supplies Projects and Status. There is no separate bottom link back to MarinOS.
+The footer renders the plain-text MarinOS name, then **Projects, Status, About, Security, Accessibility, Tech, Updates**. App Shell appends the five required links; the template only supplies Projects and Status. There is no separate bottom link back to MarinOS.
 
 ### Install or update shared assets
 
@@ -111,6 +111,46 @@ The `#projects` tab lists projects as [schemaGov Project](https://schema.govfres
 - `external-projects.json` — projects that aren't part of MarinOS.
 
 The table's Status column is the project's digital service phase (`phase`: alpha, beta, live), not its active/inactive `status`. `parentOrganization` and `member` entries need a `name` as well as an `@id`. Run `node scripts/check-projects.js` to validate both files.
+
+## Tech
+
+The `#tech` page answers "what is each application made of?": languages, software dependencies, a software bill of materials (SBOM), and whether the application uses AI as part of the deployed service. Every application has the same Tech section from App Shell 1.8.0; MarinOS adds the portfolio table.
+
+Three layers, all generated:
+
+- `#tech` — the human-readable page.
+- `data/tech.json` — normalized data for every app ([schema](schemas/tech.schema.json)). It does not contain SBOMs.
+- `data/sbom/<app-id>.spdx.json` — the original SPDX document from GitHub's dependency graph, stored unchanged. Do not edit.
+
+Do not hand-edit any of these. `scripts/tech.js` writes them and the "Update tech data" workflow (`.github/workflows/update-tech.yml`) refreshes them weekly, on demand, and when `catalog.json` changes. It uses only the built-in `GITHUB_TOKEN`; every app repository is public, so no secret is needed. The site never calls GitHub from the browser.
+
+Regenerate by hand with `node scripts/tech.js` (all apps) or `node scripts/tech.js --app marin-docs`, then `node scripts/check-tech.js`. `--dry-run` prints without writing; `--local-root ..` reads `marin.yml`, vendor manifests and notices from sibling checkouts instead of GitHub. Without a token GitHub allows only 60 requests an hour; set `GITHUB_TOKEN` for a full run.
+
+Where each fact comes from:
+
+- Languages, license, last updated: GitHub. Percentages are language bytes divided by total bytes, to one decimal.
+- Dependencies and the SBOM: GitHub's dependency graph. It sees package manifests and GitHub Actions only, so an app with no manifest shows 0 dependencies. That means none detected, not a failure; a failure shows as "Unable to retrieve".
+- Bundled components: libraries copied into the repository (for example `vendor/`), read from `vendor/marinos/manifest.json` and `THIRD_PARTY_NOTICES.md`. Keep `THIRD_PARTY_NOTICES.md` current, one bullet per library in the form `- Name 1.2.3 — License`.
+- AI: the `ai:` block in the app's own `marin.yml`. It is declared, never inferred from code, dependencies or development tools, and it covers only AI in the deployed service.
+
+```yaml
+ai:
+  used: false
+```
+
+```yaml
+ai:
+  used: true
+  description: AI assists with content moderation and analysis.
+  provider: OpenAI
+  features:
+    - Content moderation
+    - Content analysis
+```
+
+A missing `ai:` block shows **Not documented**; it is never treated as No. An app that uses AI must include a `description`. To add a new app, register it in `catalog.json` (the app id must equal its repository name), add the `ai:` block to its `marin.yml`, and run the workflow.
+
+Vulnerability findings are not shown on Tech; they stay on Security, which may link to the SBOM.
 
 ## Accessibility
 

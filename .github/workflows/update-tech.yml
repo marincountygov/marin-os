@@ -1,0 +1,82 @@
+name: Update tech data
+
+# Runs scripts/tech.js — languages, dependency graph SBOMs, bundled components
+# and declared AI use from each app's repository — and keeps data/tech.json and
+# data/sbom/ current. Uses only the built-in GITHUB_TOKEN; every app repository
+# is public, so no extra secret is needed.
+#   Weekly + "Run workflow": collect, then commit the data files to main.
+#   Pull requests: smoke check only. Nothing is written.
+
+on:
+  schedule:
+    - cron: "43 9 * * 1"
+  workflow_dispatch:
+    inputs:
+      app:
+        description: "Only refresh this app id (leave blank to refresh everything)"
+        required: false
+        default: ""
+  push:
+    branches: [main]
+    paths:
+      - catalog.json
+      - scripts/tech.js
+  pull_request:
+    branches: [main]
+    paths:
+      - scripts/tech.js
+      - scripts/check-tech.js
+      - catalog.json
+      - .github/workflows/update-tech.yml
+
+concurrency:
+  group: update-tech
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    # Commits the result to main, so only non-PR runs need write access.
+    permissions:
+      contents: write
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Smoke check (pull request)
+        if: github.event_name == 'pull_request'
+        run: node scripts/tech.js --dry-run
+
+      - name: Collect
+        if: github.event_name != 'pull_request'
+        env:
+          APP_ID: ${{ inputs.app }}
+        run: |
+          if [ -n "$APP_ID" ]; then
+            node scripts/tech.js --app "$APP_ID"
+          else
+            node scripts/tech.js
+          fi
+
+      - name: Validate
+        if: github.event_name != 'pull_request'
+        run: node scripts/check-tech.js
+
+      # Pushes made with the built-in GITHUB_TOKEN don't start other workflow
+      # runs, so this commit can't loop.
+      - name: Commit results
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/tech.json data/sbom
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update tech data"
+            git push
+          fi

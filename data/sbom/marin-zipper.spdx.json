@@ -1,0 +1,38 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "com.github.marincountygov/marin-zipper",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/7a31c243-ce9c-4433-8d6c-75ab40b90850",
+  "creationInfo": {
+    "creators": [
+      "Tool: protobom-v0.0.0-20261007163436-5c519528b9fc+dirty",
+      "Tool: GitHub.com-Dependency-Graph"
+    ],
+    "created": "2026-10-07T21:25:14Z"
+  },
+  "packages": [
+    {
+      "name": "com.github.marincountygov/marin-zipper",
+      "SPDXID": "SPDXRef-github-marincountygov-marin-zipper-main-5903cc",
+      "versionInfo": "main",
+      "downloadLocation": "git+https://github.com/marincountygov/marin-zipper",
+      "filesAnalyzed": false,
+      "licenseDeclared": "MIT",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:github/marincountygov/marin-zipper@main"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relatedSpdxElement": "SPDXRef-github-marincountygov-marin-zipper-main-5903cc",
+      "relationshipType": "DESCRIBES"
+    }
+  ]
+}
