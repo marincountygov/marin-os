@@ -9,7 +9,7 @@ project:
   status: beta
 
 platform:
-  shell: 1.8.0
+  shell: 1.9.0
   template: manual
 
 deployment:
@@ -18,3 +18,15 @@ deployment:
 
 ai:
   used: false
+
+services:
+  pagespeed-insights:
+    name: Google PageSpeed Insights API
+    purpose: Tests each app's accessibility every week
+    runs: build
+    visitor-data: false
+  github-api:
+    name: GitHub API
+    purpose: Collects languages, dependency lists, and bundled-component facts for the Tech page
+    runs: build
+    visitor-data: false

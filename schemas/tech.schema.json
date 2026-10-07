@@ -12,7 +12,7 @@
       "type": "object",
       "additionalProperties": {
         "type": "object",
-        "required": ["repository", "languages", "dependencies", "bundled", "ai"],
+        "required": ["repository", "languages", "dependencies", "bundled", "ai", "services"],
         "properties": {
           "repository": { "type": "string", "pattern": "^marincountygov/[a-z0-9-]+$" },
           "url": { "type": "string" },
@@ -63,6 +63,28 @@
                   "type": "object",
                   "required": ["name"],
                   "properties": { "name": { "type": "string" }, "version": { "type": "string" }, "license": { "type": "string" } }
+                }
+              }
+            }
+          },
+          "services": {
+            "type": "object",
+            "required": ["status"],
+            "description": "Outside services the app itself uses, declared in marin.yml `services:`. `services: none` is documented with an empty list; a missing block is not-documented and is never treated as none. The App Shell's shared calls (recent changes from GitHub, MarinOS data files) are described by the shell, not listed here. Never contains credentials or secret names.",
+            "properties": {
+              "status": { "enum": ["documented", "not-documented", "unavailable"] },
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["id", "name", "purpose", "runs", "visitorData"],
+                  "properties": {
+                    "id": { "type": "string" },
+                    "name": { "type": "string" },
+                    "purpose": { "type": "string" },
+                    "runs": { "enum": ["browser", "build"], "description": "browser: the visitor's browser calls it. build: only the build or a workflow calls it." },
+                    "visitorData": { "type": "boolean", "description": "Whether the service receives anything about the visitor." }
+                  }
                 }
               }
             }

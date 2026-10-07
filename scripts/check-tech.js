@@ -6,7 +6,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { summarizeSpdx } = require("./tech");
+const { summarizeSpdx, RUNS } = require("./tech");
 
 const repoRoot = path.join(__dirname, "..");
 const dataPath = path.join(repoRoot, "data", "tech.json");
@@ -35,12 +35,12 @@ function main() {
       if (e.repository !== `marincountygov/${id}`) errors.push(`"${id}" repository is "${e.repository}".`);
       if (e.declaredRepo && e.declaredRepo !== id) errors.push(`"${id}" marin.yml says project.repo is "${e.declaredRepo}", which doesn't match its id.`);
 
-      for (const part of ["languages", "dependencies", "bundled", "ai"]) {
+      for (const part of ["languages", "dependencies", "bundled", "ai", "services"]) {
         const status = e[part] && e[part].status;
-        const allowed = part === "ai" ? ["documented", "not-documented", "unavailable"] : PART_STATUSES;
+        const allowed = ["ai", "services"].includes(part) ? ["documented", "not-documented", "unavailable"] : PART_STATUSES;
         if (!allowed.includes(status)) errors.push(`"${id}" ${part} has status "${status}", not one of: ${allowed.join(", ")}.`);
         // A failure must never look like data.
-        if (status === "unavailable" && Object.keys(e[part]).some((k) => ["total", "percentages", "used", "components"].includes(k))) {
+        if (status === "unavailable" && Object.keys(e[part]).some((k) => ["total", "percentages", "used", "components", "items"].includes(k))) {
           errors.push(`"${id}" ${part} is unavailable but carries data — keep old results under "lastSuccess".`);
         }
       }
@@ -54,6 +54,19 @@ function main() {
         if (typeof e.ai.used !== "boolean") errors.push(`"${id}" ai.used must be true or false.`);
         if (e.ai.used === true && !e.ai.description) errors.push(`"${id}" uses AI but has no description.`);
       } else if ("used" in e.ai) errors.push(`"${id}" ai is "${e.ai.status}" but has "used" — missing must stay Not documented.`);
+
+      const sv = e.services;
+      if (sv.status === "documented") {
+        if (!Array.isArray(sv.items)) errors.push(`"${id}" services needs an "items" list (empty means none).`);
+        for (const item of sv.items || []) {
+          if (!item.name || !item.purpose) errors.push(`"${id}" service "${item.id}" needs a name and purpose.`);
+          if (!RUNS.includes(item.runs)) errors.push(`"${id}" service "${item.id}" runs must be one of: ${RUNS.join(", ")}.`);
+          if (typeof item.visitorData !== "boolean") errors.push(`"${id}" service "${item.id}" visitor-data must be true or false.`);
+        }
+      } else if ("items" in sv) errors.push(`"${id}" services is "${sv.status}" but has items — missing must stay Not documented.`);
+      if (SECRET.test(JSON.stringify(sv)) || /[A-Z][A-Z0-9]*_(KEY|TOKEN|SECRET|PASSWORD)\b|api[_ -]?key/i.test(JSON.stringify(sv))) {
+        errors.push(`"${id}" services must not contain credentials or secret names.`);
+      }
 
       if (e.dependencies.status === "success") {
         const d = e.dependencies;

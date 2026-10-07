@@ -29,7 +29,7 @@ That's it — do not go and edit every other MarinOS app's `index.html`. Every c
 
 ## App Shell
 
-MarinOS vendors **Marin App Shell 1.8.0**, pinned by `platform.shell` in `marin.yml`. Shared runtime files live in `vendor/marinos/` and must not be edited inside this app. App Shell includes the shared CSS/Pico baseline, navigation, title status badge, Updates, footer, Feedback, table sorting, and accessibility score-gauge helper.
+MarinOS vendors **Marin App Shell 1.9.0**, pinned by `platform.shell` in `marin.yml`. Shared runtime files live in `vendor/marinos/` and must not be edited inside this app. App Shell includes the shared CSS/Pico baseline, navigation, title status badge, Updates, footer, Feedback, table sorting, and accessibility score-gauge helper.
 
 MarinOS owns the static directory, About content, Projects UI, app-status definitions/inventory, platform security inventory, and the platform-wide accessibility score table. The latest source includes that full accessibility inventory, so `marin-app-info sections="updates"` creates only Updates; it does not replace the custom Accessibility, About, or Security sections.
 
@@ -148,7 +148,20 @@ ai:
     - Content analysis
 ```
 
-A missing `ai:` block shows **Not documented**; it is never treated as No. An app that uses AI must include a `description`. To add a new app, register it in `catalog.json` (the app id must equal its repository name), add the `ai:` block to its `marin.yml`, and run the workflow.
+Outside services are declared the same way, in a `services:` block in the app's `marin.yml`. List only services the deployed app itself uses (the shared App Shell calls are described once by the shell), and never credentials or secret names; the check rejects them.
+
+```yaml
+services:
+  youtube-data-api:
+    name: YouTube Data API
+    purpose: Searches for videos that mention the monitored keywords
+    runs: build          # browser = the visitor's browser calls it; build = only the build does
+    visitor-data: false  # does the service receive anything about the visitor?
+```
+
+An app with none writes `services: none`. A missing `services:` block shows **Not documented** and is never treated as none.
+
+A missing `ai:` block shows **Not documented**; it is never treated as No. An app that uses AI must include a `description`. To add a new app, register it in `catalog.json` (the app id must equal its repository name), add the `ai:` and `services:` blocks to its `marin.yml`, and run the workflow.
 
 Vulnerability findings are not shown on Tech; they stay on Security, which may link to the SBOM.
 

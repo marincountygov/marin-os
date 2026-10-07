@@ -146,6 +146,25 @@ function readAi(marin) {
   };
 }
 
+// Turns the `services:` block of a marin.yml into the tech.json shape. These are
+// the outside services the app itself uses (the App Shell's shared calls are
+// described once, by the shell). `services: none` is a declaration that there
+// are none; a missing block is "not documented", never "none".
+const RUNS = ["browser", "build"];
+function readServices(marin) {
+  const services = marin && marin.services;
+  if (services === "none") return { status: "documented", items: [] };
+  if (!services || typeof services !== "object" || Array.isArray(services)) return { status: "not-documented" };
+  const items = Object.entries(services).map(([id, s]) => ({
+    id,
+    name: s && s.name,
+    purpose: s && s.purpose,
+    runs: s && s.runs,
+    visitorData: s && s["visitor-data"],
+  }));
+  return { status: "documented", items };
+}
+
 // THIRD_PARTY_NOTICES.md is free-form, so this reads the two shapes the repos
 // use: "- Name 1.2.3[: url] — License" bullets, and "## Name" headings for
 // components that have prose instead of a bullet. The shell and Pico CSS arrive
@@ -320,8 +339,10 @@ async function collect(app, previous, localRoot) {
     const marin = parseMarinYml(marinYml.text);
     entry.declaredRepo = marin.project && marin.project.repo;
     entry.ai = readAi(marin);
+    entry.services = readServices(marin);
   } else {
     entry.ai = marinYml.status === 404 ? { status: "not-documented" } : unavailable(marinYml.message, prev.ai);
+    entry.services = marinYml.status === 404 ? { status: "not-documented" } : unavailable(marinYml.message, prev.services);
   }
   return entry;
 }
@@ -371,9 +392,9 @@ async function main() {
     delete entry.sbomDocument;
     results[app.id] = entry;
     if (doc && !args.dryRun) fs.writeFileSync(path.join(sbomDir, `${app.id}.spdx.json`), JSON.stringify(doc, null, 2) + "\n");
-    const parts = [entry.languages, entry.dependencies, entry.bundled, entry.ai].map((p) => p.status);
+    const parts = [entry.languages, entry.dependencies, entry.bundled, entry.ai, entry.services].map((p) => p.status);
     if (entry.languages.status === "success" && entry.dependencies.status === "success") healthy += 1;
-    console.log(`${app.id.padEnd(18)} languages:${parts[0]} dependencies:${parts[1]} bundled:${parts[2]} ai:${parts[3]}`);
+    console.log(`${app.id.padEnd(18)} languages:${parts[0]} dependencies:${parts[1]} bundled:${parts[2]} ai:${parts[3]} services:${parts[4]}`);
   }
 
   const output = { generatedAt: new Date().toISOString(), source: { name: "GitHub", apis: ["repository", "languages", "dependency-graph/sbom"] }, apps: results };
@@ -396,4 +417,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { languagePercentages, summarizeSpdx, parseMarinYml, readAi, parseNotices, bundledComponents };
+module.exports = { RUNS, readServices, languagePercentages, summarizeSpdx, parseMarinYml, readAi, parseNotices, bundledComponents };

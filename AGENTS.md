@@ -27,7 +27,7 @@ Review no-JavaScript directory use, all seven footer destinations, project filte
 
 ## Tech data
 
-`data/tech.json` and `data/sbom/*.spdx.json` are written by `scripts/tech.js` and the "Update tech data" workflow. Do not hand-edit them. The portfolio table in `#tech` reads `tech.json`; the MarinOS block under it is filled by the App Shell. AI use is declared in each app's `marin.yml` (`ai:`) and is never inferred; a missing declaration stays "Not documented".
+`data/tech.json` and `data/sbom/*.spdx.json` are written by `scripts/tech.js` and the "Update tech data" workflow. Do not hand-edit them. The portfolio table in `#tech` reads `tech.json`; the MarinOS block under it is filled by the App Shell. AI use (`ai:`) and outside services (`services:`) are declared in each app's `marin.yml` and never inferred; a missing declaration stays "Not documented". Never put credentials or secret names in `services:`.
 
 ## Reference repositories
 
