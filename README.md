@@ -126,6 +126,10 @@ Do not hand-edit any of these. `scripts/tech.js` writes them and the "Update tec
 
 Regenerate by hand with `node scripts/tech.js` (all apps) or `node scripts/tech.js --app marin-docs`, then `node scripts/check-tech.js`. `--dry-run` prints without writing; `--local-root ..` reads `marin.yml`, vendor manifests and notices from sibling checkouts instead of GitHub. Without a token GitHub allows only 60 requests an hour; set `GITHUB_TOKEN` for a full run.
 
+Marin App Shell and Marin UI are not apps in the catalog, so they are listed in `tech-components.json` instead. They get the same collected data and appear in the portfolio table, with their details further down the `#tech` page (`#tech-marin-app-shell`, `#tech-marin-ui`). Every application's Bundled components table links its Marin App Shell and Marin UI entries there. Neither has its own website, so they have no `#tech` page of their own.
+
+Licenses show GitHub's name for them ("MIT License"), looked up by `scripts/tech.js` and stored in `licenseNames` in `data/tech.json`. Ids GitHub does not know are shown as they are.
+
 Where each fact comes from:
 
 - Languages, license, last updated: GitHub. Percentages are language bytes divided by total bytes, to one decimal.

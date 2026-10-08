@@ -8,6 +8,7 @@
   "properties": {
     "generatedAt": { "type": "string", "format": "date-time" },
     "source": { "type": "object" },
+    "licenseNames": { "type": "object", "additionalProperties": { "type": "string" }, "description": "SPDX license id -> readable name (for example MIT -> MIT License), as GitHub's licenses API reports it. Ids GitHub does not know are absent and shown as they are." },
     "apps": {
       "type": "object",
       "additionalProperties": {
@@ -16,6 +17,8 @@
         "properties": {
           "repository": { "type": "string", "pattern": "^marincountygov/[a-z0-9-]+$" },
           "url": { "type": "string" },
+          "kind": { "const": "component", "description": "Present for shared building blocks (Marin App Shell, Marin UI) listed in tech-components.json; absent for apps." },
+          "name": { "type": "string", "description": "Display name. Only on components; apps take theirs from catalog.json." },
           "license": { "type": ["string", "null"], "description": "SPDX id from GitHub, or null when none is detected." },
           "pushedAt": { "type": "string", "format": "date-time" },
           "declaredRepo": { "type": "string", "description": "project.repo from the app's marin.yml; must equal the app id." },

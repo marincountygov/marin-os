@@ -130,7 +130,7 @@
         <h2>Tech</h2>
         <p>MarinOS applications use open technologies and reusable components to deliver County digital services. This page documents the technology, software dependencies, and use of artificial intelligence across MarinOS applications.</p>
 
-        <h3>Applications</h3>
+        <h3>Applications and components</h3>
         <!-- Rendered live by assets/app.js from data/tech.json (written by
              scripts/tech.js, refreshed weekly by .github/workflows/update-tech.yml). -->
         <p data-tech-summary-status class="app-help-text" role="status" aria-live="polite" aria-atomic="true">Loading technology information&hellip;</p>
@@ -150,9 +150,23 @@
         </div>
         <p class="app-help-text">Dependencies counts software packages and GitHub Actions found by GitHub&rsquo;s dependency graph. Libraries copied into an application are listed on its own Tech page. AI means AI functionality in the deployed application, not tools used to build it, and is declared by each application&rsquo;s team.</p>
 
-        <h3>MarinOS platform</h3>
-        <!-- The App Shell fills this block (same as every application's Tech section). -->
-        <div data-tech-data data-tech-app-id="marin-os">
+        <h3 id="tech-marin-os">MarinOS platform</h3>
+        <!-- The App Shell fills these blocks (same as every application's Tech section). -->
+        <div data-tech-data data-tech-app-id="marin-os" data-tech-heading-level="4">
+          <p class="app-help-text" role="status" aria-live="polite" aria-atomic="true" data-tech-status>Loading technology information&hellip;</p>
+          <div data-tech-content></div>
+        </div>
+
+        <h3 id="tech-marin-app-shell">Marin App Shell</h3>
+        <p>The shared runtime every MarinOS application includes: header, footer, routing, and common behavior.</p>
+        <div data-tech-data data-tech-app-id="marin-app-shell" data-tech-heading-level="4">
+          <p class="app-help-text" role="status" aria-live="polite" aria-atomic="true" data-tech-status>Loading technology information&hellip;</p>
+          <div data-tech-content></div>
+        </div>
+
+        <h3 id="tech-marin-ui">Marin UI</h3>
+        <p>The shared design system behind the shell: styles, components, and brand.</p>
+        <div data-tech-data data-tech-app-id="marin-ui" data-tech-heading-level="4">
           <p class="app-help-text" role="status" aria-live="polite" aria-atomic="true" data-tech-status>Loading technology information&hellip;</p>
           <div data-tech-content></div>
         </div>
