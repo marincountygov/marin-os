@@ -438,7 +438,8 @@
   }
 
   function rowFor(app, entry) {
-    const href = app.self ? "#tech" : new URL("#tech", app.url).href;
+    // Components (Marin App Shell, Marin UI) have their details further down this page.
+    const href = app.component ? `#tech-${app.id}` : app.self ? "#tech" : new URL("#tech", app.url).href;
     return (
       `<tr><td><a href="${escapeHtml(href)}">${escapeHtml(app.name)}</a></td>` +
       `<td>${languages(entry)}</td><td>${dependencies(entry)}</td><td>${ai(entry)}</td></tr>`
@@ -461,7 +462,10 @@
       if (!dataResponse.ok && dataResponse.status !== 404) throw new Error(`tech fetch failed: ${dataResponse.status}`);
 
       // MarinOS is in scope but doesn't list itself in its own catalog.
-      const apps = [{ id: "marin-os", name: "MarinOS", url: "./", self: true }, ...catalog];
+      const components = Object.entries((data && data.apps) || {})
+        .filter(([, entry]) => entry && entry.kind === "component")
+        .map(([id, entry]) => ({ id, name: entry.name || id, component: true }));
+      const apps = [{ id: "marin-os", name: "MarinOS", url: "./", self: true }, ...catalog, ...components];
       loaded = true;
       tbody.innerHTML = apps.map((app) => rowFor(app, data && data.apps && data.apps[app.id])).join("");
       table.hidden = false;

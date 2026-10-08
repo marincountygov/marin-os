@@ -10,6 +10,7 @@ const { summarizeSpdx, RUNS } = require("./tech");
 
 const repoRoot = path.join(__dirname, "..");
 const dataPath = path.join(repoRoot, "data", "tech.json");
+const componentsPath = path.join(repoRoot, "tech-components.json");
 const PART_STATUSES = ["success", "none-detected", "unavailable"];
 const SECRET = /gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|Bearer\s+[A-Za-z0-9._-]{20,}/;
 
@@ -25,7 +26,15 @@ function main() {
   if (!data.generatedAt || Number.isNaN(Date.parse(data.generatedAt))) errors.push('"generatedAt" must be a date-time.');
   if (!data.apps || typeof data.apps !== "object") errors.push('"apps" must be an object keyed by catalog id.');
   else {
-    const ids = ["marin-os", ...JSON.parse(fs.readFileSync(path.join(repoRoot, "catalog.json"), "utf8")).map((a) => a.id)];
+    const components = JSON.parse(fs.readFileSync(componentsPath, "utf8"));
+    const ids = ["marin-os", ...JSON.parse(fs.readFileSync(path.join(repoRoot, "catalog.json"), "utf8")).map((a) => a.id), ...components.map((c) => c.id)];
+    for (const c of components) {
+      const e = data.apps[c.id];
+      if (e && (e.kind !== "component" || e.name !== c.name)) errors.push(`"${c.id}" must be marked kind "component" with the name "${c.name}".`);
+    }
+    for (const [license, name] of Object.entries(data.licenseNames || {})) {
+      if (typeof name !== "string" || !name) errors.push(`licenseNames["${license}"] must be a name.`);
+    }
     for (const id of ids) {
       const e = data.apps[id];
       if (!e) {

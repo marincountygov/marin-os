@@ -32,6 +32,9 @@ const path = require("path");
 
 const repoRoot = path.join(__dirname, "..");
 const catalogPath = path.join(repoRoot, "catalog.json");
+// Shared building blocks that have Tech details on MarinOS but are not apps in the
+// catalog: [{ id, name }], where id is the repository name.
+const componentsPath = path.join(repoRoot, "tech-components.json");
 const dataPath = path.join(repoRoot, "data", "tech.json");
 const sbomDir = path.join(repoRoot, "data", "sbom");
 
@@ -198,10 +201,12 @@ function parseNotices(text) {
   return items;
 }
 
-function bundledComponents(manifest, notices) {
+// The shell and Marin UI licenses are the ones their own repositories declare
+// on GitHub (for example "MIT License"), passed in as `licenses`.
+function bundledComponents(manifest, notices, licenses = {}) {
   const items = [];
-  if (manifest && manifest.shellVersion) items.push({ name: "Marin App Shell", version: manifest.shellVersion, license: "MIT" });
-  if (manifest && manifest.marinUiVersion) items.push({ name: "Marin UI", version: manifest.marinUiVersion, license: "MIT" });
+  if (manifest && manifest.shellVersion) items.push({ name: "Marin App Shell", version: manifest.shellVersion, ...(licenses.shell ? { license: licenses.shell } : {}) });
+  if (manifest && manifest.marinUiVersion) items.push({ name: "Marin UI", version: manifest.marinUiVersion, ...(licenses.ui ? { license: licenses.ui } : {}) });
   if (notices) items.push(...parseNotices(notices));
   return items;
 }
@@ -254,6 +259,35 @@ async function repoFile(repo, filePath, localRoot) {
   }
   const result = await github(`/repos/${ORG}/${repo}/contents/${filePath}`, "application/vnd.github.raw+json");
   return result.ok ? { ok: true, text: await result.response.text() } : result;
+}
+
+// ---------------------------------------------------------------------------
+// License names
+// ---------------------------------------------------------------------------
+
+// Repository license names, as GitHub reports them ("MIT License"), looked up
+// once per run. A failed lookup gives null, never a guess.
+const repoLicenseCache = new Map();
+async function repoLicenseName(repo) {
+  if (!repoLicenseCache.has(repo)) {
+    const meta = await githubJson(`/repos/${ORG}/${repo}`);
+    repoLicenseCache.set(repo, meta.ok && meta.body.license && meta.body.license.name !== "Other" ? meta.body.license.name : null);
+  }
+  return repoLicenseCache.get(repo);
+}
+
+// SPDX id -> name for every simple license id in the results, from GitHub's
+// licenses API. Ids GitHub does not know (and expressions such as "MIT OR
+// Apache-2.0") are left out and shown as they are. Earlier names are kept when
+// a lookup fails.
+async function licenseNamesFor(ids, previous = {}) {
+  const names = { ...previous };
+  for (const id of ids) {
+    if (names[id] || !/^[A-Za-z0-9.+-]+$/.test(id)) continue;
+    const result = await githubJson(`/licenses/${encodeURIComponent(id)}`);
+    if (result.ok && result.body.name) names[id] = result.body.name;
+  }
+  return Object.fromEntries(Object.entries(names).filter(([id]) => ids.has(id)).sort(([a], [b]) => a.localeCompare(b)));
 }
 
 // ---------------------------------------------------------------------------
@@ -329,7 +363,13 @@ async function collect(app, previous, localRoot) {
       // Falls through to unavailable below.
     }
     entry.bundled = parsed
-      ? { status: "success", components: bundledComponents(parsed, notices.ok ? notices.text : "") }
+      ? {
+          status: "success",
+          components: bundledComponents(parsed, notices.ok ? notices.text : "", {
+            shell: await repoLicenseName("marin-app-shell"),
+            ui: await repoLicenseName("marin-ui"),
+          }),
+        }
       : unavailable("vendor/marinos/manifest.json is not valid JSON.", prev.bundled);
   } else {
     entry.bundled = manifest.status === 404 ? { status: "none-detected" } : unavailable(manifest.message, prev.bundled);
@@ -372,7 +412,8 @@ function parseArgs(argv) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const catalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
-  const apps = [SELF, ...catalog.map(({ id, name, url }) => ({ id, name, url }))];
+  const components = JSON.parse(fs.readFileSync(componentsPath, "utf8")).map(({ id, name }) => ({ id, name, component: true }));
+  const apps = [SELF, ...catalog.map(({ id, name, url }) => ({ id, name, url })), ...components];
   const targets = args.app ? apps.filter((app) => app.id === args.app) : apps;
   if (!targets.length) {
     console.error(`No app "${args.app}" in catalog.json. Known ids: ${apps.map((a) => a.id).join(", ")}.`);
@@ -388,6 +429,7 @@ async function main() {
   if (!args.dryRun) fs.mkdirSync(sbomDir, { recursive: true });
   for (const app of targets) {
     const entry = await collect(app, results[app.id], args.localRoot);
+    if (app.component) Object.assign(entry, { kind: "component", name: app.name });
     const doc = entry.sbomDocument;
     delete entry.sbomDocument;
     results[app.id] = entry;
@@ -397,7 +439,21 @@ async function main() {
     console.log(`${app.id.padEnd(18)} languages:${parts[0]} dependencies:${parts[1]} bundled:${parts[2]} ai:${parts[3]} services:${parts[4]}`);
   }
 
-  const output = { generatedAt: new Date().toISOString(), source: { name: "GitHub", apis: ["repository", "languages", "dependency-graph/sbom"] }, apps: results };
+  // Every simple license id shown anywhere, with its readable name.
+  const licenseIds = new Set();
+  for (const entry of Object.values(results)) {
+    if (entry.license) licenseIds.add(entry.license);
+    const deps = entry.dependencies;
+    for (const id of (deps && (deps.status === "success" ? deps.licenses : deps.lastSuccess && deps.lastSuccess.licenses)) || []) licenseIds.add(id);
+  }
+  const licenseNames = await licenseNamesFor(licenseIds, existing && existing.licenseNames);
+
+  const output = {
+    generatedAt: new Date().toISOString(),
+    source: { name: "GitHub", apis: ["repository", "languages", "dependency-graph/sbom", "licenses"] },
+    licenseNames,
+    apps: results,
+  };
   if (args.dryRun) {
     console.log("\nDry run — data/tech.json not written.");
   } else {
