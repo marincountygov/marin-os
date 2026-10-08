@@ -3,15 +3,31 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-mentions",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/698e2715-9e35-4fd8-b5f8-03e8ad94de98",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/df64c2ff-18e1-4a0b-ac94-fc3361978cbd",
   "creationInfo": {
     "creators": [
       "Tool: protobom-v0.0.0-20261007163436-5c519528b9fc+dirty",
       "Tool: GitHub.com-Dependency-Graph"
     ],
-    "created": "2026-10-07T22:52:00Z"
+    "created": "2026-10-08T00:16:29Z"
   },
   "packages": [
+    {
+      "name": "@nodable/entities",
+      "SPDXID": "SPDXRef-npm-nodable-entities-3.0.0-9eb17c",
+      "versionInfo": "3.0.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "copyrightText": "(c) 2024, (c) 2024 // only, (c) 2025, (c) 2025 With limit, Hello (c) 2024",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40nodable/entities@3.0.0"
+        }
+      ]
+    },
     {
       "name": "xml-naming",
       "SPDXID": "SPDXRef-npm-xml-naming-0.3.0-2cefa7",
@@ -41,6 +57,22 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/js-yaml@4.3.2"
+        }
+      ]
+    },
+    {
+      "name": "argparse",
+      "SPDXID": "SPDXRef-npm-argparse-2.0.1-22c4e3",
+      "versionInfo": "2.0.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "Python-2.0",
+      "copyrightText": "Copyright (c) 1991 - 1995, Stichting Mathematisch Centrum Amsterdam, The Netherlands, Copyright (c) 1995-2001 Corporation for National Research Initiatives, Copyright (c) 1999-2001 Gregory P. Ward, Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020 Python Software Foundation, Copyright (c) 2002, 2003 Python Software Foundation, Copyright (c) 2010-2020 Python Software Foundation, Copyright (c) 2020 argparse.js authors",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/argparse@2.0.1"
         }
       ]
     },
@@ -77,6 +109,22 @@
       ]
     },
     {
+      "name": "is-unsafe",
+      "SPDXID": "SPDXRef-npm-is-unsafe-2.0.2-878b15",
+      "versionInfo": "2.0.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "copyrightText": "Copyright (c) 2026 Natural Intelligence",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/is-unsafe@2.0.2"
+        }
+      ]
+    },
+    {
       "name": "fast-xml-parser",
       "SPDXID": "SPDXRef-npm-fast-xml-parser-5.11.1-220bcc",
       "versionInfo": "5.11.1",
@@ -89,22 +137,6 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/fast-xml-parser@5.11.1"
-        }
-      ]
-    },
-    {
-      "name": "argparse",
-      "SPDXID": "SPDXRef-npm-argparse-2.0.1-22c4e3",
-      "versionInfo": "2.0.1",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "licenseConcluded": "Python-2.0",
-      "copyrightText": "Copyright (c) 1991 - 1995, Stichting Mathematisch Centrum Amsterdam, The Netherlands, Copyright (c) 1995-2001 Corporation for National Research Initiatives, Copyright (c) 1999-2001 Gregory P. Ward, Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020 Python Software Foundation, Copyright (c) 2002, 2003 Python Software Foundation, Copyright (c) 2010-2020 Python Software Foundation, Copyright (c) 2020 argparse.js authors",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/argparse@2.0.1"
         }
       ]
     },
@@ -141,34 +173,30 @@
       ]
     },
     {
-      "name": "@nodable/entities",
-      "SPDXID": "SPDXRef-npm-nodable-entities-3.0.0-9eb17c",
-      "versionInfo": "3.0.0",
+      "name": "actions/deploy-pages",
+      "SPDXID": "SPDXRef-githubactions-actions-deploy-pages-4..-d8c2aa",
+      "versionInfo": "4.*.*",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "copyrightText": "(c) 2024, (c) 2024 // only, (c) 2025, (c) 2025 With limit, Hello (c) 2024",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40nodable/entities@3.0.0"
+          "referenceLocator": "pkg:githubactions/actions/deploy-pages@4.%2A.%2A"
         }
       ]
     },
     {
-      "name": "is-unsafe",
-      "SPDXID": "SPDXRef-npm-is-unsafe-2.0.2-878b15",
-      "versionInfo": "2.0.2",
+      "name": "actions/setup-node",
+      "SPDXID": "SPDXRef-githubactions-actions-setup-node-4..-0bb21e",
+      "versionInfo": "4.*.*",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "copyrightText": "Copyright (c) 2026 Natural Intelligence",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/is-unsafe@2.0.2"
+          "referenceLocator": "pkg:githubactions/actions/setup-node@4.%2A.%2A"
         }
       ]
     },
@@ -197,34 +225,6 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:githubactions/actions/checkout@4.%2A.%2A"
-        }
-      ]
-    },
-    {
-      "name": "actions/deploy-pages",
-      "SPDXID": "SPDXRef-githubactions-actions-deploy-pages-4..-d8c2aa",
-      "versionInfo": "4.*.*",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:githubactions/actions/deploy-pages@4.%2A.%2A"
-        }
-      ]
-    },
-    {
-      "name": "actions/setup-node",
-      "SPDXID": "SPDXRef-githubactions-actions-setup-node-4..-0bb21e",
-      "versionInfo": "4.*.*",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:githubactions/actions/setup-node@4.%2A.%2A"
         }
       ]
     },
@@ -307,6 +307,11 @@
     },
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
+      "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-node-4..-0bb21e",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
       "relatedSpdxElement": "SPDXRef-githubactions-actions-upload-pages-artifact-3..-8247ae",
       "relationshipType": "DEPENDS_ON"
     },
@@ -318,11 +323,6 @@
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
       "relatedSpdxElement": "SPDXRef-githubactions-actions-deploy-pages-4..-d8c2aa",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
-      "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-node-4..-0bb21e",
       "relationshipType": "DEPENDS_ON"
     },
     {

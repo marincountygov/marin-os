@@ -2,28 +2,28 @@
   "spdxVersion": "SPDX-2.3",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "name": "com.github.marincountygov/marin-docs",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/5679fbf7-5512-4e0c-a37d-abfd658253ec",
+  "name": "com.github.marincountygov/marin-app-shell",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/55e92831-f73c-48b8-a333-e45c582fdf6e",
   "creationInfo": {
     "creators": [
       "Tool: protobom-v0.0.0-20261007163436-5c519528b9fc+dirty",
       "Tool: GitHub.com-Dependency-Graph"
     ],
-    "created": "2026-10-08T00:16:28Z"
+    "created": "2026-10-08T00:16:33Z"
   },
   "packages": [
     {
-      "name": "com.github.marincountygov/marin-docs",
-      "SPDXID": "SPDXRef-github-marincountygov-marin-docs-main-06d7c4",
+      "name": "com.github.marincountygov/marin-app-shell",
+      "SPDXID": "SPDXRef-github-marincountygov-marin-app-shell-main-c9d27c",
       "versionInfo": "main",
-      "downloadLocation": "git+https://github.com/marincountygov/marin-docs",
+      "downloadLocation": "git+https://github.com/marincountygov/marin-app-shell",
       "filesAnalyzed": false,
       "licenseDeclared": "MIT",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:github/marincountygov/marin-docs@main"
+          "referenceLocator": "pkg:github/marincountygov/marin-app-shell@main"
         }
       ]
     }
@@ -31,7 +31,7 @@
   "relationships": [
     {
       "spdxElementId": "SPDXRef-DOCUMENT",
-      "relatedSpdxElement": "SPDXRef-github-marincountygov-marin-docs-main-06d7c4",
+      "relatedSpdxElement": "SPDXRef-github-marincountygov-marin-app-shell-main-c9d27c",
       "relationshipType": "DESCRIBES"
     }
   ]
