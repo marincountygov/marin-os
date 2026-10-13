@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T19:05:50.020Z",
+  "generatedAt": "2026-10-12T23:16:45.716Z",
   "source": {
     "name": "Google Lighthouse",
     "service": "PageSpeed Insights API",
@@ -558,6 +558,12 @@
           "status": "manual"
         }
       ]
+    },
+    "marin-reach": {
+      "status": "error",
+      "url": "https://marincountygov.github.io/marin-reach/",
+      "attemptedAt": "2026-10-12T23:16:24.105Z",
+      "error": "PageSpeed API returned 429: Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351490'."
     }
   }
 }
