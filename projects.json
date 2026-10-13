@@ -116,6 +116,26 @@
     ]
   },
   {
+    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-reach",
+    "@type": "Project",
+    "name": "Marin Reach",
+    "description": "Coordinate and explore County outreach and community engagement across departments and projects.",
+    "url": "https://marincountygov.github.io/marin-reach/",
+    "status": "active",
+    "phase": {
+      "@id": "https://schema.govfresh.com/v1/dsphase/alpha",
+      "@type": "DefinedTerm",
+      "name": "Alpha"
+    },
+    "parentOrganization": {
+      "@id": "https://marincountygov.github.io/marin-os/id/organization/digital-innovation-and-transformation-office",
+      "name": "Digital, Innovation and Transformation"
+    },
+    "audience": [
+      "internal"
+    ]
+  },
+  {
     "@id": "https://marincountygov.github.io/marin-os/id/project/marin-anonymizer",
     "@type": "Project",
     "name": "Marin Anonymizer",

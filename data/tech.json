@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T19:18:19.690Z",
+  "generatedAt": "2026-10-12T23:16:59.794Z",
   "source": {
     "name": "GitHub",
     "apis": [
@@ -723,6 +723,67 @@
       },
       "kind": "component",
       "name": "Marin UI"
+    },
+    "marin-reach": {
+      "repository": "marincountygov/marin-reach",
+      "url": "https://github.com/marincountygov/marin-reach",
+      "license": "MIT",
+      "pushedAt": "2026-10-12T23:11:50Z",
+      "languages": {
+        "status": "success",
+        "fetchedAt": "2026-10-12T23:16:54.432Z",
+        "percentages": {
+          "Python": 53.9,
+          "JavaScript": 30,
+          "HTML": 9.6,
+          "CSS": 5.7,
+          "Shell": 0.9
+        },
+        "primary": "Python"
+      },
+      "dependencies": {
+        "status": "success",
+        "total": 0,
+        "direct": 0,
+        "transitive": 0,
+        "byEcosystem": {},
+        "licenses": [],
+        "sbom": {
+          "format": "SPDX",
+          "version": "2.3",
+          "generated": "2026-10-12T23:16:54Z",
+          "source": "GitHub dependency graph",
+          "packages": 1,
+          "path": "data/sbom/marin-reach.spdx.json"
+        }
+      },
+      "bundled": {
+        "status": "success",
+        "components": [
+          {
+            "name": "Marin App Shell",
+            "version": "1.10.0",
+            "license": "MIT License"
+          },
+          {
+            "name": "Marin UI",
+            "version": "1.19.0",
+            "license": "MIT License"
+          },
+          {
+            "name": "Chart.js"
+          }
+        ]
+      },
+      "declaredRepo": "marin-reach",
+      "ai": {
+        "status": "documented",
+        "used": false
+      },
+      "services": {
+        "status": "documented",
+        "items": []
+      }
     }
   }
 }
