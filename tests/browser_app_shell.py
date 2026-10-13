@@ -29,7 +29,7 @@ project_block = re.search(r"^project:([^\0]*?)(?=^\S|\Z)", (ROOT / "marin.yml").
 PROJECT_STATUS = re.search(r"^  status:\s*(alpha|beta|live)\s*$", project_block, re.M)[1]
 STATUS_LABEL = {"alpha": "Alpha", "beta": "Beta", "live": "Live"}[PROJECT_STATUS]
 ROUTES = ["projects", "status", "about", "security", "accessibility", "updates"]
-LABELS = ["Projects", "Status", "About", "Security", "Accessibility", "Updates"]
+LABELS = ["Projects", "Status", "About", "Security", "Accessibility", "Tech", "Updates"]
 COMMITS = [{
     "html_url": "https://github.com/marincountygov/marin-os/commit/test-fixture",
     "commit": {"message": "fix: fixture update\n\n- Test-only release note.",
@@ -246,7 +246,7 @@ class Runner:
                                 content_type="application/json", headers={"Access-Control-Allow-Origin": "*"})
             page.route("https://**/*", external)
             for name, response in (overrides or {}).items():
-                def override(request, response=response):
+                def override(request, *, response=response):  # keyword-only: newer Playwright passes (route, request)
                     request.fulfill(status=response["status"], body=response["body"], content_type="application/json")
                 page.route(self.base + name, override)
             page.goto(self.base + (f"#{route}" if route else ""), wait_until="networkidle")
