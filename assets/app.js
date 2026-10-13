@@ -70,7 +70,7 @@
   let loaded = false;
   async function loadInventory() {
     if (loaded) return;
-    status.textContent = "Loading application security inventory...";
+    status.textContent = "Loading MarinOS…";
     try {
       const response = await fetch("catalog.json", { cache: "no-store" });
       if (!response.ok) throw new Error(`catalog fetch failed: ${response.status}`);
@@ -143,7 +143,7 @@
   let loaded = false;
   async function loadInventory() {
     if (loaded) return;
-    status.textContent = "Loading application status inventory...";
+    status.textContent = "Loading MarinOS…";
     try {
       const response = await fetch("catalog.json", { cache: "no-store" });
       if (!response.ok) throw new Error(`catalog fetch failed: ${response.status}`);
@@ -273,7 +273,7 @@
   let loaded = false;
   async function loadProjects() {
     if (loaded) return;
-    status.textContent = "Loading projects...";
+    status.textContent = "Loading MarinOS…";
     const [marinos, external] = await Promise.all([
       readProjects("projects.json"),
       readProjects("external-projects.json"),
@@ -364,7 +364,7 @@
   let loaded = false;
   async function loadScores() {
     if (loaded) return;
-    status.textContent = "Loading accessibility scores...";
+    status.textContent = "Loading MarinOS…";
     try {
       const [catalogResponse, dataResponse] = await Promise.all([
         fetch("catalog.json", { cache: "no-store" }),
@@ -449,7 +449,7 @@
   let loaded = false;
   async function loadTech() {
     if (loaded) return;
-    status.textContent = "Loading technology information...";
+    status.textContent = "Loading MarinOS…";
     try {
       const [catalogResponse, dataResponse] = await Promise.all([
         fetch("catalog.json", { cache: "no-store" }),

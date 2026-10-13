@@ -9,7 +9,7 @@ project:
   status: beta
 
 platform:
-  shell: 1.12.1
+  shell: 1.12.2
   template: manual
 
 deployment:
