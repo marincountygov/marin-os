@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T23:16:45.716Z",
+  "generatedAt": "2026-10-13T16:51:16.472Z",
   "source": {
     "name": "Google Lighthouse",
     "service": "PageSpeed Insights API",
@@ -11,7 +11,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-os/",
       "score": 100,
-      "testedAt": "2026-10-12T19:04:27.691Z",
+      "testedAt": "2026-10-13T16:49:50.536Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -80,7 +80,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-magic/",
       "score": 100,
-      "testedAt": "2026-10-12T19:04:37.728Z",
+      "testedAt": "2026-10-13T16:49:59.256Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -149,7 +149,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-docs/",
       "score": 100,
-      "testedAt": "2026-10-12T19:04:48.438Z",
+      "testedAt": "2026-10-13T16:50:06.034Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -218,7 +218,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-brand/",
       "score": 100,
-      "testedAt": "2026-10-12T19:04:57.442Z",
+      "testedAt": "2026-10-13T16:50:14.984Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -287,7 +287,76 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-mentions/",
       "score": 100,
-      "testedAt": "2026-10-12T19:05:08.260Z",
+      "testedAt": "2026-10-13T16:50:22.392Z",
+      "lighthouseVersion": "13.5.0",
+      "audits": [
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "status": "manual"
+        }
+      ]
+    },
+    "marin-reach": {
+      "status": "success",
+      "url": "https://marincountygov.github.io/marin-reach/",
+      "score": 100,
+      "testedAt": "2026-10-13T16:50:42.286Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -356,7 +425,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-anonymizer/",
       "score": 100,
-      "testedAt": "2026-10-12T19:05:26.885Z",
+      "testedAt": "2026-10-13T16:50:50.942Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -425,7 +494,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-zipper/",
       "score": 100,
-      "testedAt": "2026-10-12T19:05:36.099Z",
+      "testedAt": "2026-10-13T16:50:58.380Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -494,7 +563,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-unzipper/",
       "score": 100,
-      "testedAt": "2026-10-12T19:05:42.647Z",
+      "testedAt": "2026-10-13T16:51:09.042Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -558,12 +627,6 @@
           "status": "manual"
         }
       ]
-    },
-    "marin-reach": {
-      "status": "error",
-      "url": "https://marincountygov.github.io/marin-reach/",
-      "attemptedAt": "2026-10-12T23:16:24.105Z",
-      "error": "PageSpeed API returned 429: Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351490'."
     }
   }
 }
