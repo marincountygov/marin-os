@@ -3,13 +3,13 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-unzipper",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/6c5420a3-6395-419f-b8bb-9b8d8451c64d",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/0dab176b-265e-4c7f-b28d-40906b4ce5af",
   "creationInfo": {
     "creators": [
-      "Tool: protobom-v0.0.0-20261012185249-47b208b7abbb+dirty",
+      "Tool: protobom-v0.0.0-20261015165909-a2f8a493a7b7+dirty",
       "Tool: GitHub.com-Dependency-Graph"
     ],
-    "created": "2026-10-13T00:33:32Z"
+    "created": "2026-10-15T17:49:43Z"
   },
   "packages": [
     {

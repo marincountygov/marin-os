@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-13T00:33:34.323Z",
+  "generatedAt": "2026-10-15T17:49:46.144Z",
   "source": {
     "name": "GitHub",
     "apis": [
@@ -17,14 +17,14 @@
       "repository": "marincountygov/marin-os",
       "url": "https://github.com/marincountygov/marin-os",
       "license": "MIT",
-      "pushedAt": "2026-10-13T00:33:10Z",
+      "pushedAt": "2026-10-15T17:49:21Z",
       "languages": {
         "status": "success",
-        "fetchedAt": "2026-10-13T00:33:25.056Z",
+        "fetchedAt": "2026-10-15T17:49:33.800Z",
         "percentages": {
-          "JavaScript": 67.3,
-          "HTML": 16.3,
-          "Python": 15.2,
+          "JavaScript": 67.1,
+          "HTML": 16.5,
+          "Python": 15.3,
           "Shell": 0.7,
           "CSS": 0.6
         },
@@ -42,7 +42,7 @@
         "sbom": {
           "format": "SPDX",
           "version": "2.3",
-          "generated": "2026-10-13T00:33:25Z",
+          "generated": "2026-10-15T17:49:34Z",
           "source": "GitHub dependency graph",
           "packages": 3,
           "path": "data/sbom/marin-os.spdx.json"
@@ -53,12 +53,12 @@
         "components": [
           {
             "name": "Marin App Shell",
-            "version": "1.10.0",
+            "version": "1.12.2",
             "license": "MIT License"
           },
           {
             "name": "Marin UI",
-            "version": "1.19.0",
+            "version": "1.25.0",
             "license": "MIT License"
           }
         ]
@@ -92,10 +92,10 @@
       "repository": "marincountygov/marin-magic",
       "url": "https://github.com/marincountygov/marin-magic",
       "license": "MIT",
-      "pushedAt": "2026-10-08T00:20:33Z",
+      "pushedAt": "2026-10-13T23:09:30Z",
       "languages": {
         "status": "success",
-        "fetchedAt": "2026-10-13T00:33:26.411Z",
+        "fetchedAt": "2026-10-15T17:49:35.362Z",
         "percentages": {
           "HTML": 100
         },
@@ -111,7 +111,7 @@
         "sbom": {
           "format": "SPDX",
           "version": "2.3",
-          "generated": "2026-10-13T00:33:26Z",
+          "generated": "2026-10-15T17:49:35Z",
           "source": "GitHub dependency graph",
           "packages": 1,
           "path": "data/sbom/marin-magic.spdx.json"
@@ -122,12 +122,12 @@
         "components": [
           {
             "name": "Marin App Shell",
-            "version": "1.10.0",
+            "version": "1.12.2",
             "license": "MIT License"
           },
           {
             "name": "Marin UI",
-            "version": "1.19.0",
+            "version": "1.25.0",
             "license": "MIT License"
           },
           {
@@ -159,10 +159,10 @@
       "repository": "marincountygov/marin-docs",
       "url": "https://github.com/marincountygov/marin-docs",
       "license": "MIT",
-      "pushedAt": "2026-10-08T00:20:36Z",
+      "pushedAt": "2026-10-13T23:09:27Z",
       "languages": {
         "status": "success",
-        "fetchedAt": "2026-10-13T00:33:27.293Z",
+        "fetchedAt": "2026-10-15T17:49:36.118Z",
         "percentages": {
           "HTML": 80.1,
           "JavaScript": 15.8,
@@ -180,7 +180,7 @@
         "sbom": {
           "format": "SPDX",
           "version": "2.3",
-          "generated": "2026-10-13T00:33:27Z",
+          "generated": "2026-10-15T17:49:36Z",
           "source": "GitHub dependency graph",
           "packages": 1,
           "path": "data/sbom/marin-docs.spdx.json"
@@ -191,12 +191,12 @@
         "components": [
           {
             "name": "Marin App Shell",
-            "version": "1.10.0",
+            "version": "1.12.2",
             "license": "MIT License"
           },
           {
             "name": "Marin UI",
-            "version": "1.19.0",
+            "version": "1.25.0",
             "license": "MIT License"
           },
           {
@@ -223,14 +223,14 @@
       "repository": "marincountygov/marin-brand",
       "url": "https://github.com/marincountygov/marin-brand",
       "license": "MIT",
-      "pushedAt": "2026-10-08T00:20:39Z",
+      "pushedAt": "2026-10-13T23:38:06Z",
       "languages": {
         "status": "success",
-        "fetchedAt": "2026-10-13T00:33:28.090Z",
+        "fetchedAt": "2026-10-15T17:49:36.936Z",
         "percentages": {
-          "HTML": 60.7,
-          "JavaScript": 31.7,
-          "CSS": 7.6
+          "HTML": 65.6,
+          "JavaScript": 25.9,
+          "CSS": 8.5
         },
         "primary": "HTML"
       },
@@ -244,7 +244,7 @@
         "sbom": {
           "format": "SPDX",
           "version": "2.3",
-          "generated": "2026-10-13T00:33:28Z",
+          "generated": "2026-10-15T17:49:37Z",
           "source": "GitHub dependency graph",
           "packages": 1,
           "path": "data/sbom/marin-brand.spdx.json"
@@ -255,12 +255,12 @@
         "components": [
           {
             "name": "Marin App Shell",
-            "version": "1.10.0",
+            "version": "1.12.2",
             "license": "MIT License"
           },
           {
             "name": "Marin UI",
-            "version": "1.19.0",
+            "version": "1.25.0",
             "license": "MIT License"
           },
           {
@@ -287,14 +287,15 @@
       "repository": "marincountygov/marin-mentions",
       "url": "https://github.com/marincountygov/marin-mentions",
       "license": "MIT",
-      "pushedAt": "2026-10-13T00:30:13Z",
+      "pushedAt": "2026-10-13T23:09:51Z",
       "languages": {
         "status": "success",
-        "fetchedAt": "2026-10-13T00:33:28.856Z",
+        "fetchedAt": "2026-10-15T17:49:38.777Z",
         "percentages": {
-          "JavaScript": 82.3,
-          "HTML": 9.9,
-          "CSS": 7.8
+          "JavaScript": 83,
+          "HTML": 6.4,
+          "CSS": 5.9,
+          "Python": 4.7
         },
         "primary": "JavaScript"
       },
@@ -314,7 +315,7 @@
         "sbom": {
           "format": "SPDX",
           "version": "2.3",
-          "generated": "2026-10-13T00:33:29Z",
+          "generated": "2026-10-15T17:49:38Z",
           "source": "GitHub dependency graph",
           "packages": 15,
           "path": "data/sbom/marin-mentions.spdx.json"
@@ -325,12 +326,12 @@
         "components": [
           {
             "name": "Marin App Shell",
-            "version": "1.10.0",
+            "version": "1.12.2",
             "license": "MIT License"
           },
           {
             "name": "Marin UI",
-            "version": "1.19.0",
+            "version": "1.25.0",
             "license": "MIT License"
           },
           {
@@ -397,10 +398,10 @@
       "repository": "marincountygov/marin-anonymizer",
       "url": "https://github.com/marincountygov/marin-anonymizer",
       "license": "MIT",
-      "pushedAt": "2026-10-08T00:20:45Z",
+      "pushedAt": "2026-10-13T23:09:34Z",
       "languages": {
         "status": "success",
-        "fetchedAt": "2026-10-13T00:33:30.545Z",
+        "fetchedAt": "2026-10-15T17:49:40.476Z",
         "percentages": {
           "JavaScript": 64.6,
           "HTML": 25.3,
@@ -418,7 +419,7 @@
         "sbom": {
           "format": "SPDX",
           "version": "2.3",
-          "generated": "2026-10-13T00:33:30Z",
+          "generated": "2026-10-15T17:49:40Z",
           "source": "GitHub dependency graph",
           "packages": 1,
           "path": "data/sbom/marin-anonymizer.spdx.json"
@@ -429,12 +430,12 @@
         "components": [
           {
             "name": "Marin App Shell",
-            "version": "1.10.0",
+            "version": "1.12.2",
             "license": "MIT License"
           },
           {
             "name": "Marin UI",
-            "version": "1.19.0",
+            "version": "1.25.0",
             "license": "MIT License"
           },
           {
@@ -481,10 +482,10 @@
       "repository": "marincountygov/marin-zipper",
       "url": "https://github.com/marincountygov/marin-zipper",
       "license": "MIT",
-      "pushedAt": "2026-10-08T00:20:48Z",
+      "pushedAt": "2026-10-13T23:09:37Z",
       "languages": {
         "status": "success",
-        "fetchedAt": "2026-10-13T00:33:31.354Z",
+        "fetchedAt": "2026-10-15T17:49:42.375Z",
         "percentages": {
           "JavaScript": 63.8,
           "HTML": 25.4,
@@ -502,7 +503,7 @@
         "sbom": {
           "format": "SPDX",
           "version": "2.3",
-          "generated": "2026-10-13T00:33:31Z",
+          "generated": "2026-10-15T17:49:42Z",
           "source": "GitHub dependency graph",
           "packages": 1,
           "path": "data/sbom/marin-zipper.spdx.json"
@@ -513,12 +514,12 @@
         "components": [
           {
             "name": "Marin App Shell",
-            "version": "1.10.0",
+            "version": "1.12.2",
             "license": "MIT License"
           },
           {
             "name": "Marin UI",
-            "version": "1.19.0",
+            "version": "1.25.0",
             "license": "MIT License"
           },
           {
@@ -550,10 +551,10 @@
       "repository": "marincountygov/marin-unzipper",
       "url": "https://github.com/marincountygov/marin-unzipper",
       "license": "MIT",
-      "pushedAt": "2026-10-08T00:20:51Z",
+      "pushedAt": "2026-10-13T23:09:41Z",
       "languages": {
         "status": "success",
-        "fetchedAt": "2026-10-13T00:33:32.135Z",
+        "fetchedAt": "2026-10-15T17:49:43.263Z",
         "percentages": {
           "JavaScript": 61.7,
           "HTML": 26.5,
@@ -571,7 +572,7 @@
         "sbom": {
           "format": "SPDX",
           "version": "2.3",
-          "generated": "2026-10-13T00:33:32Z",
+          "generated": "2026-10-15T17:49:43Z",
           "source": "GitHub dependency graph",
           "packages": 1,
           "path": "data/sbom/marin-unzipper.spdx.json"
@@ -582,12 +583,12 @@
         "components": [
           {
             "name": "Marin App Shell",
-            "version": "1.10.0",
+            "version": "1.12.2",
             "license": "MIT License"
           },
           {
             "name": "Marin UI",
-            "version": "1.19.0",
+            "version": "1.25.0",
             "license": "MIT License"
           },
           {
@@ -619,16 +620,16 @@
       "repository": "marincountygov/marin-app-shell",
       "url": "https://github.com/marincountygov/marin-app-shell",
       "license": "MIT",
-      "pushedAt": "2026-10-13T00:32:59Z",
+      "pushedAt": "2026-10-13T23:09:24Z",
       "languages": {
         "status": "success",
-        "fetchedAt": "2026-10-13T00:33:32.938Z",
+        "fetchedAt": "2026-10-15T17:49:44.681Z",
         "percentages": {
-          "Python": 49.2,
-          "JavaScript": 42.8,
-          "CSS": 3.9,
+          "Python": 50.2,
+          "JavaScript": 43.2,
           "HTML": 2.9,
-          "Shell": 1.2
+          "CSS": 2.2,
+          "Shell": 1.5
         },
         "primary": "Python"
       },
@@ -642,7 +643,7 @@
         "sbom": {
           "format": "SPDX",
           "version": "2.3",
-          "generated": "2026-10-13T00:33:33Z",
+          "generated": "2026-10-15T17:49:44Z",
           "source": "GitHub dependency graph",
           "packages": 1,
           "path": "data/sbom/marin-app-shell.spdx.json"
@@ -667,14 +668,14 @@
       "repository": "marincountygov/marin-ui",
       "url": "https://github.com/marincountygov/marin-ui",
       "license": "MIT",
-      "pushedAt": "2026-10-08T00:20:27Z",
+      "pushedAt": "2026-10-13T22:24:01Z",
       "languages": {
         "status": "success",
-        "fetchedAt": "2026-10-13T00:33:33.794Z",
+        "fetchedAt": "2026-10-15T17:49:45.541Z",
         "percentages": {
-          "JavaScript": 48.8,
-          "CSS": 29.6,
-          "HTML": 20.3,
+          "JavaScript": 48.4,
+          "CSS": 30.2,
+          "HTML": 20.1,
           "Shell": 1.3
         },
         "primary": "JavaScript"
@@ -691,7 +692,7 @@
         "sbom": {
           "format": "SPDX",
           "version": "2.3",
-          "generated": "2026-10-13T00:33:34Z",
+          "generated": "2026-10-15T17:49:45Z",
           "source": "GitHub dependency graph",
           "packages": 3,
           "path": "data/sbom/marin-ui.spdx.json"
@@ -728,16 +729,16 @@
       "repository": "marincountygov/marin-reach",
       "url": "https://github.com/marincountygov/marin-reach",
       "license": "MIT",
-      "pushedAt": "2026-10-13T00:30:11Z",
+      "pushedAt": "2026-10-13T23:09:55Z",
       "languages": {
         "status": "success",
-        "fetchedAt": "2026-10-13T00:33:29.742Z",
+        "fetchedAt": "2026-10-15T17:49:39.728Z",
         "percentages": {
-          "Python": 53.9,
-          "JavaScript": 30,
-          "HTML": 9.6,
-          "CSS": 5.7,
-          "Shell": 0.9
+          "Python": 51.2,
+          "JavaScript": 32.8,
+          "HTML": 9.2,
+          "CSS": 6,
+          "Shell": 0.8
         },
         "primary": "Python"
       },
@@ -751,7 +752,7 @@
         "sbom": {
           "format": "SPDX",
           "version": "2.3",
-          "generated": "2026-10-13T00:33:29Z",
+          "generated": "2026-10-15T17:49:39Z",
           "source": "GitHub dependency graph",
           "packages": 1,
           "path": "data/sbom/marin-reach.spdx.json"
@@ -762,12 +763,12 @@
         "components": [
           {
             "name": "Marin App Shell",
-            "version": "1.10.0",
+            "version": "1.12.2",
             "license": "MIT License"
           },
           {
             "name": "Marin UI",
-            "version": "1.19.0",
+            "version": "1.25.0",
             "license": "MIT License"
           },
           {
@@ -776,6 +777,77 @@
         ]
       },
       "declaredRepo": "marin-reach",
+      "ai": {
+        "status": "documented",
+        "used": false
+      },
+      "services": {
+        "status": "documented",
+        "items": []
+      }
+    },
+    "marin-csv": {
+      "repository": "marincountygov/marin-csv",
+      "url": "https://github.com/marincountygov/marin-csv",
+      "license": "MIT",
+      "pushedAt": "2026-10-15T16:37:21Z",
+      "languages": {
+        "status": "success",
+        "fetchedAt": "2026-10-15T17:49:43.995Z",
+        "percentages": {
+          "JavaScript": 63.5,
+          "Python": 27.3,
+          "CSS": 4.5,
+          "HTML": 4.2,
+          "Shell": 0.5
+        },
+        "primary": "JavaScript"
+      },
+      "dependencies": {
+        "status": "success",
+        "total": 2,
+        "direct": 2,
+        "transitive": 0,
+        "byEcosystem": {
+          "npm": 2
+        },
+        "licenses": [
+          "MIT"
+        ],
+        "sbom": {
+          "format": "SPDX",
+          "version": "2.3",
+          "generated": "2026-10-15T17:49:44Z",
+          "source": "GitHub dependency graph",
+          "packages": 3,
+          "path": "data/sbom/marin-csv.spdx.json"
+        }
+      },
+      "bundled": {
+        "status": "success",
+        "components": [
+          {
+            "name": "Marin App Shell",
+            "version": "1.12.2",
+            "license": "MIT License"
+          },
+          {
+            "name": "Marin UI",
+            "version": "1.25.0",
+            "license": "MIT License"
+          },
+          {
+            "name": "Papa Parse"
+          },
+          {
+            "name": "Tabulator"
+          },
+          {
+            "name": "Integrity records"
+          }
+        ]
+      },
+      "declaredRepo": "marin-csv",
       "ai": {
         "status": "documented",
         "used": false
