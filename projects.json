@@ -136,6 +136,26 @@
     ]
   },
   {
+  "@id": "https://marincountygov.github.io/marin-os/id/project/marin-meeting-meter",
+  "@type": "Project",
+  "name": "Meeting Meter",
+  "description": "Estimate costs for County meetings.",
+  "url": "https://marincountygov.github.io/marin-meeting-meter/",
+  "status": "active",
+  "phase": {
+    "@id": "https://schema.govfresh.com/v1/dsphase/alpha",
+    "@type": "DefinedTerm",
+    "name": "Alpha"
+  },
+  "parentOrganization": {
+    "@id": "https://marincountygov.github.io/marin-os/id/organization/health-and-human-services",
+    "name": "Health and Human Services"
+  },
+  "audience": [
+    "internal"
+  ]
+},
+  {
     "@id": "https://marincountygov.github.io/marin-os/id/project/marin-anonymizer",
     "@type": "Project",
     "name": "Marin Anonymizer",
@@ -197,5 +217,26 @@
       "internal",
       "external"
     ]
-  }
+  },
+  {
+  "@id": "https://marincountygov.github.io/marin-os/id/project/marin-csv",
+  "@type": "Project",
+  "name": "Marin CSV",
+  "description": "View and edit CSV files locally in your browser.",
+  "url": "https://marincountygov.github.io/marin-csv/",
+  "status": "active",
+  "phase": {
+    "@id": "https://schema.govfresh.com/v1/dsphase/alpha",
+    "@type": "DefinedTerm",
+    "name": "Alpha"
+  },
+  "parentOrganization": {
+    "@id": "https://marincountygov.github.io/marin-os/id/organization/health-and-human-services",
+    "name": "Health and Human Services"
+  },
+  "audience": [
+    "internal",
+    "external"
+  ]
+}
 ]
