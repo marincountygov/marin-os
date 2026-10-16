@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-13T16:51:16.472Z",
+  "generatedAt": "2026-10-16T16:40:24.359Z",
   "source": {
     "name": "Google Lighthouse",
     "service": "PageSpeed Insights API",
@@ -11,7 +11,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-os/",
       "score": 100,
-      "testedAt": "2026-10-13T16:49:50.536Z",
+      "testedAt": "2026-10-16T16:38:40.419Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -80,7 +80,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-magic/",
       "score": 100,
-      "testedAt": "2026-10-13T16:49:59.256Z",
+      "testedAt": "2026-10-16T16:38:47.144Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -149,7 +149,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-docs/",
       "score": 100,
-      "testedAt": "2026-10-13T16:50:06.034Z",
+      "testedAt": "2026-10-16T16:38:53.558Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -218,7 +218,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-brand/",
       "score": 100,
-      "testedAt": "2026-10-13T16:50:14.984Z",
+      "testedAt": "2026-10-16T16:39:00.972Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -287,7 +287,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-mentions/",
       "score": 100,
-      "testedAt": "2026-10-13T16:50:22.392Z",
+      "testedAt": "2026-10-16T16:39:09.763Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -356,9 +356,158 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-reach/",
       "score": 100,
-      "testedAt": "2026-10-13T16:50:42.286Z",
+      "testedAt": "2026-10-16T16:39:20.714Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "status": "manual"
+        }
+      ]
+    },
+    "marin-learn": {
+      "status": "success",
+      "url": "https://marincountygov.github.io/marin-learn/",
+      "score": 100,
+      "testedAt": "2026-10-16T16:39:32.638Z",
+      "lighthouseVersion": "13.5.0",
+      "audits": [
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "status": "manual"
+        }
+      ]
+    },
+    "marin-meeting-meter": {
+      "status": "success",
+      "url": "https://marincountygov.github.io/marin-meeting-meter/",
+      "score": 98,
+      "testedAt": "2026-10-16T16:39:40.291Z",
+      "lighthouseVersion": "13.5.0",
+      "audits": [
+        {
+          "id": "heading-order",
+          "title": "Heading elements are not in a sequentially-descending order",
+          "score": 0,
+          "status": "failed",
+          "items": [
+            {
+              "selector": "section.app-card > div.section-heading > div > h3#meeting-setup-heading"
+            }
+          ]
+        },
         {
           "id": "focusable-controls",
           "title": "Interactive controls are keyboard focusable",
@@ -425,7 +574,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-anonymizer/",
       "score": 100,
-      "testedAt": "2026-10-13T16:50:50.942Z",
+      "testedAt": "2026-10-16T16:39:48.591Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -494,7 +643,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-zipper/",
       "score": 100,
-      "testedAt": "2026-10-13T16:50:58.380Z",
+      "testedAt": "2026-10-16T16:39:58.936Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -563,7 +712,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-unzipper/",
       "score": 100,
-      "testedAt": "2026-10-13T16:51:09.042Z",
+      "testedAt": "2026-10-16T16:40:07.341Z",
       "lighthouseVersion": "13.5.0",
       "audits": [
         {
@@ -628,17 +777,85 @@
         }
       ]
     },
-    "marin-meeting-meter": {
-      "status": "not-tested",
-      "url": "https://marincountygov.github.io/marin-meeting-meter/"
-    },
     "marin-csv": {
-      "status": "not-tested",
-      "url": "https://marincountygov.github.io/marin-csv/"
-    },
-    "marin-learn": {
-      "status": "not-tested",
-      "url": "https://marincountygov.github.io/marin-learn/"
+      "status": "success",
+      "url": "https://marincountygov.github.io/marin-csv/",
+      "score": 94,
+      "testedAt": "2026-10-16T16:40:14.811Z",
+      "lighthouseVersion": "13.5.0",
+      "audits": [
+        {
+          "id": "label",
+          "title": "Form elements do not have associated labels",
+          "score": 0,
+          "status": "failed",
+          "items": [
+            {
+              "selector": "div#csv-open-view > div#csv-drop-zone > div > input#csv-file-input"
+            }
+          ]
+        },
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "status": "manual"
+        }
+      ]
     }
   }
 }
