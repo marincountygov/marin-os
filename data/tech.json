@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T21:35:19.105Z",
+  "generatedAt": "2026-10-15T23:56:54.605Z",
   "source": {
     "name": "GitHub",
     "apis": [
@@ -909,6 +909,69 @@
       },
       "services": {
         "status": "not-documented"
+      }
+    },
+    "marin-learn": {
+      "repository": "marincountygov/marin-learn",
+      "url": "https://github.com/marincountygov/marin-learn",
+      "license": "MIT",
+      "pushedAt": "2026-10-15T22:47:12Z",
+      "languages": {
+        "status": "success",
+        "fetchedAt": "2026-10-15T23:56:53.776Z",
+        "percentages": {
+          "JavaScript": 58.1,
+          "Python": 32.9,
+          "CSS": 7.1,
+          "HTML": 1.7,
+          "Shell": 0.2
+        },
+        "primary": "JavaScript"
+      },
+      "dependencies": {
+        "status": "success",
+        "total": 6,
+        "direct": 6,
+        "transitive": 0,
+        "byEcosystem": {
+          "githubactions": 6
+        },
+        "licenses": [],
+        "sbom": {
+          "format": "SPDX",
+          "version": "2.3",
+          "generated": "2026-10-15T23:56:54Z",
+          "source": "GitHub dependency graph",
+          "packages": 7,
+          "path": "data/sbom/marin-learn.spdx.json"
+        }
+      },
+      "bundled": {
+        "status": "success",
+        "components": [
+          {
+            "name": "Marin App Shell",
+            "version": "1.13.0",
+            "license": "MIT License"
+          },
+          {
+            "name": "Marin UI",
+            "version": "1.27.0",
+            "license": "MIT License"
+          },
+          {
+            "name": "PowerPoint export runtime"
+          }
+        ]
+      },
+      "declaredRepo": "marin-learn",
+      "ai": {
+        "status": "documented",
+        "used": false
+      },
+      "services": {
+        "status": "documented",
+        "items": []
       }
     }
   }

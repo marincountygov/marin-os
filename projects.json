@@ -136,6 +136,26 @@
     ]
   },
   {
+    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-learn",
+    "@type": "Project",
+    "name": "Marin Learn",
+    "description": "Build skills for better County services with short notes, decks, and quizzes.",
+    "url": "https://marincountygov.github.io/marin-learn/",
+    "status": "active",
+    "phase": {
+      "@id": "https://schema.govfresh.com/v1/dsphase/alpha",
+      "@type": "DefinedTerm",
+      "name": "Alpha"
+    },
+    "parentOrganization": {
+      "@id": "https://marincountygov.github.io/marin-os/id/organization/digital-innovation-and-transformation-office",
+      "name": "Digital, Innovation and Transformation"
+    },
+    "audience": [
+      "internal"
+    ]
+  },
+  {
   "@id": "https://marincountygov.github.io/marin-os/id/project/marin-meeting-meter",
   "@type": "Project",
   "name": "Meeting Meter",
