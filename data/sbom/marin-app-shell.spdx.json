@@ -3,13 +3,13 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-app-shell",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/bc072b1e-0af6-46e3-be92-a704da4815ca",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/79ddca90-4235-4e27-9024-27b82be871e0",
   "creationInfo": {
     "creators": [
       "Tool: protobom-v0.0.0-20261015211749-8209a84538f6+dirty",
       "Tool: GitHub.com-Dependency-Graph"
     ],
-    "created": "2026-10-15T21:35:17Z"
+    "created": "2026-10-16T00:17:28Z"
   },
   "packages": [
     {
