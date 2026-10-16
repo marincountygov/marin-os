@@ -629,12 +629,16 @@
       ]
     },
     "marin-meeting-meter": {
-  "status": "not-tested",
-  "url": "https://marincountygov.github.io/marin-meeting-meter/"
-},
-"marin-csv": {
-  "status": "not-tested",
-  "url": "https://marincountygov.github.io/marin-csv/"
-}
+      "status": "not-tested",
+      "url": "https://marincountygov.github.io/marin-meeting-meter/"
+    },
+    "marin-csv": {
+      "status": "not-tested",
+      "url": "https://marincountygov.github.io/marin-csv/"
+    },
+    "marin-learn": {
+      "status": "not-tested",
+      "url": "https://marincountygov.github.io/marin-learn/"
+    }
   }
 }
