@@ -12,6 +12,7 @@ esac
 command -v node >/dev/null || { printf 'Node.js is required for development checks (not the deployed app).\n' >&2; exit 1; }
 cd "$ROOT_DIR"
 node --check assets/app.js
+python3 vendor/marinos/audit-buttons.py . --fail
 node scripts/check-catalog-sync.js
 node scripts/check-projects.js
 node scripts/check-lighthouse.js
