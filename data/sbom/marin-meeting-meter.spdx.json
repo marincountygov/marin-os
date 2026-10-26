@@ -3,13 +3,13 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-meeting-meter",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/c8cdd55f-13f4-4d07-a283-4f8390ceb6b2",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/95e79fde-6e30-4024-8525-3292c179d372",
   "creationInfo": {
     "creators": [
-      "Tool: protobom-v0.0.0-20261015211749-8209a84538f6+dirty",
+      "Tool: protobom-v0.0.0-20261026134324-e1f19f723ff6+dirty",
       "Tool: GitHub.com-Dependency-Graph"
     ],
-    "created": "2026-10-19T16:37:44Z"
+    "created": "2026-10-26T16:18:04Z"
   },
   "packages": [
     {

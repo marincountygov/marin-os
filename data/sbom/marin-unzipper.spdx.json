@@ -3,15 +3,31 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-unzipper",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/976abb9b-18cb-4345-a297-c337050fd8f4",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/6123cbf7-5ba2-4d23-a32a-7316f9e93c2c",
   "creationInfo": {
     "creators": [
-      "Tool: protobom-v0.0.0-20261015211749-8209a84538f6+dirty",
-      "Tool: GitHub.com-Dependency-Graph"
+      "Tool: protobom-v0.0.0-20261026134324-e1f19f723ff6+dirty",
+      "Tool: GitHub.com-Dependency-Graph",
+      "Tool: dependabot"
     ],
-    "created": "2026-10-19T16:37:48Z"
+    "created": "2026-10-26T16:18:07Z"
   },
   "packages": [
+    {
+      "name": "playwright",
+      "SPDXID": "SPDXRef-pypi-playwright-1.57.0-bca6fb",
+      "versionInfo": "1.57.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "Apache-2.0",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/playwright@1.57.0"
+        }
+      ]
+    },
     {
       "name": "com.github.marincountygov/marin-unzipper",
       "SPDXID": "SPDXRef-github-marincountygov-marin-unzipper-main-5fe031",
@@ -29,6 +45,11 @@
     }
   ],
   "relationships": [
+    {
+      "spdxElementId": "SPDXRef-github-marincountygov-marin-unzipper-main-5fe031",
+      "relatedSpdxElement": "SPDXRef-pypi-playwright-1.57.0-bca6fb",
+      "relationshipType": "DEPENDS_ON"
+    },
     {
       "spdxElementId": "SPDXRef-DOCUMENT",
       "relatedSpdxElement": "SPDXRef-github-marincountygov-marin-unzipper-main-5fe031",
