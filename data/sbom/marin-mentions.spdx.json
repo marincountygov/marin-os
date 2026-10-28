@@ -3,28 +3,28 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-mentions",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/0d830cc6-2ef1-4805-a033-bbab0ce1419f",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/f4c6d70b-c052-48b8-ba81-7844ec604c5b",
   "creationInfo": {
     "creators": [
-      "Tool: protobom-v0.0.0-20261026134324-e1f19f723ff6+dirty",
+      "Tool: protobom-v0.0.0-20261027212701-c97783990bff+dirty",
       "Tool: GitHub.com-Dependency-Graph"
     ],
-    "created": "2026-10-26T16:18:00Z"
+    "created": "2026-10-28T21:36:17Z"
   },
   "packages": [
     {
-      "name": "fast-xml-parser",
-      "SPDXID": "SPDXRef-npm-fast-xml-parser-5.11.1-220bcc",
-      "versionInfo": "5.11.1",
+      "name": "fast-xml-builder",
+      "SPDXID": "SPDXRef-npm-fast-xml-builder-1.3.1-ec9119",
+      "versionInfo": "1.3.1",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "licenseConcluded": "MIT",
-      "copyrightText": "Copyright (c) 2017 Amit Kumar Gupta",
+      "copyrightText": "Copyright (c) 2026 Natural Intelligence",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/fast-xml-parser@5.11.1"
+          "referenceLocator": "pkg:npm/fast-xml-builder@1.3.1"
         }
       ]
     },
@@ -45,38 +45,6 @@
       ]
     },
     {
-      "name": "strnum",
-      "SPDXID": "SPDXRef-npm-strnum-2.4.2-ffe965",
-      "versionInfo": "2.4.2",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "copyrightText": "Copyright (c) 2021 Natural Intelligence",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/strnum@2.4.2"
-        }
-      ]
-    },
-    {
-      "name": "fast-xml-builder",
-      "SPDXID": "SPDXRef-npm-fast-xml-builder-1.3.1-ec9119",
-      "versionInfo": "1.3.1",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "copyrightText": "Copyright (c) 2026 Natural Intelligence",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/fast-xml-builder@1.3.1"
-        }
-      ]
-    },
-    {
       "name": "argparse",
       "SPDXID": "SPDXRef-npm-argparse-2.0.1-22c4e3",
       "versionInfo": "2.0.1",
@@ -93,18 +61,18 @@
       ]
     },
     {
-      "name": "anynum",
-      "SPDXID": "SPDXRef-npm-anynum-1.0.1-327a7c",
-      "versionInfo": "1.0.1",
+      "name": "strnum",
+      "SPDXID": "SPDXRef-npm-strnum-2.4.2-ffe965",
+      "versionInfo": "2.4.2",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "licenseConcluded": "MIT",
-      "copyrightText": "Copyright (c) 2026 Natural Intelligence",
+      "copyrightText": "Copyright (c) 2021 Natural Intelligence",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/anynum@1.0.1"
+          "referenceLocator": "pkg:npm/strnum@2.4.2"
         }
       ]
     },
@@ -173,16 +141,34 @@
       ]
     },
     {
-      "name": "actions/deploy-pages",
-      "SPDXID": "SPDXRef-githubactions-actions-deploy-pages-4..-d8c2aa",
-      "versionInfo": "4.*.*",
+      "name": "fast-xml-parser",
+      "SPDXID": "SPDXRef-npm-fast-xml-parser-5.11.1-220bcc",
+      "versionInfo": "5.11.1",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "copyrightText": "Copyright (c) 2017 Amit Kumar Gupta",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:githubactions/actions/deploy-pages@4.%2A.%2A"
+          "referenceLocator": "pkg:npm/fast-xml-parser@5.11.1"
+        }
+      ]
+    },
+    {
+      "name": "anynum",
+      "SPDXID": "SPDXRef-npm-anynum-1.0.1-327a7c",
+      "versionInfo": "1.0.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "copyrightText": "Copyright (c) 2026 Natural Intelligence",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/anynum@1.0.1"
         }
       ]
     },
@@ -229,6 +215,20 @@
       ]
     },
     {
+      "name": "actions/deploy-pages",
+      "SPDXID": "SPDXRef-githubactions-actions-deploy-pages-4..-d8c2aa",
+      "versionInfo": "4.*.*",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/actions/deploy-pages@4.%2A.%2A"
+        }
+      ]
+    },
+    {
       "name": "com.github.marincountygov/marin-mentions",
       "SPDXID": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
       "versionInfo": "main",
@@ -245,6 +245,26 @@
     }
   ],
   "relationships": [
+    {
+      "spdxElementId": "SPDXRef-npm-fast-xml-builder-1.3.1-ec9119",
+      "relatedSpdxElement": "SPDXRef-npm-path-expression-matcher-1.6.2-bd5113",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-fast-xml-builder-1.3.1-ec9119",
+      "relatedSpdxElement": "SPDXRef-npm-xml-naming-0.3.0-2cefa7",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-js-yaml-4.3.2-478a41",
+      "relatedSpdxElement": "SPDXRef-npm-argparse-2.0.1-22c4e3",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-strnum-2.4.2-ffe965",
+      "relatedSpdxElement": "SPDXRef-npm-anynum-1.0.1-327a7c",
+      "relationshipType": "DEPENDS_ON"
+    },
     {
       "spdxElementId": "SPDXRef-npm-fast-xml-parser-5.11.1-220bcc",
       "relatedSpdxElement": "SPDXRef-npm-strnum-2.4.2-ffe965",
@@ -276,23 +296,8 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-npm-js-yaml-4.3.2-478a41",
-      "relatedSpdxElement": "SPDXRef-npm-argparse-2.0.1-22c4e3",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-npm-strnum-2.4.2-ffe965",
-      "relatedSpdxElement": "SPDXRef-npm-anynum-1.0.1-327a7c",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-npm-fast-xml-builder-1.3.1-ec9119",
-      "relatedSpdxElement": "SPDXRef-npm-path-expression-matcher-1.6.2-bd5113",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-npm-fast-xml-builder-1.3.1-ec9119",
-      "relatedSpdxElement": "SPDXRef-npm-xml-naming-0.3.0-2cefa7",
+      "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
+      "relatedSpdxElement": "SPDXRef-npm-js-yaml-4.3.2-478a41",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -302,7 +307,7 @@
     },
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
-      "relatedSpdxElement": "SPDXRef-npm-js-yaml-4.3.2-478a41",
+      "relatedSpdxElement": "SPDXRef-githubactions-actions-checkout-4..-bfd09a",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -318,11 +323,6 @@
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
       "relatedSpdxElement": "SPDXRef-githubactions-actions-upload-pages-artifact-3..-8247ae",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
-      "relatedSpdxElement": "SPDXRef-githubactions-actions-checkout-4..-bfd09a",
       "relationshipType": "DEPENDS_ON"
     },
     {
