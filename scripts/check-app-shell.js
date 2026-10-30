@@ -84,9 +84,14 @@ function main() {
   const html = read("index.html");
   const appJs = read("assets/app.js");
   const css = read("assets/app.css");
-  const source = html.replace(/<!--[\s\S]*?-->/g, "");
+  // Comments are removed until none are left, so one cannot be rebuilt from the pieces around another.
+  let source = html;
+  for (let previous = ""; previous !== source;) {
+    previous = source;
+    source = source.replace(/<!--[\s\S]*?-->/g, "");
+  }
   function host(name) {
-    const matches = [...source.matchAll(new RegExp(`<${name}\\b[^>]*>[\\s\\S]*?<\\/${name}>`, "g"))];
+    const matches = [...source.matchAll(new RegExp(`<${name}\\b[^>]*>[\\s\\S]*?<\\/${name}\\s*>`, "gi"))];
     requireCondition(matches.length === 1, `Expected one <${name}> component`);
     return { markup: matches[0][0], attrs: attributes(matches[0][0].match(/^<[^>]+>/)[0]) };
   }
@@ -130,12 +135,12 @@ function main() {
   requireCondition(/<noscript>/.test(source), "Provide a no-JavaScript explanation alongside the static directory");
   requireCondition(!/MARINOS_OWN_STATUS|data-marinos-own-status/.test(source + appJs), "Remove the old hard-coded self-status mechanism");
 
-  const links = [...source.matchAll(/<link\b[^>]*>/g)].map((m) => attributes(m[0]));
+  const links = [...source.matchAll(/<link\b[^>]*>/gi)].map((m) => attributes(m[0]));
   const styles = links.filter((a) => a.rel === "stylesheet").map((a) => a.href);
   requireCondition(JSON.stringify(styles) === JSON.stringify(["vendor/marinos/marinos.css", "assets/app.css"]), "Load only shell CSS then app CSS");
-  const scripts = [...source.matchAll(/<script\b[^>]*>/g)].map((m) => attributes(m[0]));
+  const scripts = [...source.matchAll(/<script\b[^>]*>/gi)].map((m) => attributes(m[0]));
   requireCondition(scripts.length === 2 && scripts[0].src === "vendor/marinos/marinos.js" && scripts[1].src === "assets/app.js" && scripts.every((s) => Object.hasOwn(s, "defer")), "Load the deferred shell before the deferred application script");
-  requireCondition(!/<style\b/.test(source), "Keep app styles in assets/app.css");
+  requireCondition(!/<style\b/i.test(source), "Keep app styles in assets/app.css");
   requireCondition(!/@font-face|@import|font-family\s*:/.test(css), "Do not duplicate font loading/tokens in app CSS");
   for (const old of ["shared/app-brand.css", "shared/app-shell.js", "vendor/pico.min.css", "BRAND_VERSION"]) {
     requireCondition(!fs.existsSync(path.join(root, old)), `Remove obsolete file ${old}`);

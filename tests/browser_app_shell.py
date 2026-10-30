@@ -17,9 +17,11 @@ import re
 import shutil
 import threading
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
-from urllib.parse import quote
+from urllib.parse import quote, urlsplit
 
 from playwright.sync_api import Page, sync_playwright
+
+from html_fixture import remove_from_html
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = json.loads((ROOT / "catalog.json").read_text())
@@ -227,8 +229,7 @@ class Runner:
             # No attempted network/navigation: source styles/scripts are injected
             # in order, and fetch returns deterministic in-memory responses.
             html = (ROOT / "index.html").read_text()
-            html = re.sub(r'<link\b[^>]*>', '', html)
-            html = re.sub(r'<script\b[^>]*>[\s\S]*?</script>', '', html)
+            html = remove_from_html(html, "links", "scripts")
             page.set_content(html)
             inject_styles(page)
             page.evaluate(FETCH_FIXTURE, data)
@@ -239,8 +240,10 @@ class Runner:
         else:
             def external(request):
                 url = request.request.url
-                response = data["__commits__"] if "api.github.com/" in url else data["security.json"]
-                if "api.github.com/" not in url and not url.endswith("/security.json"):
+                parts = urlsplit(url)
+                from_github = parts.hostname == "api.github.com"
+                response = data["__commits__"] if from_github else data["security.json"]
+                if not from_github and not parts.path.endswith("/security.json"):
                     raise AssertionError(f"Unexpected external browser request: {url}")
                 request.fulfill(status=response["status"], body=response["body"],
                                 content_type="application/json", headers={"Access-Control-Allow-Origin": "*"})
@@ -311,7 +314,7 @@ class Runner:
         try:
             page = context.new_page()
             if self.fixture_mode:
-                text = re.sub(r'<link\b[^>]*>|<script\b[^>]*>[\s\S]*?</script>', '', (ROOT / "index.html").read_text())
+                text = remove_from_html((ROOT / "index.html").read_text(), "links", "scripts")
                 # A style element in initial HTML works with JavaScript disabled;
                 # add_style_tag waits for a script-driven event in some browsers.
                 text = text.replace("</head>", "<style>" + fixture_css() + "</style></head>")
