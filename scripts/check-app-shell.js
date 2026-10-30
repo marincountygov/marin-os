@@ -133,7 +133,7 @@ function main() {
   const links = [...source.matchAll(/<link\b[^>]*>/g)].map((m) => attributes(m[0]));
   const styles = links.filter((a) => a.rel === "stylesheet").map((a) => a.href);
   requireCondition(JSON.stringify(styles) === JSON.stringify(["vendor/marinos/marinos.css", "assets/app.css"]), "Load only shell CSS then app CSS");
-  const scripts = [...source.matchAll(/<script\b[^>]*>/g)].map((m) => attributes(m[0]));
+  const scripts = [...source.matchAll(/<script\b[^>]*>/gi)].map((m) => attributes(m[0]));
   requireCondition(scripts.length === 2 && scripts[0].src === "vendor/marinos/marinos.js" && scripts[1].src === "assets/app.js" && scripts.every((s) => Object.hasOwn(s, "defer")), "Load the deferred shell before the deferred application script");
   requireCondition(!/<style\b/.test(source), "Keep app styles in assets/app.css");
   requireCondition(!/@font-face|@import|font-family\s*:/.test(css), "Do not duplicate font loading/tokens in app CSS");
