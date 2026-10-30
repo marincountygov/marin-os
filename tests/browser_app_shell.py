@@ -17,7 +17,7 @@ import re
 import shutil
 import threading
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
-from urllib.parse import quote
+from urllib.parse import quote, urlsplit
 
 from playwright.sync_api import Page, sync_playwright
 
@@ -240,8 +240,10 @@ class Runner:
         else:
             def external(request):
                 url = request.request.url
-                response = data["__commits__"] if "api.github.com/" in url else data["security.json"]
-                if "api.github.com/" not in url and not url.endswith("/security.json"):
+                parts = urlsplit(url)
+                from_github = parts.hostname == "api.github.com"
+                response = data["__commits__"] if from_github else data["security.json"]
+                if not from_github and not parts.path.endswith("/security.json"):
                     raise AssertionError(f"Unexpected external browser request: {url}")
                 request.fulfill(status=response["status"], body=response["body"],
                                 content_type="application/json", headers={"Access-Control-Allow-Origin": "*"})
