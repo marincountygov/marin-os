@@ -228,7 +228,7 @@ class Runner:
             # in order, and fetch returns deterministic in-memory responses.
             html = (ROOT / "index.html").read_text()
             html = re.sub(r'<link\b[^>]*>', '', html)
-            html = re.sub(r'<script\b[^>]*>[\s\S]*?</script>', '', html)
+            html = re.sub(r'<script\b[^>]*>[\s\S]*?</script>', '', html, flags=re.I)
             page.set_content(html)
             inject_styles(page)
             page.evaluate(FETCH_FIXTURE, data)
