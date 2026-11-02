@@ -3,13 +3,13 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-os",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/503ee838-c08e-4c4f-a049-6e0a87364bcd",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/2940ade1-4f02-4bfd-9fd9-72040df7d9f0",
   "creationInfo": {
     "creators": [
-      "Tool: protobom-v0.0.0-20261027212701-c97783990bff+dirty",
+      "Tool: protobom-v0.0.0-20261102134928-cfd4464385c4+dirty",
       "Tool: GitHub.com-Dependency-Graph"
     ],
-    "created": "2026-10-28T21:36:13Z"
+    "created": "2026-11-02T19:45:24Z"
   },
   "packages": [
     {

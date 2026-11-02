@@ -3,13 +3,13 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-reach",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/23d7cf86-3e90-4465-beba-e0193f5ac190",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/4c3704fc-7ba8-466f-9ee4-9776a85671a2",
   "creationInfo": {
     "creators": [
-      "Tool: protobom-v0.0.0-20261027212701-c97783990bff+dirty",
+      "Tool: protobom-v0.0.0-20261102134928-cfd4464385c4+dirty",
       "Tool: GitHub.com-Dependency-Graph"
     ],
-    "created": "2026-10-28T21:36:18Z"
+    "created": "2026-11-02T19:45:33Z"
   },
   "packages": [
     {
