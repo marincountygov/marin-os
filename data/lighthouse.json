@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T16:10:31.133Z",
+  "generatedAt": "2026-11-02T19:32:01.495Z",
   "source": {
     "name": "Google Lighthouse",
     "service": "PageSpeed Insights API",
@@ -11,8 +11,8 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-os/",
       "score": 100,
-      "testedAt": "2026-10-26T16:08:28.657Z",
-      "lighthouseVersion": "13.5.0",
+      "testedAt": "2026-11-02T19:30:16.003Z",
+      "lighthouseVersion": "13.6.0",
       "audits": [
         {
           "id": "focusable-controls",
@@ -80,8 +80,8 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-magic/",
       "score": 100,
-      "testedAt": "2026-10-26T16:08:37.744Z",
-      "lighthouseVersion": "13.5.0",
+      "testedAt": "2026-11-02T19:30:25.607Z",
+      "lighthouseVersion": "13.6.0",
       "audits": [
         {
           "id": "focusable-controls",
@@ -142,27 +142,27 @@
           "title": "Custom controls have ARIA roles",
           "score": null,
           "status": "manual"
-        },
-        {
-          "id": "label-content-name-mismatch",
-          "title": "Elements with visible text labels do not have matching accessible names.",
-          "score": 0,
-          "status": "failed",
-          "items": [
-            {
-              "selector": "article.app-card > div.app-toolbar > div.app-actions > button#copy-rich-text"
-            }
-          ]
         }
       ]
     },
     "marin-docs": {
       "status": "success",
       "url": "https://marincountygov.github.io/marin-docs/",
-      "score": 100,
-      "testedAt": "2026-10-26T16:08:46.533Z",
-      "lighthouseVersion": "13.5.0",
+      "score": 98,
+      "testedAt": "2026-11-02T19:30:34.162Z",
+      "lighthouseVersion": "13.6.0",
       "audits": [
+        {
+          "id": "heading-order",
+          "title": "Heading elements are not in a sequentially-descending order",
+          "score": 0,
+          "status": "failed",
+          "items": [
+            {
+              "selector": "main#main > section.docs-grid > article.app-card > h3"
+            }
+          ]
+        },
         {
           "id": "focusable-controls",
           "title": "Interactive controls are keyboard focusable",
@@ -229,8 +229,8 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-brand/",
       "score": 100,
-      "testedAt": "2026-10-26T16:08:58.087Z",
-      "lighthouseVersion": "13.5.0",
+      "testedAt": "2026-11-02T19:30:43.785Z",
+      "lighthouseVersion": "13.6.0",
       "audits": [
         {
           "id": "focusable-controls",
@@ -298,8 +298,8 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-mentions/",
       "score": 100,
-      "testedAt": "2026-10-26T16:09:08.034Z",
-      "lighthouseVersion": "13.5.0",
+      "testedAt": "2026-11-02T19:30:50.800Z",
+      "lighthouseVersion": "13.6.0",
       "audits": [
         {
           "id": "focusable-controls",
@@ -367,8 +367,8 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-reach/",
       "score": 100,
-      "testedAt": "2026-10-26T16:09:16.849Z",
-      "lighthouseVersion": "13.5.0",
+      "testedAt": "2026-11-02T19:31:00.616Z",
+      "lighthouseVersion": "13.6.0",
       "audits": [
         {
           "id": "focusable-controls",
@@ -436,8 +436,8 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-learn/",
       "score": 100,
-      "testedAt": "2026-10-26T16:09:26.489Z",
-      "lighthouseVersion": "13.5.0",
+      "testedAt": "2026-11-02T19:31:09.168Z",
+      "lighthouseVersion": "13.6.0",
       "audits": [
         {
           "id": "focusable-controls",
@@ -505,8 +505,8 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-meeting-meter/",
       "score": 98,
-      "testedAt": "2026-10-26T16:09:33.613Z",
-      "lighthouseVersion": "13.5.0",
+      "testedAt": "2026-11-02T19:31:16.754Z",
+      "lighthouseVersion": "13.6.0",
       "audits": [
         {
           "id": "heading-order",
@@ -515,7 +515,7 @@
           "status": "failed",
           "items": [
             {
-              "selector": "main#main > section#start > div#meeting-error-state > h3"
+              "selector": "section.app-card > div.section-heading > div > h3#meeting-setup-heading"
             }
           ]
         },
@@ -585,8 +585,8 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-anonymizer/",
       "score": 100,
-      "testedAt": "2026-10-26T16:09:58.439Z",
-      "lighthouseVersion": "13.5.0",
+      "testedAt": "2026-11-02T19:31:26.383Z",
+      "lighthouseVersion": "13.6.0",
       "audits": [
         {
           "id": "focusable-controls",
@@ -654,8 +654,8 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-zipper/",
       "score": 100,
-      "testedAt": "2026-10-26T16:10:08.556Z",
-      "lighthouseVersion": "13.5.0",
+      "testedAt": "2026-11-02T19:31:33.967Z",
+      "lighthouseVersion": "13.6.0",
       "audits": [
         {
           "id": "focusable-controls",
@@ -723,8 +723,8 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-unzipper/",
       "score": 100,
-      "testedAt": "2026-10-26T16:10:16.574Z",
-      "lighthouseVersion": "13.5.0",
+      "testedAt": "2026-11-02T19:31:41.149Z",
+      "lighthouseVersion": "13.6.0",
       "audits": [
         {
           "id": "focusable-controls",
@@ -792,8 +792,8 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-csv/",
       "score": 94,
-      "testedAt": "2026-10-26T16:10:23.300Z",
-      "lighthouseVersion": "13.5.0",
+      "testedAt": "2026-11-02T19:31:49.205Z",
+      "lighthouseVersion": "13.6.0",
       "audits": [
         {
           "id": "label",
