@@ -867,6 +867,10 @@
           "status": "manual"
         }
       ]
+    },
+    "marin-spec": {
+      "status": "not-tested",
+      "url": "https://marincountygov.github.io/marin-spec/"
     }
   }
 }
