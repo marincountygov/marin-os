@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T19:45:45.613Z",
+  "generatedAt": "2026-11-02T23:53:55.648Z",
   "source": {
     "name": "GitHub",
     "apis": [
@@ -994,6 +994,67 @@
         ]
       },
       "declaredRepo": "marin-learn",
+      "ai": {
+        "status": "documented",
+        "used": false
+      },
+      "services": {
+        "status": "documented",
+        "items": []
+      }
+    },
+    "marin-spec": {
+      "repository": "marincountygov/marin-spec",
+      "url": "https://github.com/marincountygov/marin-spec",
+      "license": "MIT",
+      "pushedAt": "2026-11-02T23:41:10Z",
+      "languages": {
+        "status": "success",
+        "fetchedAt": "2026-11-02T23:53:54.378Z",
+        "percentages": {
+          "Python": 62.6,
+          "HTML": 27.7,
+          "JavaScript": 4.4,
+          "CSS": 3.9,
+          "Shell": 1.4
+        },
+        "primary": "Python"
+      },
+      "dependencies": {
+        "status": "success",
+        "total": 4,
+        "direct": 4,
+        "transitive": 0,
+        "byEcosystem": {
+          "pypi": 1,
+          "githubactions": 3
+        },
+        "licenses": [],
+        "sbom": {
+          "format": "SPDX",
+          "version": "2.3",
+          "generated": "2026-11-02T23:53:54Z",
+          "source": "GitHub dependency graph",
+          "packages": 5,
+          "path": "data/sbom/marin-spec.spdx.json"
+        }
+      },
+      "bundled": {
+        "status": "success",
+        "components": [
+          {
+            "name": "Marin App Shell",
+            "version": "1.22.1",
+            "license": "MIT License"
+          },
+          {
+            "name": "Marin UI",
+            "version": "1.31.0",
+            "license": "MIT License"
+          }
+        ]
+      },
+      "declaredRepo": "marin-spec",
       "ai": {
         "status": "documented",
         "used": false

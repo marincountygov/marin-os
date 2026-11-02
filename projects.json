@@ -258,5 +258,25 @@
     "internal",
     "external"
   ]
-}
+},
+  {
+    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-spec",
+    "@type": "Project",
+    "name": "Marin Spec",
+    "description": "Turn project research into a build-ready specification with your own AI tool.",
+    "url": "https://marincountygov.github.io/marin-spec/",
+    "status": "active",
+    "phase": {
+      "@id": "https://schema.govfresh.com/v1/dsphase/alpha",
+      "@type": "DefinedTerm",
+      "name": "Alpha"
+    },
+    "parentOrganization": {
+      "@id": "https://marincountygov.github.io/marin-os/id/organization/digital-innovation-and-transformation-office",
+      "name": "Digital, Innovation and Transformation"
+    },
+    "audience": [
+      "internal"
+    ]
+  }
 ]
