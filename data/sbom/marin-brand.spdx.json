@@ -3,13 +3,13 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-brand",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/6a2c04bd-7d30-415c-be43-9c216d372ce8",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/4ba89600-75b7-4e08-aee9-5b9246a51b87",
   "creationInfo": {
     "creators": [
       "Tool: protobom-v0.0.0-20261102134928-cfd4464385c4+dirty",
       "Tool: GitHub.com-Dependency-Graph"
     ],
-    "created": "2026-11-02T19:45:30Z"
+    "created": "2026-11-03T00:00:09Z"
   },
   "packages": [
     {
