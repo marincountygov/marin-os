@@ -278,5 +278,25 @@
     "audience": [
       "internal"
     ]
+  },
+  {
+    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-budget",
+    "@type": "Project",
+    "name": "Marin Budget",
+    "description": "Explore the County budget and Capital Improvement Plan.",
+    "url": "https://marincountygov.github.io/marin-budget/",
+    "status": "active",
+    "phase": {
+      "@id": "https://schema.govfresh.com/v1/dsphase/alpha",
+      "@type": "DefinedTerm",
+      "name": "Alpha"
+    },
+    "parentOrganization": {
+      "@id": "https://marincountygov.github.io/marin-os/id/organization/digital-innovation-and-transformation-office",
+      "name": "Digital, Innovation and Transformation"
+    },
+    "audience": [
+      "internal"
+    ]
   }
 ]
