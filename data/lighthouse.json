@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-13T23:32:17.391Z",
+  "generatedAt": "2026-11-16T19:42:41.241Z",
   "source": {
     "name": "Google Lighthouse",
     "service": "PageSpeed Insights API",
@@ -11,7 +11,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-os/",
       "score": 100,
-      "testedAt": "2026-11-09T19:50:28.082Z",
+      "testedAt": "2026-11-16T19:37:33.848Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -80,7 +80,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-magic/",
       "score": 100,
-      "testedAt": "2026-11-09T19:50:36.015Z",
+      "testedAt": "2026-11-16T19:37:41.667Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -149,7 +149,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-docs/",
       "score": 98,
-      "testedAt": "2026-11-09T19:50:45.726Z",
+      "testedAt": "2026-11-16T19:37:49.800Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -229,7 +229,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-brand/",
       "score": 100,
-      "testedAt": "2026-11-09T19:50:52.538Z",
+      "testedAt": "2026-11-16T19:37:56.718Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -298,7 +298,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-mentions/",
       "score": 100,
-      "testedAt": "2026-11-09T19:51:00.898Z",
+      "testedAt": "2026-11-16T19:38:04.480Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -367,7 +367,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-reach/",
       "score": 100,
-      "testedAt": "2026-11-09T19:51:22.050Z",
+      "testedAt": "2026-11-16T19:41:24.037Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -436,7 +436,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-learn/",
       "score": 100,
-      "testedAt": "2026-11-09T19:51:33.371Z",
+      "testedAt": "2026-11-16T19:41:32.068Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -505,7 +505,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-meeting-meter/",
       "score": 98,
-      "testedAt": "2026-11-09T19:51:43.641Z",
+      "testedAt": "2026-11-16T19:41:40.944Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -585,7 +585,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-anonymizer/",
       "score": 100,
-      "testedAt": "2026-11-09T19:51:58.029Z",
+      "testedAt": "2026-11-16T19:41:55.647Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -654,7 +654,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-zipper/",
       "score": 100,
-      "testedAt": "2026-11-09T19:52:07.118Z",
+      "testedAt": "2026-11-16T19:42:02.585Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -723,7 +723,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-unzipper/",
       "score": 100,
-      "testedAt": "2026-11-09T19:52:16.270Z",
+      "testedAt": "2026-11-16T19:42:09.412Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -792,7 +792,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-csv/",
       "score": 94,
-      "testedAt": "2026-11-09T19:52:23.688Z",
+      "testedAt": "2026-11-16T19:42:17.327Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -872,7 +872,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-spec/",
       "score": 100,
-      "testedAt": "2026-11-09T19:52:31.881Z",
+      "testedAt": "2026-11-16T19:42:24.600Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -938,10 +938,84 @@
       ]
     },
     "marin-budget": {
-      "status": "error",
+      "status": "success",
       "url": "https://marincountygov.github.io/marin-budget/",
-      "attemptedAt": "2026-11-13T23:31:56.593Z",
-      "error": "PageSpeed API returned 429: Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351490'."
+      "score": 98,
+      "testedAt": "2026-11-16T19:42:32.047Z",
+      "lighthouseVersion": "13.6.0",
+      "audits": [
+        {
+          "id": "landmark-one-main",
+          "title": "Document does not have a main landmark.",
+          "score": 0,
+          "status": "failed",
+          "items": [
+            {
+              "selector": "html"
+            }
+          ]
+        },
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "status": "manual"
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "status": "manual"
+        }
+      ]
     }
   }
 }
