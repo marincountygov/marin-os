@@ -112,9 +112,9 @@ The `#projects` tab lists projects as [schemaGov Project](https://schema.govfres
 
 The table's Status column is the project's digital service phase (`phase`: alpha, beta, live), not its active/inactive `status`. `parentOrganization` and `member` entries need a `name` as well as an `@id`. Run `node scripts/check-projects.js` to validate both files.
 
-The organizations come from the County's organization list, which is kept in `marin-data`. Each `@id` must be one from that list (`https://marincountygov.github.io/marin-data/id/organization/<slug>`), and the `name` must be that organization's official name or one of its other names. `data/organizations.json` is a copy of the list. Never edit it. To add an organization or another name for one, change it in `marin-data`. `python3 scripts/sync-orgs.py` copies the list here, and a daily Data sync does the same and pushes a `data-sync` branch for review. `marin-data.lock` records which `marin-data` version this repo uses; `bash ../marin-data/scripts/lock.sh .` updates it.
+The organizations come from the County's organization list, which is kept in `marin-data`. Each `@id` must be one from that list (`https://marincountygov.github.io/marin-data/id/organization/<slug>`), and the `name` must be that organization's official name or one of its other names. `data/organizations.json` is a copy of the list. Never edit it. To add an organization or another name for one, change it in `marin-data`. `python3 scripts/sync-orgs.py` copies the list here, and a scheduled Data sync does the same and pushes a `data-sync` branch for review. `marin-data.lock` records which `marin-data` version this repo uses; `bash ../marin-data/scripts/lock.sh .` updates it.
 
-If a rename in `marin-data` makes `check-projects.js` fail, the daily sync stops and pushes nothing. Either change the `name` in the project record, or keep the old name in `marin-data` as another name for that organization.
+If a rename in `marin-data` makes `check-projects.js` fail, the scheduled sync stops and pushes nothing. Either change the `name` in the project record, or keep the old name in `marin-data` as another name for that organization.
 
 ## Tech
 
