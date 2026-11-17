@@ -34,11 +34,9 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
-      - run: python3 scripts/sync-orgs.py --check
+      - run: python -m pip install -r tests/requirements.txt
         working-directory: marin-os
-      - run: node scripts/check-catalog-sync.js
+      - run: python -m playwright install --with-deps chromium
         working-directory: marin-os
-      - run: node scripts/check-projects.js
-        working-directory: marin-os
-      - run: node scripts/check-lighthouse.js
+      - run: bash scripts/check.sh --browser
         working-directory: marin-os
