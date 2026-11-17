@@ -14,6 +14,8 @@ cd "$ROOT_DIR"
 node --check assets/app.js
 python3 vendor/marinos/audit-buttons.py . --fail
 node scripts/check-catalog-sync.js
+# The organizations the project records name come from marin-data. Skipped when marin-data is not next to this repo.
+python3 scripts/sync-orgs.py --check
 node scripts/check-projects.js
 node scripts/check-lighthouse.js
 node scripts/check-tech.js

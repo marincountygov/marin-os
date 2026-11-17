@@ -11,12 +11,12 @@
       "name": "Beta"
     },
     "parentOrganization": {
-      "@id": "https://marincountygov.github.io/marin-os/id/organization/digital-innovation-and-transformation-office",
+      "@id": "https://marincountygov.github.io/marin-data/id/organization/digital-innovation-and-transformation",
       "name": "Digital, Innovation and Transformation"
     },
     "member": [
       {
-        "@id": "https://marincountygov.github.io/marin-os/id/organization/county-executive",
+        "@id": "https://marincountygov.github.io/marin-data/id/organization/county-executive",
         "name": "County Executive"
       }
     ],

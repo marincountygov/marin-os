@@ -12,12 +12,12 @@
       "name": "Live"
     },
     "parentOrganization": {
-      "@id": "https://marincountygov.github.io/marin-os/id/organization/digital-innovation-and-transformation-office",
+      "@id": "https://marincountygov.github.io/marin-data/id/organization/digital-innovation-and-transformation",
       "name": "Digital, Innovation and Transformation"
     },
     "member": [
       {
-        "@id": "https://marincountygov.github.io/marin-os/id/organization/community-development-agency",
+        "@id": "https://marincountygov.github.io/marin-data/id/organization/cda",
         "name": "Community Development Agency"
       }
     ],
@@ -39,12 +39,12 @@
       "name": "Alpha"
     },
     "parentOrganization": {
-      "@id": "https://marincountygov.github.io/marin-os/id/organization/digital-innovation-and-transformation-office",
+      "@id": "https://marincountygov.github.io/marin-data/id/organization/digital-innovation-and-transformation",
       "name": "Digital, Innovation and Transformation"
     },
     "member": [
       {
-        "@id": "https://marincountygov.github.io/marin-os/id/organization/county-executive",
+        "@id": "https://marincountygov.github.io/marin-data/id/organization/county-executive",
         "name": "County Executive"
       }
     ],
@@ -66,12 +66,12 @@
       "name": "Alpha"
     },
     "parentOrganization": {
-      "@id": "https://marincountygov.github.io/marin-os/id/organization/digital-innovation-and-transformation-office",
+      "@id": "https://marincountygov.github.io/marin-data/id/organization/digital-innovation-and-transformation",
       "name": "Digital, Innovation and Transformation"
     },
     "member": [
       {
-        "@id": "https://marincountygov.github.io/marin-os/id/organization/county-executive",
+        "@id": "https://marincountygov.github.io/marin-data/id/organization/county-executive",
         "name": "County Executive"
       }
     ],
@@ -93,20 +93,20 @@
       "name": "Live"
     },
     "parentOrganization": {
-      "@id": "https://marincountygov.github.io/marin-os/id/organization/digital-innovation-and-transformation-office",
+      "@id": "https://marincountygov.github.io/marin-data/id/organization/digital-innovation-and-transformation",
       "name": "Digital, Innovation and Transformation"
     },
     "member": [
       {
-        "@id": "https://marincountygov.github.io/marin-os/id/organization/cultural-services",
+        "@id": "https://marincountygov.github.io/marin-data/id/organization/cultural-services",
         "name": "Cultural Services"
       },
       {
-        "@id": "https://marincountygov.github.io/marin-os/id/organization/fire-department",
+        "@id": "https://marincountygov.github.io/marin-data/id/organization/fire",
         "name": "Fire Department"
       },
       {
-        "@id": "https://marincountygov.github.io/marin-os/id/organization/county-executive",
+        "@id": "https://marincountygov.github.io/marin-data/id/organization/county-executive",
         "name": "County Executive"
       }
     ],
@@ -128,7 +128,7 @@
       "name": "Alpha"
     },
     "parentOrganization": {
-      "@id": "https://marincountygov.github.io/marin-os/id/organization/digital-innovation-and-transformation-office",
+      "@id": "https://marincountygov.github.io/marin-data/id/organization/digital-innovation-and-transformation",
       "name": "Digital, Innovation and Transformation"
     },
     "audience": [
@@ -148,7 +148,7 @@
       "name": "Alpha"
     },
     "parentOrganization": {
-      "@id": "https://marincountygov.github.io/marin-os/id/organization/digital-innovation-and-transformation-office",
+      "@id": "https://marincountygov.github.io/marin-data/id/organization/digital-innovation-and-transformation",
       "name": "Digital, Innovation and Transformation"
     },
     "audience": [
@@ -168,7 +168,7 @@
     "name": "Alpha"
   },
   "parentOrganization": {
-    "@id": "https://marincountygov.github.io/marin-os/id/organization/health-and-human-services",
+    "@id": "https://marincountygov.github.io/marin-data/id/organization/hhs",
     "name": "Health and Human Services"
   },
   "audience": [
@@ -188,7 +188,7 @@
       "name": "Beta"
     },
     "parentOrganization": {
-      "@id": "https://marincountygov.github.io/marin-os/id/organization/health-and-human-services",
+      "@id": "https://marincountygov.github.io/marin-data/id/organization/hhs",
       "name": "Health and Human Services"
     },
     "audience": [
@@ -209,7 +209,7 @@
       "name": "Beta"
     },
     "parentOrganization": {
-      "@id": "https://marincountygov.github.io/marin-os/id/organization/health-and-human-services",
+      "@id": "https://marincountygov.github.io/marin-data/id/organization/hhs",
       "name": "Health and Human Services"
     },
     "audience": [
@@ -230,7 +230,7 @@
       "name": "Beta"
     },
     "parentOrganization": {
-      "@id": "https://marincountygov.github.io/marin-os/id/organization/health-and-human-services",
+      "@id": "https://marincountygov.github.io/marin-data/id/organization/hhs",
       "name": "Health and Human Services"
     },
     "audience": [
@@ -251,7 +251,7 @@
     "name": "Alpha"
   },
   "parentOrganization": {
-    "@id": "https://marincountygov.github.io/marin-os/id/organization/health-and-human-services",
+    "@id": "https://marincountygov.github.io/marin-data/id/organization/hhs",
     "name": "Health and Human Services"
   },
   "audience": [
@@ -272,7 +272,7 @@
       "name": "Alpha"
     },
     "parentOrganization": {
-      "@id": "https://marincountygov.github.io/marin-os/id/organization/digital-innovation-and-transformation-office",
+      "@id": "https://marincountygov.github.io/marin-data/id/organization/digital-innovation-and-transformation",
       "name": "Digital, Innovation and Transformation"
     },
     "audience": [
@@ -292,7 +292,7 @@
       "name": "Alpha"
     },
     "parentOrganization": {
-      "@id": "https://marincountygov.github.io/marin-os/id/organization/digital-innovation-and-transformation-office",
+      "@id": "https://marincountygov.github.io/marin-data/id/organization/digital-innovation-and-transformation",
       "name": "Digital, Innovation and Transformation"
     },
     "audience": [
