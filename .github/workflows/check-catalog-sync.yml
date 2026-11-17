@@ -14,9 +14,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          path: marin-os
+      # marin-data.lock names the marin-data commit this repo last synced. It is checked out next to this repo,
+      # so the list of organizations can be compared. With no lock file, that comparison is skipped.
+      - name: Read marin-data.lock
+        id: lock
+        run: |
+          if [ -f marin-os/marin-data.lock ]; then echo "sha=$(tr -d '[:space:]' < marin-os/marin-data.lock)" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/checkout@v7
+        if: steps.lock.outputs.sha != ''
+        with:
+          repository: marincountygov/marin-data
+          ref: ${{ steps.lock.outputs.sha }}
+          path: marin-data
       - uses: actions/setup-node@v7
         with:
           node-version: "20"
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - run: python3 scripts/sync-orgs.py --check
+        working-directory: marin-os
       - run: node scripts/check-catalog-sync.js
+        working-directory: marin-os
       - run: node scripts/check-projects.js
+        working-directory: marin-os
       - run: node scripts/check-lighthouse.js
+        working-directory: marin-os

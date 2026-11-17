@@ -22,13 +22,32 @@ const PHASES = ["discovery", "alpha", "beta", "private-beta", "public-beta", "li
 const AUDIENCES = ["internal", "external"];
 const PHASE_BASE = "https://schema.govfresh.com/v1/dsphase/";
 
-function checkReference(label, reference, errors) {
+// The organizations the project records name are looked up in data/organizations.json, a copy of the list in
+// marin-data (python3 scripts/sync-orgs.py copies it). A reference must name one that is there, and show its
+// official name or one of its other names.
+function loadOrganizations(errors) {
+  const file = "data/organizations.json";
+  if (!fs.existsSync(path.join(repoRoot, file))) {
+    errors.push(`${file} is missing. It is copied from marin-data: python3 scripts/sync-orgs.py`);
+    return new Map();
+  }
+  return new Map(read(file).organizations.map((o) => [o.id, o]));
+}
+
+function checkReference(label, reference, errors, organizations) {
   if (!reference || !reference["@id"] || !reference.name) {
     errors.push(`${label} needs both "@id" and "name" (the table shows the name).`);
+    return;
+  }
+  const org = organizations.get(reference["@id"]);
+  if (!org) {
+    if (organizations.size) errors.push(`${label} names an organization that is not in marin-data: ${reference["@id"]}`);
+  } else if (reference.name !== org.name && !org.alternateName.includes(reference.name)) {
+    errors.push(`${label} shows "${reference.name}", which is not the name of ${org.name} or one of its other names (${[org.name, ...org.alternateName].join("; ")}).`);
   }
 }
 
-function checkFile(file, errors) {
+function checkFile(file, errors, organizations) {
   const projects = read(file);
   if (!Array.isArray(projects)) {
     errors.push(`${file} must be an array of Project records.`);
@@ -54,16 +73,17 @@ function checkFile(file, errors) {
     if (!Array.isArray(project.audience) || !project.audience.length || !project.audience.every((a) => AUDIENCES.includes(a))) {
       errors.push(`${label} needs "audience": a non-empty array of ${AUDIENCES.join(", ")}.`);
     }
-    if (project.parentOrganization) checkReference(`${label} parentOrganization`, project.parentOrganization, errors);
-    (project.member || []).forEach((m) => checkReference(`${label} member`, m, errors));
+    if (project.parentOrganization) checkReference(`${label} parentOrganization`, project.parentOrganization, errors, organizations);
+    (project.member || []).forEach((m) => checkReference(`${label} member`, m, errors, organizations));
   });
   return projects;
 }
 
 function main() {
   const errors = [];
-  const marinos = checkFile("projects.json", errors);
-  const external = checkFile("external-projects.json", errors);
+  const organizations = loadOrganizations(errors);
+  const marinos = checkFile("projects.json", errors, organizations);
+  const external = checkFile("external-projects.json", errors, organizations);
 
   const seen = new Set();
   for (const project of [...marinos, ...external]) {
