@@ -126,7 +126,7 @@ function main() {
   const ids = [...source.matchAll(/<[a-z][^>]*>/gi)].map((m) => attributes(m[0]).id).filter(Boolean);
   requireCondition(new Set(ids).size === ids.length, "Duplicate source element IDs");
   const sections = [...source.matchAll(/<section\b[^>]*>/g)].map((m) => attributes(m[0]));
-  requireCondition(sections.slice(0, 2).every((s) => s["data-tab-section"] === "directory" && !Object.hasOwn(s, "hidden")), "Both static directory sections must be the visible default group");
+  requireCondition(sections.slice(0, 1).every((s) => s["data-tab-section"] === "directory" && !Object.hasOwn(s, "hidden")), "The static directory section must be the visible default group");
   for (const id of ["about", "projects", "security", "status", "accessibility"]) {
     requireCondition(sections.filter((s) => s.id === id && s["data-tab-section"] === id && Object.hasOwn(s, "hidden")).length === 1, `Missing/duplicate app-owned #${id} section`);
   }

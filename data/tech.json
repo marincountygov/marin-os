@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T19:50:24.707Z",
+  "generatedAt": "2026-11-20T05:32:17.894Z",
   "source": {
     "name": "GitHub",
     "apis": [
@@ -1138,6 +1138,224 @@
       "services": {
         "status": "documented",
         "items": []
+      }
+    },
+    "marin-pulse": {
+      "repository": "marincountygov/marin-pulse",
+      "url": "https://github.com/marincountygov/marin-pulse",
+      "license": "MIT",
+      "pushedAt": "2026-11-20T05:27:31Z",
+      "languages": {
+        "status": "success",
+        "fetchedAt": "2026-11-20T05:32:13.920Z",
+        "percentages": {
+          "HTML": 98.1,
+          "JavaScript": 1.5,
+          "Python": 0.3,
+          "CSS": 0.1,
+          "Shell": 0
+        },
+        "primary": "HTML"
+      },
+      "dependencies": {
+        "status": "success",
+        "total": 4,
+        "direct": 4,
+        "transitive": 0,
+        "byEcosystem": {
+          "pypi": 1,
+          "githubactions": 3
+        },
+        "licenses": [
+          "Apache-2.0"
+        ],
+        "sbom": {
+          "format": "SPDX",
+          "version": "2.3",
+          "generated": "2026-11-20T05:32:14Z",
+          "source": "GitHub dependency graph",
+          "packages": 5,
+          "path": "data/sbom/marin-pulse.spdx.json"
+        }
+      },
+      "bundled": {
+        "status": "success",
+        "components": [
+          {
+            "name": "Marin App Shell",
+            "version": "1.25.1",
+            "license": "MIT License"
+          },
+          {
+            "name": "Marin UI",
+            "version": "1.35.1",
+            "license": "MIT License"
+          },
+          {
+            "name": "Lucide icons",
+            "license": "ISC License and MIT License, as applicable"
+          },
+          {
+            "name": "Open Sans",
+            "license": "SIL Open Font License 1.1"
+          },
+          {
+            "name": "Chart.js",
+            "version": "4.5.1",
+            "license": "MIT License (`vendor/chart.min.js`, license in `vendor/CHART_LICENSE.md`), used to draw the charts on Organization pages"
+          }
+        ]
+      },
+      "declaredRepo": "marin-pulse",
+      "ai": {
+        "status": "documented",
+        "used": false
+      },
+      "services": {
+        "status": "documented",
+        "items": []
+      }
+    },
+    "marin-software": {
+      "repository": "marincountygov/marin-software",
+      "url": "https://github.com/marincountygov/marin-software",
+      "license": "MIT",
+      "pushedAt": "2026-11-20T05:27:33Z",
+      "languages": {
+        "status": "success",
+        "fetchedAt": "2026-11-20T05:32:15.579Z",
+        "percentages": {
+          "Python": 71.9,
+          "JavaScript": 17.6,
+          "HTML": 6.9,
+          "Shell": 2.1,
+          "CSS": 1.6
+        },
+        "primary": "Python"
+      },
+      "dependencies": {
+        "status": "success",
+        "total": 4,
+        "direct": 4,
+        "transitive": 0,
+        "byEcosystem": {
+          "pypi": 1,
+          "githubactions": 3
+        },
+        "licenses": [
+          "Apache-2.0"
+        ],
+        "sbom": {
+          "format": "SPDX",
+          "version": "2.3",
+          "generated": "2026-11-20T05:32:15Z",
+          "source": "GitHub dependency graph",
+          "packages": 5,
+          "path": "data/sbom/marin-software.spdx.json"
+        }
+      },
+      "bundled": {
+        "status": "success",
+        "components": [
+          {
+            "name": "Marin App Shell",
+            "version": "1.25.1",
+            "license": "MIT License"
+          },
+          {
+            "name": "Marin UI",
+            "version": "1.35.1",
+            "license": "MIT License"
+          }
+        ]
+      },
+      "declaredRepo": "marin-software",
+      "ai": {
+        "status": "documented",
+        "used": false
+      },
+      "services": {
+        "status": "documented",
+        "items": [
+          {
+            "id": "data-marincounty",
+            "name": "County of Marin open data portal",
+            "purpose": "The public dataset this app searches",
+            "runs": "browser",
+            "visitorData": false
+          }
+        ]
+      }
+    },
+    "marin-jobs": {
+      "repository": "marincountygov/marin-jobs",
+      "url": "https://github.com/marincountygov/marin-jobs",
+      "license": "MIT",
+      "pushedAt": "2026-11-20T05:27:36Z",
+      "languages": {
+        "status": "success",
+        "fetchedAt": "2026-11-20T05:32:17.014Z",
+        "percentages": {
+          "Python": 64.5,
+          "JavaScript": 24.1,
+          "HTML": 7.7,
+          "CSS": 2.1,
+          "Shell": 1.6
+        },
+        "primary": "Python"
+      },
+      "dependencies": {
+        "status": "success",
+        "total": 4,
+        "direct": 4,
+        "transitive": 0,
+        "byEcosystem": {
+          "pypi": 1,
+          "githubactions": 3
+        },
+        "licenses": [
+          "Apache-2.0"
+        ],
+        "sbom": {
+          "format": "SPDX",
+          "version": "2.3",
+          "generated": "2026-11-20T05:32:17Z",
+          "source": "GitHub dependency graph",
+          "packages": 5,
+          "path": "data/sbom/marin-jobs.spdx.json"
+        }
+      },
+      "bundled": {
+        "status": "success",
+        "components": [
+          {
+            "name": "Marin App Shell",
+            "version": "1.25.1",
+            "license": "MIT License"
+          },
+          {
+            "name": "Marin UI",
+            "version": "1.35.1",
+            "license": "MIT License"
+          }
+        ]
+      },
+      "declaredRepo": "marin-jobs",
+      "ai": {
+        "status": "documented",
+        "used": false
+      },
+      "services": {
+        "status": "documented",
+        "items": [
+          {
+            "id": "data-marincounty",
+            "name": "County of Marin open data portal",
+            "purpose": "The public dataset this app searches",
+            "runs": "browser",
+            "visitorData": false
+          }
+        ]
       }
     }
   }
