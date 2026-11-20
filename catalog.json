@@ -8,6 +8,7 @@
     "audience": "staff",
     "status": "live",
     "owner": "County of Marin",
+    "featured": 3,
     "icon": {
       "viewBox": "0 0 24 24",
       "markup": "<path d=\"m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72\"/><path d=\"m14 7 3 3\"/><path d=\"M5 6v4\"/><path d=\"M19 14v4\"/><path d=\"M10 2v2\"/><path d=\"M7 8H3\"/><path d=\"M21 16h-4\"/><path d=\"M11 3H9\"/>"
@@ -50,6 +51,7 @@
     "audience": "staff",
     "status": "live",
     "owner": "County of Marin",
+    "featured": 2,
     "icon": {
       "viewBox": "0 0 24 24",
       "markup": "<path d=\"M20.341 6.484A10 10 0 0 1 10.266 21.85\"/><path d=\"M3.659 17.516A10 10 0 0 1 13.74 2.152\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/><circle cx=\"19\" cy=\"5\" r=\"2\"/><circle cx=\"5\" cy=\"19\" r=\"2\"/>"
@@ -92,6 +94,7 @@
     "audience": "staff",
     "status": "alpha",
     "owner": "County of Marin",
+    "featured": 4,
     "icon": {
       "viewBox": "0 0 48 48",
       "markup": "<circle cx=\"24\" cy=\"27\" r=\"14\"/><path d=\"M24 19v8l6 4M18 7h12M24 7v6M36 14l3 3\"/>"
@@ -190,6 +193,7 @@
     "audience": "staff",
     "status": "alpha",
     "owner": "County of Marin",
+    "featured": 1,
     "icon": {
       "viewBox": "0 0 24 24",
       "markup": "<path d=\"M12 17v4\"/><path d=\"M18 10h-2.315a1 1 0 00-.932.64l-.787 2.034a.5.5 0 01-.932 0l-2.068-5.348a.5.5 0 00-.932 0l-.787 2.035a1 1 0 01-.932.639H6\"/><path d=\"M8 21h8\"/><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\"/>"
