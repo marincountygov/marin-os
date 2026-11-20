@@ -3,14 +3,14 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-budget",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/4aae8973-ecbe-4bf3-9a1e-391acf083cc8",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/51679757-56ea-4459-8413-b5e291407f33",
   "creationInfo": {
     "creators": [
       "Tool: protobom-v0.0.0-20261117223245-72f62ebd2215+dirty",
       "Tool: GitHub.com-Dependency-Graph",
       "Tool: dependabot"
     ],
-    "created": "2026-11-20T05:38:43Z"
+    "created": "2026-11-20T16:36:57Z"
   },
   "packages": [
     {
@@ -25,6 +25,20 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:pypi/playwright@1.65.2"
+        }
+      ]
+    },
+    {
+      "name": "actions/setup-python",
+      "SPDXID": "SPDXRef-githubactions-actions-setup-python-7..-900e64",
+      "versionInfo": "7.*.*",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/actions/setup-python@7.%2A.%2A"
         }
       ]
     },
@@ -57,20 +71,6 @@
       ]
     },
     {
-      "name": "actions/setup-python",
-      "SPDXID": "SPDXRef-githubactions-actions-setup-python-7..-900e64",
-      "versionInfo": "7.*.*",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:githubactions/actions/setup-python@7.%2A.%2A"
-        }
-      ]
-    },
-    {
       "name": "com.github.marincountygov/marin-budget",
       "SPDXID": "SPDXRef-github-marincountygov-marin-budget-main-59193e",
       "versionInfo": "main",
@@ -94,17 +94,17 @@
     },
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-budget-main-59193e",
+      "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-python-7..-900e64",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-marincountygov-marin-budget-main-59193e",
       "relatedSpdxElement": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-budget-main-59193e",
       "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-node-7..-123477",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-github-marincountygov-marin-budget-main-59193e",
-      "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-python-7..-900e64",
       "relationshipType": "DEPENDS_ON"
     },
     {
