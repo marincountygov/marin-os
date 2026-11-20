@@ -12,6 +12,8 @@ MarinOS is the directory for apps and documentation built by County of Marin tea
 - `beta` — working core functionality, being tested with real users, may still change based on feedback.
 - `live` — an established product, stable core functionality, ongoing maintenance.
 
+**`featured`** is optional: a whole number (1, 2, 3…) that sets the app's place among the featured apps; leave it out for apps that are not featured. Featured apps show first on the home page, in number order, with a Featured badge to the right of the status badge. The rest follow as live, beta, alpha, each A to Z. Add the badge `<span class="app-badge">Featured</span>` after the status badge in the card's `directory-card__badges` wrapper; `check-catalog-sync.js` checks the flag, badge and order.
+
 See `#status` on the live site for the full explanation shown to end users, and this repo's own `scripts/check-catalog-sync.js` for the enforced enum. Progression is typically alpha → beta → live, but not automatic — changing an app's status means changing its `catalog.json` entry (and keeping that app's own `marin.yml` `project.status` in sync with it). This is a product-maturity concept, not a project-status one (planned/active/paused/etc.) — the two are expected to coexist if a project-lifecycle model (e.g. schemaGov's) is adopted later, without this field changing shape.
 
 The HTML directory remains fully usable without JavaScript. When adding or changing an entry, update both `catalog.json` and the corresponding card (including its status badge) in `index.html` in the same pull request. A GitHub Actions check (`scripts/check-catalog-sync.js`) fails the PR if the two disagree, including on status — run `node scripts/check-catalog-sync.js` locally to check before pushing.

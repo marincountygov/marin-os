@@ -32,6 +32,9 @@ function readCatalog() {
         throw new Error(`catalog.json entry ${entry.id || "(no id)"} is missing required field "${field}"`);
       }
     }
+    if (entry.featured !== undefined && !(Number.isInteger(entry.featured) && entry.featured > 0)) {
+      throw new Error(`catalog.json entry "${entry.id}" has a featured value that isn't a whole number from 1 up.`);
+    }
     if (!VALID_STATUSES.includes(entry.status)) {
       throw new Error(
         `catalog.json entry "${entry.id}" has status "${entry.status}", which isn't one of: ${VALID_STATUSES.join(", ")}.`
@@ -62,6 +65,7 @@ function readCards() {
       url: linkMatch[1],
       name: linkMatch[2],
       status: statusMatch ? statusMatch[1] : null,
+      featured: cardHtml.includes('<span class="app-badge">Featured</span>'),
       description: descriptionMatch ? descriptionMatch[1] : "",
     });
   }
@@ -92,6 +96,22 @@ function main() {
         `"${entry.url}": catalog.json status is "${entry.status}" but index.html card status badge is "${card.status || "(missing)"}".`
       );
     }
+  }
+
+  for (const entry of entries) {
+    const card = cards.find((c) => c.url === entry.url);
+    if (card && card.featured !== (entry.featured !== undefined)) {
+      errors.push(`"${entry.url}": catalog.json featured is ${entry.featured !== undefined} but index.html ${card.featured ? "shows" : "has no"} Featured badge.`);
+    }
+  }
+
+  const rank = { live: 0, beta: 1, alpha: 2 };
+  const expected = [...entries]
+    .sort((a, b) => (a.featured ?? Infinity) - (b.featured ?? Infinity) || rank[a.status] - rank[b.status] || a.name.localeCompare(b.name))
+    .map((e) => e.url);
+  const actual = cards.map((c) => c.url).filter((u) => entries.some((e) => e.url === u));
+  if (JSON.stringify(expected) !== JSON.stringify(actual)) {
+    errors.push("index.html cards are not ordered by featured number first, then live, beta, alpha, each A to Z.");
   }
 
   for (const card of cards) {

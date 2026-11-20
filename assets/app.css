@@ -2,3 +2,5 @@
 .directory-section + .directory-section { margin-top: 2.5rem; }
 .directory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: 1rem; }
 .directory-card { display: flex; flex-direction: column; }
+.directory-card p { margin-bottom: 0.75rem; }
+.directory-card__badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; }
