@@ -156,25 +156,25 @@
     ]
   },
   {
-  "@id": "https://marincountygov.github.io/marin-os/id/project/marin-meeting-meter",
-  "@type": "Project",
-  "name": "Meeting Meter",
-  "description": "Estimate costs for County meetings.",
-  "url": "https://marincountygov.github.io/marin-meeting-meter/",
-  "status": "active",
-  "phase": {
-    "@id": "https://schema.govfresh.com/v1/dsphase/alpha",
-    "@type": "DefinedTerm",
-    "name": "Alpha"
+    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-meeting-meter",
+    "@type": "Project",
+    "name": "Meeting Meter",
+    "description": "Estimate costs for County meetings.",
+    "url": "https://marincountygov.github.io/marin-meeting-meter/",
+    "status": "active",
+    "phase": {
+      "@id": "https://schema.govfresh.com/v1/dsphase/alpha",
+      "@type": "DefinedTerm",
+      "name": "Alpha"
+    },
+    "parentOrganization": {
+      "@id": "https://marincountygov.github.io/marin-data/id/organization/hhs",
+      "name": "Health and Human Services"
+    },
+    "audience": [
+      "internal"
+    ]
   },
-  "parentOrganization": {
-    "@id": "https://marincountygov.github.io/marin-data/id/organization/hhs",
-    "name": "Health and Human Services"
-  },
-  "audience": [
-    "internal"
-  ]
-},
   {
     "@id": "https://marincountygov.github.io/marin-os/id/project/marin-anonymizer",
     "@type": "Project",
@@ -239,26 +239,26 @@
     ]
   },
   {
-  "@id": "https://marincountygov.github.io/marin-os/id/project/marin-csv",
-  "@type": "Project",
-  "name": "Marin CSV",
-  "description": "View and edit CSV files locally in your browser.",
-  "url": "https://marincountygov.github.io/marin-csv/",
-  "status": "active",
-  "phase": {
-    "@id": "https://schema.govfresh.com/v1/dsphase/alpha",
-    "@type": "DefinedTerm",
-    "name": "Alpha"
+    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-csv",
+    "@type": "Project",
+    "name": "Marin CSV",
+    "description": "View and edit CSV files locally in your browser.",
+    "url": "https://marincountygov.github.io/marin-csv/",
+    "status": "active",
+    "phase": {
+      "@id": "https://schema.govfresh.com/v1/dsphase/alpha",
+      "@type": "DefinedTerm",
+      "name": "Alpha"
+    },
+    "parentOrganization": {
+      "@id": "https://marincountygov.github.io/marin-data/id/organization/hhs",
+      "name": "Health and Human Services"
+    },
+    "audience": [
+      "internal",
+      "external"
+    ]
   },
-  "parentOrganization": {
-    "@id": "https://marincountygov.github.io/marin-data/id/organization/hhs",
-    "name": "Health and Human Services"
-  },
-  "audience": [
-    "internal",
-    "external"
-  ]
-},
   {
     "@id": "https://marincountygov.github.io/marin-os/id/project/marin-spec",
     "@type": "Project",
@@ -297,6 +297,87 @@
     },
     "audience": [
       "internal"
+    ]
+  },
+  {
+    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-pulse",
+    "@type": "Project",
+    "name": "Marin Pulse",
+    "description": "County of Marin departments, service areas, programs and places.",
+    "url": "https://marincountygov.github.io/marin-pulse/",
+    "status": "active",
+    "phase": {
+      "@id": "https://schema.govfresh.com/v1/dsphase/alpha",
+      "@type": "DefinedTerm",
+      "name": "Alpha"
+    },
+    "parentOrganization": {
+      "@id": "https://marincountygov.github.io/marin-data/id/organization/digital-innovation-and-transformation",
+      "name": "Digital, Innovation and Transformation"
+    },
+    "member": [
+      {
+        "@id": "https://marincountygov.github.io/marin-data/id/organization/county-executive",
+        "name": "County Executive"
+      }
+    ],
+    "audience": [
+      "internal",
+      "external"
+    ]
+  },
+  {
+    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-software",
+    "@type": "Project",
+    "name": "Marin Software",
+    "description": "Search the County of Marin's SB272 catalog of enterprise software systems.",
+    "url": "https://marincountygov.github.io/marin-software/",
+    "status": "active",
+    "phase": {
+      "@id": "https://schema.govfresh.com/v1/dsphase/alpha",
+      "@type": "DefinedTerm",
+      "name": "Alpha"
+    },
+    "parentOrganization": {
+      "@id": "https://marincountygov.github.io/marin-data/id/organization/digital-innovation-and-transformation",
+      "name": "Digital, Innovation and Transformation"
+    },
+    "member": [
+      {
+        "@id": "https://marincountygov.github.io/marin-data/id/organization/county-executive",
+        "name": "County Executive"
+      }
+    ],
+    "audience": [
+      "internal",
+      "external"
+    ]
+  },
+  {
+    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-jobs",
+    "@type": "Project",
+    "name": "Marin Jobs",
+    "description": "Search and compare County of Marin job classifications and published pay rates.",
+    "url": "https://marincountygov.github.io/marin-jobs/",
+    "status": "active",
+    "phase": {
+      "@id": "https://schema.govfresh.com/v1/dsphase/alpha",
+      "@type": "DefinedTerm",
+      "name": "Alpha"
+    },
+    "parentOrganization": {
+      "@id": "https://marincountygov.github.io/marin-data/id/organization/digital-innovation-and-transformation",
+      "name": "Digital, Innovation and Transformation"
+    },
+    "member": [
+      {
+        "@id": "https://marincountygov.github.io/marin-data/id/organization/county-executive",
+        "name": "County Executive"
+      }
+    ],
+    "audience": [
+      "internal",
+      "external"
     ]
   }
 ]
