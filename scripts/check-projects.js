@@ -23,12 +23,12 @@ const AUDIENCES = ["internal", "external"];
 const PHASE_BASE = "https://schema.govfresh.com/v1/dsphase/";
 
 // The organizations the project records name are looked up in data/organizations.json, a copy of the list in
-// marin-data (python3 scripts/sync-orgs.py copies it). A reference must name one that is there, and show its
+// marin-data (python3 ../marin-data/scripts/sync_copies.py . copies it). A reference must name one that is there, and show its
 // official name or one of its other names.
 function loadOrganizations(errors) {
   const file = "data/organizations.json";
   if (!fs.existsSync(path.join(repoRoot, file))) {
-    errors.push(`${file} is missing. It is copied from marin-data: python3 scripts/sync-orgs.py`);
+    errors.push(`${file} is missing. It is copied from marin-data: python3 ../marin-data/scripts/sync_copies.py .`);
     return new Map();
   }
   return new Map(read(file).organizations.map((o) => [o.id, o]));

@@ -15,7 +15,12 @@ node --check assets/app.js
 python3 vendor/marinos/audit-buttons.py . --fail
 node scripts/check-catalog-sync.js
 # The organizations the project records name come from marin-data. Skipped when marin-data is not next to this repo.
-python3 scripts/sync-orgs.py --check
+# Every file marin-data gives this app is a copy. Skipped when marin-data is not next to this repo.
+if [[ -f "$ROOT_DIR/../marin-data/scripts/sync_copies.py" ]]; then
+  python3 "$ROOT_DIR/../marin-data/scripts/sync_copies.py" "$ROOT_DIR" --check
+else
+  printf 'SKIP: marin-data is not next to this repo; its copies were not checked.\n' >&2
+fi
 node scripts/check-projects.js
 node scripts/check-lighthouse.js
 node scripts/check-tech.js
