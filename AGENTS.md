@@ -8,7 +8,7 @@ MarinOS consumes a pinned, locally vendored Marin App Shell. The shell owns the 
 
 ## Before making changes
 
-1. Register an app in `catalog.json`, its matching static card in `index.html`, and `projects.json` together. Organizations named in `projects.json` use the ids and names from `marin-data` (`data/organizations.json` is a copy; never edit it, run `python3 scripts/sync-orgs.py`). Preserve name/URL/description/status and icon parity. Never convert the no-JavaScript directory into runtime-only rendering as part of maintenance.
+1. Register an app in `catalog.json`, its matching static card in `index.html`, and `projects.json` together. Organizations named in `projects.json` use the ids and names from `marin-data` (`data/organizations.json` is a copy; never edit it, run `python3 ../marin-data/scripts/sync_copies.py .`). Preserve name/URL/description/status and icon parity. Never convert the no-JavaScript directory into runtime-only rendering as part of maintenance.
 2. Read the pinned App Shell component/integration documentation before adding shared behavior. Never edit `vendor/marinos/` or copy shell CSS/JS into `assets/`. Upgrade through the shell installer.
 3. Keep the directory as the first `data-tab-section` group. Leave the platform-specific About, Projects, Security, Status, and Accessibility content in the app. `marin-app-info` generates only Updates to avoid duplicate IDs or replacing the platform inventories.
 4. The header must contain only About and Updates. Security stays accessible from About and the required footer link, not the header.
