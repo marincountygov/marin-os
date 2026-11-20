@@ -4,7 +4,7 @@
     "name": "Marin Magic",
     "type": "app",
     "url": "https://marincountygov.github.io/marin-magic/",
-    "description": "Convert spreadsheet data into CMS-ready structured rich text.",
+    "description": "Turn spreadsheet data into rich text that is ready for the CMS.",
     "audience": "staff",
     "status": "live",
     "owner": "County of Marin",
@@ -16,9 +16,9 @@
   {
     "id": "marin-docs",
     "name": "Marin Docs",
-    "type": "docs",
+    "type": "app",
     "url": "https://marincountygov.github.io/marin-docs/",
-    "description": "Browse County operational documentation and standard operating procedures.",
+    "description": "Read County guides and the standard operating procedures staff follow.",
     "audience": "staff",
     "status": "alpha",
     "owner": "County of Marin",
@@ -30,9 +30,9 @@
   {
     "id": "marin-brand",
     "name": "Marin Brand Center",
-    "type": "docs",
+    "type": "app",
     "url": "https://marincountygov.github.io/marin-brand/",
-    "description": "Logo, color, and typography reference for Marin brands.",
+    "description": "Find County logos, colors, and fonts for each Marin brand.",
     "audience": "public",
     "status": "alpha",
     "owner": "County of Marin",
@@ -46,7 +46,7 @@
     "name": "Marin Mentions",
     "type": "app",
     "url": "https://marincountygov.github.io/marin-mentions/",
-    "description": "A live media-monitoring console tracking Bay Area news, video, and social mentions of configured keywords and phrases.",
+    "description": "Watch news, video, and social posts that mention Marin County.",
     "audience": "staff",
     "status": "live",
     "owner": "County of Marin",
@@ -60,7 +60,7 @@
     "name": "Marin Reach",
     "type": "app",
     "url": "https://marincountygov.github.io/marin-reach/",
-    "description": "Coordinate and explore County outreach and community engagement across departments and projects.",
+    "description": "Plan and find County outreach events for every department and project.",
     "audience": "staff",
     "status": "alpha",
     "owner": "County of Marin",
@@ -74,7 +74,7 @@
     "name": "Marin Learn",
     "type": "app",
     "url": "https://marincountygov.github.io/marin-learn/",
-    "description": "Build skills for better County services with short notes, decks, and quizzes.",
+    "description": "Learn skills for better County services with short notes, decks, and quizzes.",
     "audience": "staff",
     "status": "alpha",
     "owner": "County of Marin",
@@ -84,25 +84,25 @@
     }
   },
   {
-  "id": "marin-meeting-meter",
-  "name": "Meeting Meter",
-  "type": "app",
-  "url": "https://marincountygov.github.io/marin-meeting-meter/",
-  "description": "Estimate costs for County meetings.",
-  "audience": "staff",
-  "status": "alpha",
-  "owner": "County of Marin",
-  "icon": {
-    "viewBox": "0 0 48 48",
-    "markup": "<circle cx=\"24\" cy=\"27\" r=\"14\"/><path d=\"M24 19v8l6 4M18 7h12M24 7v6M36 14l3 3\"/>"
-  }
-},
+    "id": "marin-meeting-meter",
+    "name": "Meeting Meter",
+    "type": "app",
+    "url": "https://marincountygov.github.io/marin-meeting-meter/",
+    "description": "Estimate what County meetings cost.",
+    "audience": "staff",
+    "status": "alpha",
+    "owner": "County of Marin",
+    "icon": {
+      "viewBox": "0 0 48 48",
+      "markup": "<circle cx=\"24\" cy=\"27\" r=\"14\"/><path d=\"M24 19v8l6 4M18 7h12M24 7v6M36 14l3 3\"/>"
+    }
+  },
   {
     "id": "marin-anonymizer",
     "name": "Marin Anonymizer",
     "type": "app",
     "url": "https://marincountygov.github.io/marin-anonymizer/",
-    "description": "Anonymize CSV, JSON, and Excel files locally in your browser.",
+    "description": "Hide personal data in CSV, JSON, and Excel files in your browser.",
     "audience": "staff",
     "status": "beta",
     "owner": "County of Marin",
@@ -116,7 +116,7 @@
     "name": "Marin Zipper",
     "type": "app",
     "url": "https://marincountygov.github.io/marin-zipper/",
-    "description": "Compress and encrypt files locally in your browser.",
+    "description": "Zip and password-protect files in your browser.",
     "audience": "staff",
     "status": "beta",
     "owner": "County of Marin",
@@ -130,7 +130,7 @@
     "name": "Marin Unzipper",
     "type": "app",
     "url": "https://marincountygov.github.io/marin-unzipper/",
-    "description": "Decrypt and decompress ZIP files locally in your browser.",
+    "description": "Unlock and open protected ZIP files in your browser.",
     "audience": "staff",
     "status": "beta",
     "owner": "County of Marin",
@@ -139,26 +139,26 @@
       "markup": "<path d=\"M12 22v-9\"/><path d=\"M15.17 2.21a1.67 1.67 0 0 1 1.63 0L21 4.57a1.93 1.93 0 0 1 0 3.36L8.82 14.79a1.655 1.655 0 0 1-1.64 0L3 12.43a1.93 1.93 0 0 1 0-3.36z\"/><path d=\"M20 13v3.87a2.06 2.06 0 0 1-1.11 1.83l-6 3.08a1.93 1.93 0 0 1-1.78 0l-6-3.08A2.06 2.06 0 0 1 4 16.87V13\"/><path d=\"M21 12.43a1.93 1.93 0 0 0 0-3.36L8.83 2.2a1.64 1.64 0 0 0-1.63 0L3 4.57a1.93 1.93 0 0 0 0 3.36l12.18 6.86a1.636 1.636 0 0 0 1.63 0z\"/>"
     }
   },
-    {
-  "id": "marin-csv",
-  "name": "Marin CSV",
-  "type": "app",
-  "url": "https://marincountygov.github.io/marin-csv/",
-  "description": "View and edit CSV files locally in your browser.",
-  "audience": "staff",
-  "status": "alpha",
-  "owner": "County of Marin",
-  "icon": {
-    "viewBox": "0 0 24 24",
-    "markup": "<path d=\"M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z\"/><path d=\"M14 2v6h6M8 13h2M8 17h2M14 13h2M14 17h2\"/>"
-  }
-},
+  {
+    "id": "marin-csv",
+    "name": "Marin CSV",
+    "type": "app",
+    "url": "https://marincountygov.github.io/marin-csv/",
+    "description": "Open, view, and edit CSV files right in your browser.",
+    "audience": "staff",
+    "status": "alpha",
+    "owner": "County of Marin",
+    "icon": {
+      "viewBox": "0 0 24 24",
+      "markup": "<path d=\"M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z\"/><path d=\"M14 2v6h6M8 13h2M8 17h2M14 13h2M14 17h2\"/>"
+    }
+  },
   {
     "id": "marin-spec",
     "name": "Marin Spec",
     "type": "app",
     "url": "https://marincountygov.github.io/marin-spec/",
-    "description": "Turn project research into a build-ready specification with your own AI tool.",
+    "description": "Turn project research into a clear build plan using your own AI tool.",
     "audience": "staff",
     "status": "alpha",
     "owner": "County of Marin",
@@ -170,7 +170,7 @@
   {
     "id": "marin-budget",
     "name": "Marin Budget",
-    "type": "docs",
+    "type": "app",
     "url": "https://marincountygov.github.io/marin-budget/",
     "description": "Explore the County budget and Capital Improvement Plan.",
     "audience": "staff",
@@ -179,6 +179,48 @@
     "icon": {
       "viewBox": "0 0 24 24",
       "markup": "<rect width=\"20\" height=\"12\" x=\"2\" y=\"6\" rx=\"2\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/><path d=\"M6 12h.01M18 12h.01\"/>"
+    }
+  },
+  {
+    "id": "marin-pulse",
+    "name": "Marin Pulse",
+    "type": "app",
+    "url": "https://marincountygov.github.io/marin-pulse/",
+    "description": "Browse County departments, service areas, programs, projects, and places.",
+    "audience": "staff",
+    "status": "alpha",
+    "owner": "County of Marin",
+    "icon": {
+      "viewBox": "0 0 24 24",
+      "markup": "<path d=\"M12 17v4\"/><path d=\"M18 10h-2.315a1 1 0 00-.932.64l-.787 2.034a.5.5 0 01-.932 0l-2.068-5.348a.5.5 0 00-.932 0l-.787 2.035a1 1 0 01-.932.639H6\"/><path d=\"M8 21h8\"/><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\"/>"
+    }
+  },
+  {
+    "id": "marin-software",
+    "name": "Marin Software",
+    "type": "app",
+    "url": "https://marincountygov.github.io/marin-software/",
+    "description": "Search the County's SB272 list of its main software systems.",
+    "audience": "staff",
+    "status": "alpha",
+    "owner": "County of Marin",
+    "icon": {
+      "viewBox": "0 0 24 24",
+      "markup": "<path d=\"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z\"/><path d=\"M14 2v5a1 1 0 0 0 1 1h5\"/><path d=\"M10 9H8\"/><path d=\"M16 13H8\"/><path d=\"M16 17H8\"/>"
+    }
+  },
+  {
+    "id": "marin-jobs",
+    "name": "Marin Jobs",
+    "type": "app",
+    "url": "https://marincountygov.github.io/marin-jobs/",
+    "description": "Search and compare County job classes and the pay rates the County publishes.",
+    "audience": "staff",
+    "status": "alpha",
+    "owner": "County of Marin",
+    "icon": {
+      "viewBox": "0 0 24 24",
+      "markup": "<path d=\"M3 7h18M6 7v13h12V7M9 7V4h6v3M9 12h6M9 16h4\"/>"
     }
   }
 ]

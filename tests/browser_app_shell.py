@@ -94,7 +94,7 @@ def ready(page: Page) -> None:
 
 def visible_route(page: Page, name: str) -> None:
     page.wait_for_function("name => { const s=[...document.querySelectorAll('[data-tab-section]')];"
-                           "return s.filter(x=>!x.hidden).length === (name==='directory'?2:1) && "
+                           "return s.filter(x=>!x.hidden).length === 1 && "
                            "s.every(x=>x.hidden === (x.dataset.tabSection!==name)); }", arg=name)
 
 
