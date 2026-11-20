@@ -3,40 +3,70 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-os",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/eb8e8662-0b6c-43d0-a035-1e4cc0dfdd04",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/d6b48407-a9d0-44bf-ae39-02bc8c774afb",
   "creationInfo": {
     "creators": [
-      "Tool: protobom-v0.0.0-20261113232539-c1813d300f10+dirty",
-      "Tool: GitHub.com-Dependency-Graph"
+      "Tool: protobom-v0.0.0-20261117223245-72f62ebd2215+dirty",
+      "Tool: GitHub.com-Dependency-Graph",
+      "Tool: dependabot"
     ],
-    "created": "2026-11-16T19:50:08Z"
+    "created": "2026-11-20T05:38:32Z"
   },
   "packages": [
     {
+      "name": "playwright",
+      "SPDXID": "SPDXRef-pypi-playwright-1.65.2-075eef",
+      "versionInfo": "1.65.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "Apache-2.0",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/playwright@1.65.2"
+        }
+      ]
+    },
+    {
       "name": "actions/checkout",
-      "SPDXID": "SPDXRef-githubactions-actions-checkout-4..-bfd09a",
-      "versionInfo": "4.*.*",
+      "SPDXID": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
+      "versionInfo": "7.*.*",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:githubactions/actions/checkout@4.%2A.%2A"
+          "referenceLocator": "pkg:githubactions/actions/checkout@7.%2A.%2A"
         }
       ]
     },
     {
       "name": "actions/setup-node",
-      "SPDXID": "SPDXRef-githubactions-actions-setup-node-4..-0bb21e",
-      "versionInfo": "4.*.*",
+      "SPDXID": "SPDXRef-githubactions-actions-setup-node-7..-123477",
+      "versionInfo": "7.*.*",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:githubactions/actions/setup-node@4.%2A.%2A"
+          "referenceLocator": "pkg:githubactions/actions/setup-node@7.%2A.%2A"
+        }
+      ]
+    },
+    {
+      "name": "actions/setup-python",
+      "SPDXID": "SPDXRef-githubactions-actions-setup-python-7..-900e64",
+      "versionInfo": "7.*.*",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/actions/setup-python@7.%2A.%2A"
         }
       ]
     },
@@ -59,12 +89,22 @@
   "relationships": [
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-os-main-fb26b7",
-      "relatedSpdxElement": "SPDXRef-githubactions-actions-checkout-4..-bfd09a",
+      "relatedSpdxElement": "SPDXRef-pypi-playwright-1.65.2-075eef",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-os-main-fb26b7",
-      "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-node-4..-0bb21e",
+      "relatedSpdxElement": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-marincountygov-marin-os-main-fb26b7",
+      "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-node-7..-123477",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-marincountygov-marin-os-main-fb26b7",
+      "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-python-7..-900e64",
       "relationshipType": "DEPENDS_ON"
     },
     {

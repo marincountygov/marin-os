@@ -3,14 +3,14 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-jobs",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/bd9be8cb-36b4-43fa-a81a-dc36bef679e0",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/4d74998e-8b57-4d2c-b9bb-8043e3fc421b",
   "creationInfo": {
     "creators": [
       "Tool: protobom-v0.0.0-20261117223245-72f62ebd2215+dirty",
       "Tool: GitHub.com-Dependency-Graph",
       "Tool: dependabot"
     ],
-    "created": "2026-11-20T05:32:17Z"
+    "created": "2026-11-20T05:38:45Z"
   },
   "packages": [
     {
@@ -25,20 +25,6 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:pypi/playwright@1.65.2"
-        }
-      ]
-    },
-    {
-      "name": "actions/checkout",
-      "SPDXID": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
-      "versionInfo": "7.*.*",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:githubactions/actions/checkout@7.%2A.%2A"
         }
       ]
     },
@@ -71,6 +57,20 @@
       ]
     },
     {
+      "name": "actions/checkout",
+      "SPDXID": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
+      "versionInfo": "7.*.*",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/actions/checkout@7.%2A.%2A"
+        }
+      ]
+    },
+    {
       "name": "com.github.marincountygov/marin-jobs",
       "SPDXID": "SPDXRef-github-marincountygov-marin-jobs-main-2e4441",
       "versionInfo": "main",
@@ -94,17 +94,17 @@
     },
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-jobs-main-2e4441",
-      "relatedSpdxElement": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-github-marincountygov-marin-jobs-main-2e4441",
       "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-node-7..-123477",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-jobs-main-2e4441",
       "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-python-7..-900e64",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-marincountygov-marin-jobs-main-2e4441",
+      "relatedSpdxElement": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
       "relationshipType": "DEPENDS_ON"
     },
     {

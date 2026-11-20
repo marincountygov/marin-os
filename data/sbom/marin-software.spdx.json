@@ -3,14 +3,14 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-software",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/e7a0edee-b2bd-4297-a82a-bb8749cd423d",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/f0e8294b-0b42-45a5-a134-b175c040b6c9",
   "creationInfo": {
     "creators": [
       "Tool: protobom-v0.0.0-20261117223245-72f62ebd2215+dirty",
       "Tool: GitHub.com-Dependency-Graph",
       "Tool: dependabot"
     ],
-    "created": "2026-11-20T05:32:15Z"
+    "created": "2026-11-20T05:38:45Z"
   },
   "packages": [
     {
@@ -94,17 +94,17 @@
     },
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-software-main-812064",
+      "relatedSpdxElement": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-marincountygov-marin-software-main-812064",
       "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-node-7..-123477",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-software-main-812064",
       "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-python-7..-900e64",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-github-marincountygov-marin-software-main-812064",
-      "relatedSpdxElement": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
       "relationshipType": "DEPENDS_ON"
     },
     {
