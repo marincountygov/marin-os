@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T05:50:50.616Z",
+  "generatedAt": "2026-11-23T21:29:56.280Z",
   "source": {
     "name": "Google Lighthouse",
     "service": "PageSpeed Insights API",
@@ -11,7 +11,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-os/",
       "score": 98,
-      "testedAt": "2026-11-20T05:42:21.038Z",
+      "testedAt": "2026-11-23T21:26:59.511Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -91,7 +91,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-magic/",
       "score": 100,
-      "testedAt": "2026-11-20T05:42:27.718Z",
+      "testedAt": "2026-11-23T21:27:06.761Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -160,7 +160,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-docs/",
       "score": 98,
-      "testedAt": "2026-11-20T05:42:34.101Z",
+      "testedAt": "2026-11-23T21:27:15.890Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -237,10 +237,10 @@
       ]
     },
     "marin-mentions": {
-      "status": "error",
+      "status": "unavailable",
       "url": "https://marincountygov.github.io/marin-mentions/",
-      "attemptedAt": "2026-11-20T05:42:47.853Z",
-      "error": "Request failed: The operation was aborted due to timeout",
+      "attemptedAt": "2026-11-23T21:27:32.932Z",
+      "error": "PageSpeed API returned 400: Lighthouse returned error: NO_FCP. The page did not paint any content. Please ensure you keep the browser window in the foreground during the load and try again. (NO_FCP)",
       "lastSuccess": {
         "score": 100,
         "testedAt": "2026-11-16T19:38:04.480Z"
@@ -250,7 +250,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-reach/",
       "score": 100,
-      "testedAt": "2026-11-20T05:48:30.646Z",
+      "testedAt": "2026-11-23T21:28:04.004Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -319,7 +319,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-learn/",
       "score": 100,
-      "testedAt": "2026-11-20T05:48:38.715Z",
+      "testedAt": "2026-11-23T21:28:13.291Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -388,7 +388,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-meeting-meter/",
       "score": 98,
-      "testedAt": "2026-11-20T05:48:45.044Z",
+      "testedAt": "2026-11-23T21:28:20.978Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -468,7 +468,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-anonymizer/",
       "score": 100,
-      "testedAt": "2026-11-20T05:48:53.035Z",
+      "testedAt": "2026-11-23T21:28:28.916Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -537,7 +537,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-zipper/",
       "score": 100,
-      "testedAt": "2026-11-20T05:48:59.604Z",
+      "testedAt": "2026-11-23T21:28:37.184Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -606,7 +606,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-unzipper/",
       "score": 100,
-      "testedAt": "2026-11-20T05:49:06.573Z",
+      "testedAt": "2026-11-23T21:28:47.957Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -675,7 +675,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-csv/",
       "score": 94,
-      "testedAt": "2026-11-20T05:49:23.196Z",
+      "testedAt": "2026-11-23T21:28:54.342Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -755,7 +755,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-spec/",
       "score": 100,
-      "testedAt": "2026-11-20T05:49:32.158Z",
+      "testedAt": "2026-11-23T21:29:04.614Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -824,7 +824,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-budget/",
       "score": 98,
-      "testedAt": "2026-11-20T05:49:39.875Z",
+      "testedAt": "2026-11-23T21:29:11.727Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -904,7 +904,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-pulse/",
       "score": 98,
-      "testedAt": "2026-11-20T05:49:48.216Z",
+      "testedAt": "2026-11-23T21:29:21.651Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -984,7 +984,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-software/",
       "score": 98,
-      "testedAt": "2026-11-20T05:49:59.397Z",
+      "testedAt": "2026-11-23T21:29:27.891Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
@@ -1064,7 +1064,7 @@
       "status": "success",
       "url": "https://marincountygov.github.io/marin-jobs/",
       "score": 100,
-      "testedAt": "2026-11-20T05:50:15.347Z",
+      "testedAt": "2026-11-23T21:29:38.900Z",
       "lighthouseVersion": "13.6.0",
       "audits": [
         {
