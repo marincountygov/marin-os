@@ -22,6 +22,7 @@ else
   printf 'SKIP: marin-data is not next to this repo; its copies were not checked.\n' >&2
 fi
 node scripts/check-projects.js
+node scripts/check-search-index.js
 node scripts/check-lighthouse.js
 node scripts/check-tech.js
 node scripts/check-security.js

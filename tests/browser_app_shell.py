@@ -310,6 +310,35 @@ class Runner:
             finally:
                 context.close()
         print("PASS: Projects partial/total failure and missing Lighthouse data")
+        # The search box on the home page: a word finds the app, the count line is "N results / matching", the grid steps aside and comes back.
+        context = self.browser.new_context(viewport={"width": 1280, "height": 900})
+        try:
+            page, errors = self.page(context)
+            require(page.locator("#home-search").is_visible(), "The search box shows when JavaScript runs")
+            page.fill("#home-search-input", "budget")
+            page.wait_for_function("document.getElementById('home-search-status').textContent.includes('matching')")
+            status = page.locator("#home-search-status").inner_text()
+            require("result" in status and "\u201cbudget\u201d" in status and " / " in status, f"The count line is 'N results / matching': {status!r}")
+            require(page.locator("#home-search-results .home-search__group a", has_text="Marin Budget").count() >= 1, "The search finds Marin Budget")
+            require(page.locator(".directory-grid").is_hidden(), "The grid of apps steps aside while there are results")
+            page.keyboard.press("Escape")
+            require(page.locator(".directory-grid").is_visible() and page.locator("#home-search-status").inner_text() == "", "Escape empties the box and brings the grid back")
+            if not self.fixture_mode:
+                # The County's places come from the list marin-data builds, and open on their page in Marin Pulse.
+                page.fill("#home-search-input", "san rafael")
+                page.wait_for_function("document.getElementById('home-search-status').textContent.includes('matching')")
+                link = page.locator("#home-search-results .home-search__group a", has_text="San Rafael").first
+                require(link.count() == 1 and "/marin-pulse/places/san-rafael.html" in link.get_attribute("href"), "A place is found and opens in Marin Pulse")
+                page.fill("#home-search-input", "district 3")
+                page.wait_for_function("document.getElementById('home-search-status').textContent.includes('matching')")
+                require(page.locator("#home-search-results .home-search__group a", has_text="District 3").count() >= 1, "District 3 is found")
+            page.fill("#home-search-input", "zzzzqq")
+            page.wait_for_function("document.getElementById('home-search-status').textContent.includes('0 results')")
+            require(not errors, str(errors))
+            total += 1
+        finally:
+            context.close()
+        print("PASS: home search finds an app, says how many, and gives the grid back")
         context = self.browser.new_context(java_script_enabled=False, viewport={"width": 390, "height": 900})
         try:
             page = context.new_page()
@@ -324,6 +353,7 @@ class Runner:
             require(page.locator(".directory-card:visible").count() == len(CATALOG), "Directory fails without JavaScript")
             require(page.locator(".directory-card h3 a").count() == len(CATALOG), "No-JavaScript card links missing")
             require(page.locator("noscript h1").is_visible(), "No-JavaScript title missing")
+            require(page.locator("#home-search").is_hidden(), "The search box stays hidden without JavaScript")
             total += 1
             print("PASS: no-JavaScript static directory")
         finally:

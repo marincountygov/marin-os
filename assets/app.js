@@ -483,3 +483,164 @@
     if (!section.hidden) loadTech();
   }).observe(section, { attributes: true, attributeFilter: ["hidden"] });
 })();
+
+// The search box on the MarinOS home page: type a word, see the apps, the pages of MarinOS and the projects that have it, grouped by kind.
+// It is plain on purpose. Lower case, accents ignored, every word typed must match the start of a word in a name, an other name or a description.
+// The apps come from catalog.json and the projects from projects.json (the same files the page already reads); the pages are the tabs of this page.
+// Without JavaScript the box stays hidden and the grid of apps is all there is.
+(() => {
+  const box = document.getElementById("home-search");
+  const input = document.getElementById("home-search-input");
+  const statusEl = document.getElementById("home-search-status");
+  const resultsEl = document.getElementById("home-search-results");
+  const grid = document.querySelector(".directory-grid");
+  if (!box || !input || !statusEl || !resultsEl || !grid) return;
+  box.hidden = false;
+
+  const KINDS = ["App", "MarinOS page", "Organization", "Program", "Place", "Service", "Person", "Project"];
+  const PLURAL = { App: "Apps", "MarinOS page": "MarinOS pages", Organization: "Organizations", Program: "Programs", Place: "Places", Service: "Services", Person: "People", Project: "Projects" };
+  const SHOWN = 60; // the most results listed; the count says how many there are
+  const plain = (text) => String(text || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  const words = (text) => plain(text).split(/[^a-z0-9]+/).filter(Boolean);
+  const clip = (text, n = 160) => { const t = String(text || "").replace(/\s+/g, " ").trim(); return t.length > n ? `${t.slice(0, n - 1).trimEnd()}…` : t; };
+
+  let entries = null;
+  let loading = null;
+
+  // ---- what can be found ----
+  const fromPages = () => {
+    const found = [];
+    document.querySelectorAll("section[data-tab-section]").forEach((section) => {
+      if (!section.id) return;
+      const heading = section.querySelector("h2");
+      const first = section.querySelector("p");
+      if (heading) found.push({ k: "MarinOS page", n: heading.textContent.trim(), d: clip(first ? first.textContent : ""), a: "", h: `#${section.id}` });
+    });
+    // What Alpha, Beta and Live mean.
+    const status = document.getElementById("status");
+    if (status) {
+      status.querySelectorAll("h3").forEach((h3) => {
+        const name = h3.textContent.trim();
+        if (!/^(alpha|beta|live)$/i.test(name)) return;
+        const line = h3.nextElementSibling;
+        found.push({ k: "MarinOS page", n: `${name} status`, d: clip(line ? line.textContent.replace(/^\s*\S+\s*[—-]\s*/, "") : ""), a: name, h: "#status" });
+      });
+    }
+    return found;
+  };
+  const fromCatalog = (catalog) => catalog.map((app) => ({ k: "App", n: app.name, d: clip(app.description), a: [app.id, app.owner].filter(Boolean).join(" "), h: app.url, status: app.status }));
+  // A project of an app is the app itself: it is listed once, as the app.
+  const fromProjects = (projects, appUrls) => projects.filter((p) => !appUrls.has(String(p.url || "").replace(/\/$/, ""))).map((p) => ({ k: "Project", n: p.name, d: clip(p.description), a: (p.phase && p.phase.name) || "", h: p.url || "#projects" }));
+  // The County's organizations, programs, places, services and people: one list that marin-data builds (data/search-index.json), opened on their pages in Marin Pulse.
+  const fromData = (doc) => {
+    if (!doc || !Array.isArray(doc.entries)) return [];
+    const base = doc.base || "";
+    return doc.entries.map((e) => ({ k: e.k, n: e.n, d: e.d || "", a: (e.a || []).join(" "), alts: e.a || [], c: e.c || "", h: /^https?:/.test(e.h) ? e.h : base + e.h }));
+  };
+  const read = (url) => fetch(url, { cache: "no-store" }).then((r) => (r.ok ? r.json() : [])).catch(() => []);
+  const load = () => {
+    if (!loading) {
+      loading = Promise.all([read("catalog.json"), read("projects.json"), read("external-projects.json"), read("data/search-index.json")]).then(([catalog, projects, external, data]) => {
+        const apps = fromCatalog(Array.isArray(catalog) ? catalog : []);
+        const appUrls = new Set(apps.map((a) => String(a.h).replace(/\/$/, "")));
+        const all = [...apps, ...fromPages(), ...fromData(data), ...fromProjects([...(Array.isArray(projects) ? projects : []), ...(Array.isArray(external) ? external : [])], appUrls)];
+        entries = all.map((e) => ({ ...e, nw: words(e.n), aw: words(e.a), dw: words(e.d), name: plain(e.n), code: plain(e.c), alt: (e.alts || []).map(plain) }));
+      });
+    }
+    return loading;
+  };
+
+  // ---- the match: every word typed starts a word of the name, the other names or the description ----
+  const starts = (list, word) => list.some((w) => w.startsWith(word));
+  const score = (e, typed, q) => {
+    let total = 0;
+    for (const word of typed) {
+      if (starts(e.nw, word)) total += 3;
+      else if (starts(e.aw, word)) total += 2;
+      else if (e.code && e.code === word) total += 3; // a code is matched whole
+      else if (starts(e.dw, word)) total += 1;
+      else return 0;
+    }
+    if (e.code && e.code === q) total += 100; // the code, exactly
+    if (e.alt && e.alt.some((x) => x === q || x === `marin ${q}` || x === `marin county ${q}`)) total += 50; // another name for it, exactly (HHS, Marin HHS)
+    if (e.name === q) total += 100; // the name, exactly
+    else if (e.name.startsWith(q)) total += 20; // a name that starts with what was typed
+    return total;
+  };
+
+  // ---- the page ----
+  const line = (count, q) => {
+    const root = document.createElement("span");
+    root.className = "results-line";
+    root.append(Object.assign(document.createElement("span"), { className: "results-line__count", textContent: `${count.toLocaleString("en-US")} ${count === 1 ? "result" : "results"}` }));
+    root.append(Object.assign(document.createElement("span"), { className: "results-line__slash", textContent: " / " }), Object.assign(document.createElement("span"), { className: "results-line__filters", textContent: `matching “${q}”` }));
+    return root;
+  };
+  const badge = (status) => {
+    if (!["alpha", "beta", "live"].includes(status)) return null;
+    const span = Object.assign(document.createElement("span"), { className: "app-status", textContent: status.charAt(0).toUpperCase() + status.slice(1) });
+    span.dataset.status = status;
+    return span;
+  };
+  const item = (e) => {
+    const li = document.createElement("li");
+    const a = Object.assign(document.createElement("a"), { href: e.h, textContent: e.n });
+    li.append(a);
+    if (e.c) li.append(" ", Object.assign(document.createElement("span"), { textContent: `(${e.c})` }));
+    const b = e.k === "App" ? badge(e.status) : null;
+    if (b) li.append(" ", b);
+    if (e.d) li.append(" ", Object.assign(document.createElement("span"), { className: "home-search__what", textContent: e.d }));
+    return li;
+  };
+  const clear = () => { resultsEl.replaceChildren(); statusEl.replaceChildren(); grid.hidden = false; };
+  const run = () => {
+    const q = plain(input.value).trim().replace(/\s+/g, " ");
+    if (!q) { clear(); return; }
+    load().then(() => {
+      if (plain(input.value).trim().replace(/\s+/g, " ") !== q) return; // the box has changed since
+      const typed = q.split(" ");
+      const scored = entries.map((e) => [e, score(e, typed, q)]).filter(([, s]) => s > 0)
+        .sort((a, b) => b[1] - a[1] || KINDS.indexOf(a[0].k) - KINDS.indexOf(b[0].k) || a[0].n.localeCompare(b[0].n, "en", { sensitivity: "base" }));
+      const found = scored.map(([e]) => e);
+      const best = new Map(); // the best score in each kind
+      scored.forEach(([e, s]) => { if (!best.has(e.k)) best.set(e.k, s); });
+      grid.hidden = true;
+      statusEl.replaceChildren(line(found.length, input.value.trim()));
+      // Grouped by kind, the group with the best match first, each with its count.
+      const sizes = new Map();
+      found.forEach((e) => sizes.set(e.k, (sizes.get(e.k) || 0) + 1));
+      const groups = new Map();
+      found.slice(0, SHOWN).forEach((e) => groups.set(e.k, [...(groups.get(e.k) || []), e]));
+      resultsEl.replaceChildren(...[...groups].sort((a, b) => best.get(b[0]) - best.get(a[0]) || sizes.get(b[0]) - sizes.get(a[0]) || KINDS.indexOf(a[0]) - KINDS.indexOf(b[0])).map(([kind, list]) => {
+        const group = document.createElement("section");
+        group.className = "home-search__group";
+        const title = `${PLURAL[kind] || kind} (${sizes.get(kind)})`;
+        const ul = document.createElement("ul");
+        ul.append(...list.map(item));
+        group.append(Object.assign(document.createElement("h3"), { textContent: title }), ul);
+        return group;
+      }));
+      if (!found.length) resultsEl.append(Object.assign(document.createElement("p"), { innerHTML: '<a href="#">All apps</a>' }));
+      const none = resultsEl.querySelector("p a");
+      if (none) none.addEventListener("click", (event) => { event.preventDefault(); input.value = ""; clear(); input.focus(); });
+    });
+  };
+
+  input.addEventListener("focus", load);
+  input.addEventListener("input", run);
+  // Enter opens the first result; Down moves into the list; Escape empties the box.
+  const links = () => [...resultsEl.querySelectorAll("li a")];
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") { const first = links()[0]; if (first) { event.preventDefault(); first.click(); } }
+    else if (event.key === "ArrowDown") { const first = links()[0]; if (first) { event.preventDefault(); first.focus(); } }
+    else if (event.key === "Escape") { input.value = ""; clear(); }
+  });
+  resultsEl.addEventListener("keydown", (event) => {
+    const all = links();
+    const at = all.indexOf(document.activeElement);
+    if (at < 0) return;
+    if (event.key === "ArrowDown" && at < all.length - 1) { event.preventDefault(); all[at + 1].focus(); }
+    else if (event.key === "ArrowUp") { event.preventDefault(); (at ? all[at - 1] : input).focus(); }
+    else if (event.key === "Escape") { input.focus(); }
+  });
+})();
