@@ -18,6 +18,10 @@ See `#status` on the live site for the full explanation shown to end users, and 
 
 The HTML directory remains fully usable without JavaScript. When adding or changing an entry, update both `catalog.json` and the corresponding card (including its status badge) in `index.html` in the same pull request. A GitHub Actions check (`scripts/check-catalog-sync.js`) fails the PR if the two disagree, including on status — run `node scripts/check-catalog-sync.js` locally to check before pushing.
 
+## Search
+
+The home page has a search box (`#home-search`, written in `index.html`, run by `assets/app.js`). It is hidden until JavaScript runs, so the directory still works without it. It looks through the apps (`catalog.json`), the tabs of the page and the meaning of Alpha, Beta and Live (read from the page itself), and the projects (`projects.json` and `external-projects.json`). A project that is an app's own project is listed once, as the app. Every word typed must start a word of a name, another name or a description; results are grouped by kind, with a line above them (`3 results / matching “budget”`). It also looks through the County's organizations, programs, places, services and the people who hold a post: one list, `data/search-index.json`, that `marin-data` builds (`build_search_index.py`) and copies here with the daily data sync. Each of those opens its page in Marin Pulse (the list names the address). `scripts/check-search-index.js` checks the list.
+
 ## Adding an app to MarinOS
 
 This is the entire process — everything else updates itself:
