@@ -501,36 +501,10 @@
   const PLURAL = { App: "Apps", "MarinOS page": "MarinOS pages", SOP: "Standard operating procedures", Guide: "Guides", PMR: "Personnel Management Regulations", Organization: "Organizations", Program: "Programs", Place: "Places", Service: "Services", Person: "People", Project: "Projects" };
   const SHOWN = 60; // the most results listed; the count says how many there are
   const plain = (text) => String(text || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
-  const words = (text) => plain(text).split(/[^a-z0-9]+/).filter(Boolean);
+  const words = (text) => window.marinSearchWords(text);
   const clip = (text, n = 160) => { const t = String(text || "").replace(/\s+/g, " ").trim(); return t.length > n ? `${t.slice(0, n - 1).trimEnd()}…` : t; };
 
-  // Where the words are: about a line of the text around the first word that starts with a typed word, the words marked.
-  const WORD = /[\p{L}\p{N}]+/gu;
-  const hits = (word, typed) => typed.some((t) => plain(word).startsWith(t));
-  const snippet = (text, typed) => {
-    const first = [...text.matchAll(WORD)].find((m) => hits(m[0], typed));
-    if (!first) return null;
-    let start = Math.max(0, first.index - 60);
-    if (start) { const gap = text.indexOf(" ", start); if (gap > -1 && gap < first.index) start = gap + 1; }
-    let end = Math.min(text.length, start + 170);
-    if (end < text.length) { const gap = text.lastIndexOf(" ", end); if (gap > first.index) end = gap; }
-    const part = text.slice(start, end);
-    const span = Object.assign(document.createElement("span"), { className: "search-snippet" });
-    if (start) span.append("…");
-    let at = 0;
-    for (const m of part.matchAll(WORD)) {
-      if (!hits(m[0], typed)) continue;
-      span.append(part.slice(at, m.index), Object.assign(document.createElement("mark"), { className: "search-hit", textContent: m[0] }));
-      at = m.index + m[0].length;
-    }
-    span.append(part.slice(at));
-    if (end < text.length) span.append("…");
-    return span;
-  };
-  // The words go with the person to the page a result opens, where the app can mark them (Marin Docs does); nothing is added to the address.
-  const remember = (href, typed) => {
-    try { sessionStorage.setItem("marin-search-hit", JSON.stringify({ path: new URL(href, location.href).pathname, terms: typed, at: Date.now() })); } catch { /* no storage: no highlight */ }
-  };
+  // Where the words are, and the words marked on the page a result opens, come from the shell (marinSearchSnippet, marinSearchRemember).
   let typedNow = [];
 
   let entries = null;
@@ -638,7 +612,7 @@
     if (e.p) li.append(" ", Object.assign(document.createElement("span"), { className: "home-search__what", textContent: `in ${e.p}` }));
     if (e.t) {
       // A page of an app's own content: the line of text where the words are, or the start of it when they are only in the name.
-      li.append(snippet(e.t, typedNow) || Object.assign(document.createElement("span"), { className: "search-snippet", textContent: e.t.length > 170 ? `${e.t.slice(0, 169).trimEnd()}…` : e.t }));
+      li.append(window.marinSearchSnippet(e.t, typedNow) || Object.assign(document.createElement("span"), { className: "search-snippet", textContent: e.t.length > 170 ? `${e.t.slice(0, 169).trimEnd()}…` : e.t }));
     } else if (e.d) li.append(" ", Object.assign(document.createElement("span"), { className: "home-search__what", textContent: e.d }));
     return li;
   };
@@ -679,7 +653,7 @@
 
   input.addEventListener("focus", load);
   input.addEventListener("input", run);
-  resultsEl.addEventListener("click", (event) => { const link = event.target.closest("a[href]"); if (link) remember(link.href, typedNow); });
+  resultsEl.addEventListener("click", (event) => { const link = event.target.closest("a[href]"); if (link) window.marinSearchRemember(link.href, typedNow); });
   // Enter opens the first result; Down moves into the list; Escape empties the box.
   const links = () => [...resultsEl.querySelectorAll("li a")];
   input.addEventListener("keydown", (event) => {
