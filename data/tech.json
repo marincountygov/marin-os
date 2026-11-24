@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T14:03:21.970Z",
+  "generatedAt": "2026-11-24T20:26:52.791Z",
   "source": {
     "name": "GitHub",
     "apis": [
@@ -1314,6 +1314,55 @@
             "visitorData": false
           }
         ]
+      }
+    },
+    "marin-census": {
+      "repository": "marincountygov/marin-census",
+      "url": "https://github.com/marincountygov/marin-census",
+      "license": null,
+      "pushedAt": "2026-11-24T18:59:00Z",
+      "languages": {
+        "status": "none-detected"
+      },
+      "dependencies": {
+        "status": "success",
+        "total": 0,
+        "direct": 0,
+        "transitive": 0,
+        "byEcosystem": {},
+        "licenses": [],
+        "sbom": {
+          "format": "SPDX",
+          "version": "2.3",
+          "generated": "2026-11-24T20:26:52Z",
+          "source": "GitHub dependency graph",
+          "packages": 1,
+          "path": "data/sbom/marin-census.spdx.json"
+        }
+      },
+      "bundled": {
+        "status": "success",
+        "components": [
+          {
+            "name": "Marin App Shell",
+            "version": "2.0.0",
+            "license": "MIT License"
+          },
+          {
+            "name": "Marin UI",
+            "version": "1.36.0",
+            "license": "MIT License"
+          }
+        ]
+      },
+      "declaredRepo": "marin-census",
+      "ai": {
+        "status": "documented",
+        "used": false
+      },
+      "services": {
+        "status": "documented",
+        "items": []
       }
     }
   }
