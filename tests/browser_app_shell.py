@@ -44,12 +44,23 @@ def require(value, message: str) -> None:
         raise AssertionError(message)
 
 
+# Marin Docs publishes a list of its own content (searchIndex in its catalog entry) and a text file for each set. Small stand-ins,
+# so the test needs no network: one regulation section, with the text a result shows a line of.
+DOCS_INDEX = {"schemaVersion": "1.0.0", "base": "https://marincountygov.github.io/marin-docs/",
+              "sets": [{"src": "pmrs/search.json", "kind": "PMR"}], "entries": [
+                  {"k": "PMR", "n": "PMR 24: Grievance Procedure", "d": "Grievances.", "h": "pmrs/pmr-24.html"}]}
+DOCS_PMR_SET = [{"n": "PMR 24.3 Formal Grievance", "p": "PMR 24: Grievance Procedure", "h": "pmr-24.html#24-3",
+                 "t": "A. Grievance Form. If the grievant believes that the informal grievance has not been redressed within 14 calendar days, he or she may initiate a formal grievance within seven calendar days."}]
+
+
 def fixtures() -> dict:
     data = {}
     for name in ["marin.yml", "catalog.json", "projects.json", "external-projects.json",
                  "security.json", "data/lighthouse.json"]:
         data[name] = {"status": 200, "body": (ROOT / name).read_text(encoding="utf-8")}
     data["__commits__"] = {"status": 200, "body": json.dumps(COMMITS)}
+    data["marin-docs/search-index.json"] = {"status": 200, "body": json.dumps(DOCS_INDEX)}
+    data["marin-docs/pmrs/search.json"] = {"status": 200, "body": json.dumps(DOCS_PMR_SET)}
     return data
 
 
@@ -241,6 +252,10 @@ class Runner:
             def external(request):
                 url = request.request.url
                 parts = urlsplit(url)
+                docs_key = parts.path.lstrip("/")
+                if parts.hostname == "marincountygov.github.io" and docs_key in ("marin-docs/search-index.json", "marin-docs/pmrs/search.json"):
+                    request.fulfill(status=200, body=data[docs_key]["body"], content_type="application/json", headers={"Access-Control-Allow-Origin": "*"})
+                    return
                 from_github = parts.hostname == "api.github.com"
                 response = data["__commits__"] if from_github else data["security.json"]
                 if not from_github and not parts.path.endswith("/security.json"):
@@ -332,6 +347,12 @@ class Runner:
                 page.fill("#home-search-input", "district 3")
                 page.wait_for_function("document.getElementById('home-search-status').textContent.includes('matching')")
                 require(page.locator("#home-search-results .home-search__group a", has_text="District 3").count() >= 1, "District 3 is found")
+            # An app's own content: a result shows a line of its text with the words marked, and pressing it keeps the words for the next page.
+            page.fill("#home-search-input", "grievance form")
+            page.wait_for_function("document.getElementById('home-search-status').textContent.includes('matching')")
+            first = page.locator("#home-search-results .home-search__group li", has_text="PMR 24.3").first
+            require(first.count() == 1 and first.locator(".search-snippet mark.search-hit").count() >= 2, "A page of an app's own content shows a line of text with the words marked")
+            require("pmr-24.html#24-3" in first.locator("a").first.get_attribute("href"), "The result opens the section")
             page.fill("#home-search-input", "zzzzqq")
             page.wait_for_function("document.getElementById('home-search-status').textContent.includes('0 results')")
             require(not errors, str(errors))
