@@ -3,13 +3,13 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-zipper",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/de3c952c-2fb1-4eec-9f70-e1d9da820972",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/230e56e6-2d80-4156-a7fa-6b5782743abb",
   "creationInfo": {
     "creators": [
-      "Tool: protobom-v0.0.0-20261123152331-0871a1c28ca4+dirty",
+      "Tool: protobom-v0.0.0-20261124191654-802024a04178+dirty",
       "Tool: GitHub.com-Dependency-Graph"
     ],
-    "created": "2026-11-24T14:03:10Z"
+    "created": "2026-11-24T20:33:17Z"
   },
   "packages": [
     {
