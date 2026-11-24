@@ -273,6 +273,26 @@
     ]
   },
   {
+    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-census",
+    "@type": "Project",
+    "name": "Marin Census",
+    "description": "Public statistics about Marin's people, communities and housing.",
+    "url": "https://marincountygov.github.io/marin-census/",
+    "status": "active",
+    "phase": {
+      "@id": "https://schema.govfresh.com/v1/dsphase/alpha",
+      "@type": "DefinedTerm",
+      "name": "Alpha"
+    },
+    "parentOrganization": {
+      "@id": "https://marincountygov.github.io/marin-data/id/organization/digital-innovation-and-transformation",
+      "name": "Digital, Innovation and Transformation"
+    },
+    "audience": [
+      "internal"
+    ]
+  },
+  {
     "@id": "https://marincountygov.github.io/marin-os/id/project/marin-pulse",
     "@type": "Project",
     "name": "Marin Pulse",
