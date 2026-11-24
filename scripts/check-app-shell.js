@@ -62,7 +62,8 @@ function main() {
   const yaml = read("marin.yml");
   const version = scalar("platform", "shell", yaml);
   const status = scalar("project", "status", yaml);
-  requireCondition(/^1\.(?:[5-9]|[1-9]\d+)\.\d+$/.test(version), "MarinOS requires App Shell 1.5.0 or a compatible later 1.x release");
+  const [major, minor] = version.split(".").map(Number);
+  requireCondition(/^\d+\.\d+\.\d+$/.test(version) && (major >= 2 || (major === 1 && minor >= 5)), "MarinOS requires App Shell 1.5.0 or later");
   requireCondition(!/^  marin-ui:/m.test(yaml), "Remove the direct Marin UI dependency from marin.yml");
   requireCondition(["alpha", "beta", "live"].includes(status), "project.status must be alpha, beta, or live");
   requireCondition(scalar("project", "repo", yaml) === "marin-os", "Unexpected project.repo");
