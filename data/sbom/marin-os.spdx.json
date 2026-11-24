@@ -3,14 +3,14 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-os",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/1b357441-e845-4c8f-b474-9947c90cf06c",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/b22ba510-4dc2-479e-80fc-cafdd34532e5",
   "creationInfo": {
     "creators": [
       "Tool: protobom-v0.0.0-20261123152331-0871a1c28ca4+dirty",
       "Tool: GitHub.com-Dependency-Graph",
       "Tool: dependabot"
     ],
-    "created": "2026-11-23T21:39:41Z"
+    "created": "2026-11-24T00:04:00Z"
   },
   "packages": [
     {
@@ -25,6 +25,20 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:pypi/playwright@1.65.2"
+        }
+      ]
+    },
+    {
+      "name": "actions/setup-node",
+      "SPDXID": "SPDXRef-githubactions-actions-setup-node-7..-123477",
+      "versionInfo": "7.*.*",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/actions/setup-node@7.%2A.%2A"
         }
       ]
     },
@@ -53,20 +67,6 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:githubactions/actions/checkout@7.%2A.%2A"
-        }
-      ]
-    },
-    {
-      "name": "actions/setup-node",
-      "SPDXID": "SPDXRef-githubactions-actions-setup-node-7..-123477",
-      "versionInfo": "7.*.*",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:githubactions/actions/setup-node@7.%2A.%2A"
         }
       ]
     },

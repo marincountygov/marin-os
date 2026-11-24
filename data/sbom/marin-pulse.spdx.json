@@ -3,14 +3,14 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-pulse",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/a49c3c33-4948-4025-8359-6d75f6702489",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/8841b2c9-ec7a-470f-8326-7949b561f9cd",
   "creationInfo": {
     "creators": [
       "Tool: protobom-v0.0.0-20261123152331-0871a1c28ca4+dirty",
       "Tool: GitHub.com-Dependency-Graph",
       "Tool: dependabot"
     ],
-    "created": "2026-11-23T21:39:59Z"
+    "created": "2026-11-24T00:04:15Z"
   },
   "packages": [
     {
@@ -25,20 +25,6 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:pypi/playwright@1.65.2"
-        }
-      ]
-    },
-    {
-      "name": "actions/setup-python",
-      "SPDXID": "SPDXRef-githubactions-actions-setup-python-7..-900e64",
-      "versionInfo": "7.*.*",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:githubactions/actions/setup-python@7.%2A.%2A"
         }
       ]
     },
@@ -67,6 +53,20 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:githubactions/actions/setup-node@7.%2A.%2A"
+        }
+      ]
+    },
+    {
+      "name": "actions/setup-python",
+      "SPDXID": "SPDXRef-githubactions-actions-setup-python-7..-900e64",
+      "versionInfo": "7.*.*",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/actions/setup-python@7.%2A.%2A"
         }
       ]
     },

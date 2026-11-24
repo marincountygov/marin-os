@@ -3,31 +3,16 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-anonymizer",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/6f6a8cb1-676c-4961-ad8a-31ffc22e95c6",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/94379812-e76e-421d-8f10-6dec12f74c41",
   "creationInfo": {
     "creators": [
       "Tool: protobom-v0.0.0-20261123152331-0871a1c28ca4+dirty",
       "Tool: GitHub.com-Dependency-Graph",
       "Tool: dependabot"
     ],
-    "created": "2026-11-23T21:39:52Z"
+    "created": "2026-11-24T00:04:08Z"
   },
   "packages": [
-    {
-      "name": "playwright",
-      "SPDXID": "SPDXRef-pypi-playwright-1.57.0-bca6fb",
-      "versionInfo": "1.57.0",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "licenseConcluded": "Apache-2.0",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:pypi/playwright@1.57.0"
-        }
-      ]
-    },
     {
       "name": "openpyxl",
       "SPDXID": "SPDXRef-pypi-openpyxl-3.1.5-eb0b77",
@@ -41,6 +26,21 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:pypi/openpyxl@3.1.5"
+        }
+      ]
+    },
+    {
+      "name": "playwright",
+      "SPDXID": "SPDXRef-pypi-playwright-1.57.0-bca6fb",
+      "versionInfo": "1.57.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "Apache-2.0",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/playwright@1.57.0"
         }
       ]
     },
@@ -63,12 +63,12 @@
   "relationships": [
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-anonymizer-main-abb8cd",
-      "relatedSpdxElement": "SPDXRef-pypi-playwright-1.57.0-bca6fb",
+      "relatedSpdxElement": "SPDXRef-pypi-openpyxl-3.1.5-eb0b77",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-anonymizer-main-abb8cd",
-      "relatedSpdxElement": "SPDXRef-pypi-openpyxl-3.1.5-eb0b77",
+      "relatedSpdxElement": "SPDXRef-pypi-playwright-1.57.0-bca6fb",
       "relationshipType": "DEPENDS_ON"
     },
     {
