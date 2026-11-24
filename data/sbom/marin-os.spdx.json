@@ -3,14 +3,14 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-os",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/b22ba510-4dc2-479e-80fc-cafdd34532e5",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/fb68ce8e-2e8e-4a3e-9372-ad478331c943",
   "creationInfo": {
     "creators": [
       "Tool: protobom-v0.0.0-20261123152331-0871a1c28ca4+dirty",
       "Tool: GitHub.com-Dependency-Graph",
       "Tool: dependabot"
     ],
-    "created": "2026-11-24T00:04:00Z"
+    "created": "2026-11-24T14:02:59Z"
   },
   "packages": [
     {
@@ -25,6 +25,20 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:pypi/playwright@1.65.2"
+        }
+      ]
+    },
+    {
+      "name": "actions/checkout",
+      "SPDXID": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
+      "versionInfo": "7.*.*",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/actions/checkout@7.%2A.%2A"
         }
       ]
     },
@@ -57,20 +71,6 @@
       ]
     },
     {
-      "name": "actions/checkout",
-      "SPDXID": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
-      "versionInfo": "7.*.*",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:githubactions/actions/checkout@7.%2A.%2A"
-        }
-      ]
-    },
-    {
       "name": "com.github.marincountygov/marin-os",
       "SPDXID": "SPDXRef-github-marincountygov-marin-os-main-fb26b7",
       "versionInfo": "main",
@@ -94,17 +94,17 @@
     },
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-os-main-fb26b7",
+      "relatedSpdxElement": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-marincountygov-marin-os-main-fb26b7",
       "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-node-7..-123477",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-os-main-fb26b7",
       "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-python-7..-900e64",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-github-marincountygov-marin-os-main-fb26b7",
-      "relatedSpdxElement": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
       "relationshipType": "DEPENDS_ON"
     },
     {

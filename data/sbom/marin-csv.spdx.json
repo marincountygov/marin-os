@@ -3,13 +3,13 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-csv",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/fa28281a-608f-4b27-8bfa-4a890e3fa057",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/635a301a-767d-4f47-a806-b7204c747278",
   "creationInfo": {
     "creators": [
       "Tool: protobom-v0.0.0-20261123152331-0871a1c28ca4+dirty",
       "Tool: GitHub.com-Dependency-Graph"
     ],
-    "created": "2026-11-24T00:04:11Z"
+    "created": "2026-11-24T14:03:12Z"
   },
   "packages": [
     {
