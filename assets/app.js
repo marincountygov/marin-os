@@ -497,12 +497,41 @@
   if (!box || !input || !statusEl || !resultsEl || !grid) return;
   box.hidden = false;
 
-  const KINDS = ["App", "MarinOS page", "Organization", "Program", "Place", "Service", "Person", "Project"];
-  const PLURAL = { App: "Apps", "MarinOS page": "MarinOS pages", Organization: "Organizations", Program: "Programs", Place: "Places", Service: "Services", Person: "People", Project: "Projects" };
+  const KINDS = ["App", "MarinOS page", "SOP", "Guide", "PMR", "Organization", "Program", "Place", "Service", "Person", "Project"];
+  const PLURAL = { App: "Apps", "MarinOS page": "MarinOS pages", SOP: "Standard operating procedures", Guide: "Guides", PMR: "Personnel Management Regulations", Organization: "Organizations", Program: "Programs", Place: "Places", Service: "Services", Person: "People", Project: "Projects" };
   const SHOWN = 60; // the most results listed; the count says how many there are
   const plain = (text) => String(text || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
   const words = (text) => plain(text).split(/[^a-z0-9]+/).filter(Boolean);
   const clip = (text, n = 160) => { const t = String(text || "").replace(/\s+/g, " ").trim(); return t.length > n ? `${t.slice(0, n - 1).trimEnd()}…` : t; };
+
+  // Where the words are: about a line of the text around the first word that starts with a typed word, the words marked.
+  const WORD = /[\p{L}\p{N}]+/gu;
+  const hits = (word, typed) => typed.some((t) => plain(word).startsWith(t));
+  const snippet = (text, typed) => {
+    const first = [...text.matchAll(WORD)].find((m) => hits(m[0], typed));
+    if (!first) return null;
+    let start = Math.max(0, first.index - 60);
+    if (start) { const gap = text.indexOf(" ", start); if (gap > -1 && gap < first.index) start = gap + 1; }
+    let end = Math.min(text.length, start + 170);
+    if (end < text.length) { const gap = text.lastIndexOf(" ", end); if (gap > first.index) end = gap; }
+    const part = text.slice(start, end);
+    const span = Object.assign(document.createElement("span"), { className: "search-snippet" });
+    if (start) span.append("…");
+    let at = 0;
+    for (const m of part.matchAll(WORD)) {
+      if (!hits(m[0], typed)) continue;
+      span.append(part.slice(at, m.index), Object.assign(document.createElement("mark"), { className: "search-hit", textContent: m[0] }));
+      at = m.index + m[0].length;
+    }
+    span.append(part.slice(at));
+    if (end < text.length) span.append("…");
+    return span;
+  };
+  // The words go with the person to the page a result opens, where the app can mark them (Marin Docs does); nothing is added to the address.
+  const remember = (href, typed) => {
+    try { sessionStorage.setItem("marin-search-hit", JSON.stringify({ path: new URL(href, location.href).pathname, terms: typed, at: Date.now() })); } catch { /* no storage: no highlight */ }
+  };
+  let typedNow = [];
 
   let entries = null;
   let loading = null;
@@ -532,10 +561,21 @@
   // A project of an app is the app itself: it is listed once, as the app.
   const fromProjects = (projects, appUrls) => projects.filter((p) => !appUrls.has(String(p.url || "").replace(/\/$/, ""))).map((p) => ({ k: "Project", n: p.name, d: clip(p.description), a: (p.phase && p.phase.name) || "", h: p.url || "#projects" }));
   // The County's organizations, programs, places, services and people: one list that marin-data builds (data/search-index.json), opened on their pages in Marin Pulse.
+  // An app's own list (the searchIndex of its catalog entry) has the same shape, opened on the app's own pages.
   const fromData = (doc) => {
     if (!doc || !Array.isArray(doc.entries)) return [];
     const base = doc.base || "";
     return doc.entries.map((e) => ({ k: e.k, n: e.n, d: e.d || "", a: (e.a || []).join(" "), alts: e.a || [], c: e.c || "", h: /^https?:/.test(e.h) ? e.h : base + e.h }));
+  };
+  const withSets = (doc) => {
+    const sets = doc && Array.isArray(doc.sets) ? doc.sets : [];
+    return Promise.all(sets.map((set) => read(set.src && new URL(set.src, doc.base).href).then((list) => ({ set, list })))).then((loaded) => ({ doc, loaded }));
+  };
+  const fromApp = ({ doc, loaded }) => {
+    const done = loaded.filter((x) => Array.isArray(x.list) && x.list.length);
+    const have = new Set(done.map((x) => x.set.kind));
+    const fromSet = ({ set, list }) => list.map((e) => ({ k: set.kind, n: e.n, p: e.p || "", t: e.t || "", d: e.t || "", a: e.p || "", alts: [], c: "", h: new URL(e.h, new URL(set.src, doc.base)).href }));
+    return [...fromData({ ...doc, entries: ((doc && doc.entries) || []).filter((e) => !have.has(e.k)) }), ...done.flatMap(fromSet)];
   };
   const read = (url) => fetch(url, { cache: "no-store" }).then((r) => (r.ok ? r.json() : [])).catch(() => []);
   const load = () => {
@@ -543,8 +583,14 @@
       loading = Promise.all([read("catalog.json"), read("projects.json"), read("external-projects.json"), read("data/search-index.json")]).then(([catalog, projects, external, data]) => {
         const apps = fromCatalog(Array.isArray(catalog) ? catalog : []);
         const appUrls = new Set(apps.map((a) => String(a.h).replace(/\/$/, "")));
-        const all = [...apps, ...fromPages(), ...fromData(data), ...fromProjects([...(Array.isArray(projects) ? projects : []), ...(Array.isArray(external) ? external : [])], appUrls)];
-        entries = all.map((e) => ({ ...e, nw: words(e.n), aw: words(e.a), dw: words(e.d), name: plain(e.n), code: plain(e.c), alt: (e.alts || []).map(plain) }));
+        // An app may name a list of its own content (searchIndex in its catalog entry). If that list names text files for its sets
+        // (a regulation, a guide, with every section and its text), they are read too, and used in place of the list's entries of the same
+        // kind: the results then show where the words are.
+        const own = (Array.isArray(catalog) ? catalog : []).filter((app) => app.searchIndex);
+        return Promise.all(own.map((app) => read(app.searchIndex).then(withSets))).then((lists) => {
+          const all = [...apps, ...fromPages(), ...fromData(data), ...lists.flatMap(fromApp), ...fromProjects([...(Array.isArray(projects) ? projects : []), ...(Array.isArray(external) ? external : [])], appUrls)];
+          entries = all.map((e) => ({ ...e, nw: words(e.n), aw: words(e.a), dw: words(e.d), name: plain(e.n), code: plain(e.c), alt: (e.alts || []).map(plain) }));
+        });
       });
     }
     return loading;
@@ -589,16 +635,21 @@
     if (e.c) li.append(" ", Object.assign(document.createElement("span"), { textContent: `(${e.c})` }));
     const b = e.k === "App" ? badge(e.status) : null;
     if (b) li.append(" ", b);
-    if (e.d) li.append(" ", Object.assign(document.createElement("span"), { className: "home-search__what", textContent: e.d }));
+    if (e.p) li.append(" ", Object.assign(document.createElement("span"), { className: "home-search__what", textContent: `in ${e.p}` }));
+    if (e.t) {
+      // A page of an app's own content: the line of text where the words are, or the start of it when they are only in the name.
+      li.append(snippet(e.t, typedNow) || Object.assign(document.createElement("span"), { className: "search-snippet", textContent: e.t.length > 170 ? `${e.t.slice(0, 169).trimEnd()}…` : e.t }));
+    } else if (e.d) li.append(" ", Object.assign(document.createElement("span"), { className: "home-search__what", textContent: e.d }));
     return li;
   };
   const clear = () => { resultsEl.replaceChildren(); statusEl.replaceChildren(); grid.hidden = false; };
   const run = () => {
     const q = plain(input.value).trim().replace(/\s+/g, " ");
-    if (!q) { clear(); return; }
+    if (!q || !words(q).length) { clear(); return; }
     load().then(() => {
       if (plain(input.value).trim().replace(/\s+/g, " ") !== q) return; // the box has changed since
-      const typed = q.split(" ");
+      const typed = words(q);
+      typedNow = typed;
       const scored = entries.map((e) => [e, score(e, typed, q)]).filter(([, s]) => s > 0)
         .sort((a, b) => b[1] - a[1] || KINDS.indexOf(a[0].k) - KINDS.indexOf(b[0].k) || a[0].n.localeCompare(b[0].n, "en", { sensitivity: "base" }));
       const found = scored.map(([e]) => e);
@@ -628,6 +679,7 @@
 
   input.addEventListener("focus", load);
   input.addEventListener("input", run);
+  resultsEl.addEventListener("click", (event) => { const link = event.target.closest("a[href]"); if (link) remember(link.href, typedNow); });
   // Enter opens the first result; Down moves into the list; Escape empties the box.
   const links = () => [...resultsEl.querySelectorAll("li a")];
   input.addEventListener("keydown", (event) => {
