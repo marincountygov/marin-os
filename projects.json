@@ -54,33 +54,6 @@
     ]
   },
   {
-    "@id": "https://marincountygov.github.io/marin-os/id/project/marin-brand",
-    "@type": "Project",
-    "name": "Marin Brand Center",
-    "description": "Logo, color, and typography reference for Marin brands.",
-    "url": "https://marincountygov.github.io/marin-brand/",
-    "status": "active",
-    "phase": {
-      "@id": "https://schema.govfresh.com/v1/dsphase/alpha",
-      "@type": "DefinedTerm",
-      "name": "Alpha"
-    },
-    "parentOrganization": {
-      "@id": "https://marincountygov.github.io/marin-data/id/organization/digital-innovation-and-transformation",
-      "name": "Digital, Innovation and Transformation"
-    },
-    "member": [
-      {
-        "@id": "https://marincountygov.github.io/marin-data/id/organization/county-executive",
-        "name": "County Executive"
-      }
-    ],
-    "audience": [
-      "internal",
-      "external"
-    ]
-  },
-  {
     "@id": "https://marincountygov.github.io/marin-os/id/project/marin-mentions",
     "@type": "Project",
     "name": "Marin Mentions",
