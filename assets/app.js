@@ -497,8 +497,8 @@
   if (!box || !input || !statusEl || !resultsEl || !grid) return;
   box.hidden = false;
 
-  const KINDS = ["App", "MarinOS page", "SOP", "Guide", "PMR", "Organization", "Program", "Place", "Service", "Person", "Project"];
-  const PLURAL = { App: "Apps", "MarinOS page": "MarinOS pages", SOP: "Standard operating procedures", Guide: "Guides", PMR: "Personnel Management Regulations", Organization: "Organizations", Program: "Programs", Place: "Places", Service: "Services", Person: "People", Project: "Projects" };
+  const KINDS = ["App", "MarinOS page", "SOP", "Guide", "PMR", "Organization", "Program", "Place", "Statistic", "Service", "Person", "Project"];
+  const PLURAL = { App: "Apps", "MarinOS page": "MarinOS pages", SOP: "Standard operating procedures", Guide: "Guides", PMR: "Personnel Management Regulations", Organization: "Organizations", Program: "Programs", Place: "Places", Statistic: "Statistics", Service: "Services", Person: "People", Project: "Projects" };
   const SHOWN = 60; // the most results listed; the count says how many there are
   const plain = (text) => String(text || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
   const words = (text) => window.marinSearchWords(text);
