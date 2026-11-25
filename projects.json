@@ -7,9 +7,9 @@
     "url": "https://marincountygov.github.io/marin-magic/",
     "status": "completed",
     "phase": {
-      "@id": "https://schema.govfresh.com/v1/dsphase/live",
+      "@id": "https://schema.govfresh.com/v1/dsphase/beta",
       "@type": "DefinedTerm",
-      "name": "Live"
+      "name": "Beta"
     },
     "parentOrganization": {
       "@id": "https://marincountygov.github.io/marin-data/id/organization/digital-innovation-and-transformation",
@@ -61,9 +61,9 @@
     "url": "https://marincountygov.github.io/marin-mentions/",
     "status": "completed",
     "phase": {
-      "@id": "https://schema.govfresh.com/v1/dsphase/live",
+      "@id": "https://schema.govfresh.com/v1/dsphase/beta",
       "@type": "DefinedTerm",
-      "name": "Live"
+      "name": "Beta"
     },
     "parentOrganization": {
       "@id": "https://marincountygov.github.io/marin-data/id/organization/digital-innovation-and-transformation",
