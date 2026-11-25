@@ -143,7 +143,8 @@ def check_fonts(page: Page) -> None:
 def check_structure(page: Page, width: int, scheme: str) -> None:
     visible_route(page, "directory")
     require(page.locator(".directory-card").count() == len(CATALOG), "Static card count differs from catalog")
-    require(page.locator("#app-nav a").all_text_contents() == ["About", "Updates"], "Header contains an unwanted link")
+    require(page.locator("#app-nav a").count() == 0, "The header holds only the app's own tabs: no About or Updates")
+    require(not page.locator("#menu-toggle").is_visible() and not page.locator("#app-nav").is_visible(), "MarinOS has no tabs, so no Menu button")
     require(page.locator("#app-nav a[href='#security']").count() == 0, "Security must not be in header")
     require(page.locator(".app-footer__nav a").all_text_contents() == LABELS, "Footer order is incorrect")
     require(page.locator(".app-footer__platform").count() == 0, "Bottom MarinOS link must be omitted")
@@ -171,15 +172,10 @@ def check_structure(page: Page, width: int, scheme: str) -> None:
     page.keyboard.press("Escape")
     require(page.locator("#marinos-menu-panel").is_hidden(), "Banner Escape does not close menu")
     require(page.locator(".marinos-menu__toggle").evaluate("el=>el===document.activeElement"), "Banner Escape did not restore focus")
-    if width <= 720:
-        require(page.locator("#app-nav").is_hidden(), "Mobile navigation must start collapsed")
-        page.locator("#menu-toggle").click()
-        require(page.locator("#app-nav").is_visible(), "Mobile menu did not open")
-        page.keyboard.press("Escape")
-        require(page.locator("#app-nav").is_hidden(), "Mobile menu did not close on Escape")
     page.locator(".marinos-menu__toggle").click()
-    page.wait_for_function("n=>document.querySelectorAll('#marinos-menu-panel .marinos-menu__name').length===n", arg=len(CATALOG))
-    require(page.locator("#marinos-menu-panel .marinos-menu__status").count() == len(CATALOG), "Menu status badges missing")
+    in_menu = len([c for c in CATALOG if not c.get("unlisted")])  # the menu leaves out an unlisted app
+    page.wait_for_function("n=>document.querySelectorAll('#marinos-menu-panel .marinos-menu__name').length===n", arg=in_menu)
+    require(page.locator("#marinos-menu-panel .marinos-menu__status").count() == in_menu, "Menu status badges missing")
     page.keyboard.press("Escape")
 
     for route in ROUTES:

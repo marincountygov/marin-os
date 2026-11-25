@@ -13,6 +13,8 @@ command -v node >/dev/null || { printf 'Node.js is required for development chec
 cd "$ROOT_DIR"
 node --check assets/app.js
 python3 vendor/marinos/audit-buttons.py . --fail
+# An h1 has one of two sizes (Marin UI 1.41.0); this lists app CSS that sets its own size and must list nothing.
+python3 vendor/marinos/audit-h1.py . --fail
 node scripts/check-catalog-sync.js
 # The organizations the project records name come from marin-data. Skipped when marin-data is not next to this repo.
 # Every file marin-data gives this app is a copy. Skipped when marin-data is not next to this repo.
