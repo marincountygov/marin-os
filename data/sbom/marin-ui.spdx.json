@@ -3,13 +3,13 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-ui",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/61a3d57c-ced1-461c-a571-a8c0565655ea",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/bcb1b69c-61bb-416e-a3c6-37ace4230640",
   "creationInfo": {
     "creators": [
       "Tool: protobom-v0.0.0-20261125142108-cd5e2fd556a0+dirty",
       "Tool: GitHub.com-Dependency-Graph"
     ],
-    "created": "2026-11-25T16:56:35Z"
+    "created": "2026-11-25T21:50:33Z"
   },
   "packages": [
     {
