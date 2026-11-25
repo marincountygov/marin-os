@@ -15,6 +15,8 @@ node --check assets/app.js
 python3 vendor/marinos/audit-buttons.py . --fail
 # An h1 has one of two sizes (Marin UI 1.41.0); this lists app CSS that sets its own size and must list nothing.
 python3 vendor/marinos/audit-h1.py . --fail
+# Card styles come from Marin UI (1.42.0); this lists copies and redrawn card surfaces and must list nothing.
+python3 vendor/marinos/audit-cards.py . --fail
 node scripts/check-catalog-sync.js
 # The organizations the project records name come from marin-data. Skipped when marin-data is not next to this repo.
 # Every file marin-data gives this app is a copy. Skipped when marin-data is not next to this repo.
