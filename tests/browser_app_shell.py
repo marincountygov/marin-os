@@ -51,6 +51,10 @@ DOCS_INDEX = {"schemaVersion": "1.0.0", "base": "https://marincountygov.github.i
                   {"k": "PMR", "n": "PMR 24: Grievance Procedure", "d": "Grievances.", "h": "pmrs/pmr-24.html"}]}
 DOCS_PMR_SET = [{"n": "PMR 24.3 Formal Grievance", "p": "PMR 24: Grievance Procedure", "h": "pmr-24.html#24-3",
                  "t": "A. Grievance Form. If the grievant believes that the informal grievance has not been redressed within 14 calendar days, he or she may initiate a formal grievance within seven calendar days."}]
+# Marin Census publishes a list of its places and measures (searchIndex in its catalog entry). A small stand-in.
+CENSUS_INDEX = {"schemaVersion": "1.0.0", "base": "https://marincountygov.github.io/marin-census/", "entries": [
+    {"k": "Statistic", "n": "Median household income", "d": "Income and poverty", "h": "#data"},
+    {"k": "Statistic", "n": "Novato", "d": "City or town", "h": "?place=novato"}]}
 
 
 def fixtures() -> dict:
@@ -61,6 +65,7 @@ def fixtures() -> dict:
     data["__commits__"] = {"status": 200, "body": json.dumps(COMMITS)}
     data["marin-docs/search-index.json"] = {"status": 200, "body": json.dumps(DOCS_INDEX)}
     data["marin-docs/pmrs/search.json"] = {"status": 200, "body": json.dumps(DOCS_PMR_SET)}
+    data["marin-census/search-index.json"] = {"status": 200, "body": json.dumps(CENSUS_INDEX)}
     return data
 
 
@@ -253,7 +258,7 @@ class Runner:
                 url = request.request.url
                 parts = urlsplit(url)
                 docs_key = parts.path.lstrip("/")
-                if parts.hostname == "marincountygov.github.io" and docs_key in ("marin-docs/search-index.json", "marin-docs/pmrs/search.json"):
+                if parts.hostname == "marincountygov.github.io" and docs_key in ("marin-docs/search-index.json", "marin-docs/pmrs/search.json", "marin-census/search-index.json"):
                     request.fulfill(status=200, body=data[docs_key]["body"], content_type="application/json", headers={"Access-Control-Allow-Origin": "*"})
                     return
                 from_github = parts.hostname == "api.github.com"
@@ -353,6 +358,11 @@ class Runner:
             first = page.locator("#home-search-results .home-search__group li", has_text="PMR 24.3").first
             require(first.count() == 1 and first.locator(".search-snippet mark.search-hit").count() >= 2, "A page of an app's own content shows a line of text with the words marked")
             require("pmr-24.html#24-3" in first.locator("a").first.get_attribute("href"), "The result opens the section")
+            # Marin Census lists its places and measures: a result opens the app on that place.
+            page.fill("#home-search-input", "median household")
+            page.wait_for_function("document.getElementById('home-search-status').textContent.includes('matching')")
+            stat = page.locator("#home-search-results .home-search__group a", has_text="Median household income").first
+            require(stat.count() == 1 and stat.get_attribute("href") == "https://marincountygov.github.io/marin-census/#data", "A Marin Census measure is found and opens the app")
             page.fill("#home-search-input", "zzzzqq")
             page.wait_for_function("document.getElementById('home-search-status').textContent.includes('0 results')")
             require(not errors, str(errors))
