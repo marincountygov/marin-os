@@ -219,7 +219,7 @@
     "name": "Marin Census",
     "type": "app",
     "url": "https://marincountygov.github.io/marin-census/",
-    "description": "Public statistics about Marin's people, communities and housing.",
+    "description": "Public statistics about Marin's people and communities.",
     "audience": "staff",
     "status": "alpha",
     "owner": "County of Marin",
