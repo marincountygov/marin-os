@@ -3,14 +3,14 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-pulse",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/98dbbc29-e6a9-4dbd-a793-4079983bbe3d",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/c6abae17-53f4-4b9d-90b5-da479ff87b65",
   "creationInfo": {
     "creators": [
-      "Tool: protobom-v0.0.0-20261124191654-802024a04178+dirty",
+      "Tool: protobom-v0.0.0-20261125142108-cd5e2fd556a0+dirty",
       "Tool: GitHub.com-Dependency-Graph",
       "Tool: dependabot"
     ],
-    "created": "2026-11-25T03:09:14Z"
+    "created": "2026-11-25T16:56:30Z"
   },
   "packages": [
     {

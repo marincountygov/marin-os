@@ -3,14 +3,14 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-mentions",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/8300294a-8de9-4b50-93e6-77bcb58bfcb9",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/d9f55dd2-2ac3-43e7-bd81-4b9d153e5d5b",
   "creationInfo": {
     "creators": [
-      "Tool: protobom-v0.0.0-20261124191654-802024a04178+dirty",
+      "Tool: protobom-v0.0.0-20261125142108-cd5e2fd556a0+dirty",
       "Tool: GitHub.com-Dependency-Graph",
       "Tool: dependabot"
     ],
-    "created": "2026-11-25T03:09:04Z"
+    "created": "2026-11-25T16:56:15Z"
   },
   "packages": [
     {
@@ -25,21 +25,6 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:pypi/playwright@1.65.2"
-        }
-      ]
-    },
-    {
-      "name": "is-unsafe",
-      "SPDXID": "SPDXRef-npm-is-unsafe-2.0.3-7cbe63",
-      "versionInfo": "2.0.3",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/is-unsafe@2.0.3"
         }
       ]
     },
@@ -59,18 +44,18 @@
       ]
     },
     {
-      "name": "js-yaml",
-      "SPDXID": "SPDXRef-npm-js-yaml-4.3.2-478a41",
-      "versionInfo": "4.3.2",
+      "name": "argparse",
+      "SPDXID": "SPDXRef-npm-argparse-2.0.1-22c4e3",
+      "versionInfo": "2.0.1",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "copyrightText": "Copyright (c) 2011-2015 by Vitaly Puzrin",
+      "licenseConcluded": "Python-2.0",
+      "copyrightText": "Copyright (c) 1991 - 1995, Stichting Mathematisch Centrum Amsterdam, The Netherlands, Copyright (c) 1995-2001 Corporation for National Research Initiatives, Copyright (c) 1999-2001 Gregory P. Ward, Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020 Python Software Foundation, Copyright (c) 2002, 2003 Python Software Foundation, Copyright (c) 2010-2020 Python Software Foundation, Copyright (c) 2020 argparse.js authors",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/js-yaml@4.3.2"
+          "referenceLocator": "pkg:npm/argparse@2.0.1"
         }
       ]
     },
@@ -87,6 +72,53 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/anynum@1.0.1"
+        }
+      ]
+    },
+    {
+      "name": "path-expression-matcher",
+      "SPDXID": "SPDXRef-npm-path-expression-matcher-1.6.2-bd5113",
+      "versionInfo": "1.6.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "copyrightText": "Copyright (c) 2024",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/path-expression-matcher@1.6.2"
+        }
+      ]
+    },
+    {
+      "name": "fast-xml-parser",
+      "SPDXID": "SPDXRef-npm-fast-xml-parser-5.12.0-cbc3a3",
+      "versionInfo": "5.12.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/fast-xml-parser@5.12.0"
+        }
+      ]
+    },
+    {
+      "name": "js-yaml",
+      "SPDXID": "SPDXRef-npm-js-yaml-4.3.2-478a41",
+      "versionInfo": "4.3.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "copyrightText": "Copyright (c) 2011-2015 by Vitaly Puzrin",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/js-yaml@4.3.2"
         }
       ]
     },
@@ -123,53 +155,6 @@
       ]
     },
     {
-      "name": "fast-xml-parser",
-      "SPDXID": "SPDXRef-npm-fast-xml-parser-5.12.0-cbc3a3",
-      "versionInfo": "5.12.0",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/fast-xml-parser@5.12.0"
-        }
-      ]
-    },
-    {
-      "name": "argparse",
-      "SPDXID": "SPDXRef-npm-argparse-2.0.1-22c4e3",
-      "versionInfo": "2.0.1",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "licenseConcluded": "Python-2.0",
-      "copyrightText": "Copyright (c) 1991 - 1995, Stichting Mathematisch Centrum Amsterdam, The Netherlands, Copyright (c) 1995-2001 Corporation for National Research Initiatives, Copyright (c) 1999-2001 Gregory P. Ward, Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020 Python Software Foundation, Copyright (c) 2002, 2003 Python Software Foundation, Copyright (c) 2010-2020 Python Software Foundation, Copyright (c) 2020 argparse.js authors",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/argparse@2.0.1"
-        }
-      ]
-    },
-    {
-      "name": "path-expression-matcher",
-      "SPDXID": "SPDXRef-npm-path-expression-matcher-1.6.2-bd5113",
-      "versionInfo": "1.6.2",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "copyrightText": "Copyright (c) 2024",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/path-expression-matcher@1.6.2"
-        }
-      ]
-    },
-    {
       "name": "strnum",
       "SPDXID": "SPDXRef-npm-strnum-2.5.1-33835e",
       "versionInfo": "2.5.1",
@@ -185,30 +170,17 @@
       ]
     },
     {
-      "name": "actions/checkout",
-      "SPDXID": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
-      "versionInfo": "7.*.*",
+      "name": "is-unsafe",
+      "SPDXID": "SPDXRef-npm-is-unsafe-2.0.3-7cbe63",
+      "versionInfo": "2.0.3",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:githubactions/actions/checkout@7.%2A.%2A"
-        }
-      ]
-    },
-    {
-      "name": "actions/deploy-pages",
-      "SPDXID": "SPDXRef-githubactions-actions-deploy-pages-5..-b802ea",
-      "versionInfo": "5.*.*",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:githubactions/actions/deploy-pages@5.%2A.%2A"
+          "referenceLocator": "pkg:npm/is-unsafe@2.0.3"
         }
       ]
     },
@@ -237,6 +209,34 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:githubactions/actions/upload-pages-artifact@5.%2A.%2A"
+        }
+      ]
+    },
+    {
+      "name": "actions/checkout",
+      "SPDXID": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
+      "versionInfo": "7.*.*",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/actions/checkout@7.%2A.%2A"
+        }
+      ]
+    },
+    {
+      "name": "actions/deploy-pages",
+      "SPDXID": "SPDXRef-githubactions-actions-deploy-pages-5..-b802ea",
+      "versionInfo": "5.*.*",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/actions/deploy-pages@5.%2A.%2A"
         }
       ]
     },
@@ -272,21 +272,6 @@
   ],
   "relationships": [
     {
-      "spdxElementId": "SPDXRef-npm-js-yaml-4.3.2-478a41",
-      "relatedSpdxElement": "SPDXRef-npm-argparse-2.0.1-22c4e3",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-npm-fast-xml-builder-1.3.1-ec9119",
-      "relatedSpdxElement": "SPDXRef-npm-path-expression-matcher-1.6.2-bd5113",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-npm-fast-xml-builder-1.3.1-ec9119",
-      "relatedSpdxElement": "SPDXRef-npm-xml-naming-0.3.0-2cefa7",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
       "spdxElementId": "SPDXRef-npm-fast-xml-parser-5.12.0-cbc3a3",
       "relatedSpdxElement": "SPDXRef-npm-path-expression-matcher-1.6.2-bd5113",
       "relationshipType": "DEPENDS_ON"
@@ -317,6 +302,21 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
+      "spdxElementId": "SPDXRef-npm-js-yaml-4.3.2-478a41",
+      "relatedSpdxElement": "SPDXRef-npm-argparse-2.0.1-22c4e3",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-fast-xml-builder-1.3.1-ec9119",
+      "relatedSpdxElement": "SPDXRef-npm-path-expression-matcher-1.6.2-bd5113",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-npm-fast-xml-builder-1.3.1-ec9119",
+      "relatedSpdxElement": "SPDXRef-npm-xml-naming-0.3.0-2cefa7",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
       "spdxElementId": "SPDXRef-npm-strnum-2.5.1-33835e",
       "relatedSpdxElement": "SPDXRef-npm-anynum-1.0.1-327a7c",
       "relationshipType": "DEPENDS_ON"
@@ -328,17 +328,27 @@
     },
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
-      "relatedSpdxElement": "SPDXRef-npm-js-yaml-4.3.2-478a41",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
       "relatedSpdxElement": "SPDXRef-npm-fast-xml-parser-5.12.0-cbc3a3",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
+      "relatedSpdxElement": "SPDXRef-npm-js-yaml-4.3.2-478a41",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
+      "relatedSpdxElement": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
       "relatedSpdxElement": "SPDXRef-githubactions-actions-deploy-pages-5..-b802ea",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
+      "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-python-7..-900e64",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -349,16 +359,6 @@
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
       "relatedSpdxElement": "SPDXRef-githubactions-actions-upload-pages-artifact-5..-5f799a",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
-      "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-python-7..-900e64",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
-      "relatedSpdxElement": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
       "relationshipType": "DEPENDS_ON"
     },
     {
