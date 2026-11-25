@@ -6,7 +6,7 @@
     "url": "https://marincountygov.github.io/marin-magic/",
     "description": "Turn spreadsheet data into rich text that is ready for the CMS.",
     "audience": "staff",
-    "status": "live",
+    "status": "beta",
     "owner": "County of Marin",
     "featured": 3,
     "icon": {
@@ -36,7 +36,7 @@
     "url": "https://marincountygov.github.io/marin-mentions/",
     "description": "Watch news, video, and social posts that mention Marin County.",
     "audience": "staff",
-    "status": "live",
+    "status": "beta",
     "owner": "County of Marin",
     "featured": 2,
     "icon": {
@@ -53,6 +53,7 @@
     "audience": "staff",
     "status": "alpha",
     "owner": "County of Marin",
+    "unlisted": true,
     "icon": {
       "viewBox": "0 0 24 24",
       "markup": "<path d=\"M4 10a7.31 7.31 0 0 0 10 10Z\"/><path d=\"m9 15 3-3\"/><path d=\"M17 13a6 6 0 0 0-6-6\"/><path d=\"M21 13A10 10 0 0 0 11 3\"/>"
@@ -79,7 +80,7 @@
     "url": "https://marincountygov.github.io/marin-meeting-meter/",
     "description": "Estimate what County meetings cost.",
     "audience": "staff",
-    "status": "alpha",
+    "status": "beta",
     "owner": "County of Marin",
     "featured": 4,
     "icon": {
@@ -209,6 +210,7 @@
     "audience": "staff",
     "status": "alpha",
     "owner": "County of Marin",
+    "featured": 6,
     "icon": {
       "viewBox": "0 0 24 24",
       "markup": "<path d=\"M3 7h18M6 7v13h12V7M9 7V4h6v3M9 12h6M9 16h4\"/>"
