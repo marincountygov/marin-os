@@ -276,7 +276,7 @@
     "@id": "https://marincountygov.github.io/marin-os/id/project/marin-census",
     "@type": "Project",
     "name": "Marin Census",
-    "description": "Public statistics about Marin's people, communities and housing.",
+    "description": "Public statistics about Marin's people and communities.",
     "url": "https://marincountygov.github.io/marin-census/",
     "status": "active",
     "phase": {
