@@ -80,7 +80,7 @@
     "url": "https://marincountygov.github.io/marin-meeting-meter/",
     "description": "Estimate what County meetings cost.",
     "audience": "staff",
-    "status": "alpha",
+    "status": "beta",
     "owner": "County of Marin",
     "featured": 4,
     "icon": {
