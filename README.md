@@ -41,7 +41,7 @@ MarinOS vendors **Marin App Shell 1.9.0**, pinned by `platform.shell` in `marin.
 
 MarinOS owns the static directory, About content, Projects UI, app-status definitions/inventory, platform security inventory, and the platform-wide accessibility score table. The latest source includes that full accessibility inventory, so `marin-app-info sections="updates"` creates only Updates; it does not replace the custom Accessibility, About, or Security sections.
 
-The header contains **About** and **Updates**, not Security. Only the title text links home. The local header badge reads `project.status` from this app's `marin.yml`; the banner's explicit `label="beta"` is checked against that same value by `scripts/check-app-shell.js`.
+The header holds only the app's own tabs; About, Updates and the other standard pages are in the footer. Only the title text links home. The local header badge reads `project.status` from this app's `marin.yml`; the banner's explicit `label="beta"` is checked against that same value by `scripts/check-app-shell.js`.
 
 The platform-home footer is configured as:
 

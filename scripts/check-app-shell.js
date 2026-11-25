@@ -101,7 +101,7 @@ function main() {
   requireCondition(banner.attrs["catalog-url"] === "catalog.json" && banner.attrs["browse-url"] === "./", "MarinOS banner must use its local catalog and home URL");
   const header = host("marin-app-header");
   requireCondition(header.attrs["app-id"] === "marin-os" && header.attrs["app-name"] === "MarinOS", "Header identity mismatch");
-  requireCondition(header.attrs["standard-links"] === "about updates", "Header must contain only About and Updates, not Security");
+  requireCondition(header.attrs["standard-links"] === undefined, "The header holds only the app's own tabs: no standard-links attribute (About and Updates are in the footer)");
   requireCondition(!/data-navigation/.test(header.markup), "Do not add extra header navigation; Security belongs in the footer");
   const icon = read("vendor/icons/lucide/layout-grid.svg").trim();
   requireCondition(header.markup.includes(icon), "Header must use the supplied canonical layout-grid SVG");
