@@ -1,3 +1,8 @@
+// An app marked "unlisted": true in catalog.json is hidden everywhere on MarinOS: the cards, search, the inventories and Projects.
+const isListed = (app) => !app.unlisted;
+const unlistedUrls = (catalog) => new Set((Array.isArray(catalog) ? catalog : []).filter((app) => app.unlisted).map((app) => String(app.url).replace(/\/$/, "")));
+const withoutUnlistedProjects = (projects, hidden) => projects.filter((project) => !hidden.has(String(project.url || "").replace(/\/$/, "")));
+
 (() => {
   // Renders the #security section's "Applications" table live: catalog.json
   // (same-origin) gives the list of apps, then each app's own security.json
@@ -77,7 +82,7 @@
       const catalog = await response.json();
 
       // MarinOS is in scope but doesn't list itself in its own catalog.
-      const apps = [{ id: "marin-os", name: "MarinOS", url: "./", self: true }, ...catalog];
+      const apps = [{ id: "marin-os", name: "MarinOS", url: "./", self: true }, ...catalog.filter(isListed)];
       const results = await Promise.all(
         apps.map((app) => readSecurity(app.self ? "security.json" : new URL("security.json", app.url).href))
       );
@@ -147,7 +152,7 @@
     try {
       const response = await fetch("catalog.json", { cache: "no-store" });
       if (!response.ok) throw new Error(`catalog fetch failed: ${response.status}`);
-      const catalog = await response.json();
+      const catalog = (await response.json()).filter(isListed);
 
       loaded = true;
       tbody.innerHTML = catalog.map(rowFor).join("");
@@ -274,9 +279,10 @@
   async function loadProjects() {
     if (loaded) return;
     status.textContent = "Loading MarinOS…";
-    const [marinos, external] = await Promise.all([
+    const [marinos, external, catalog] = await Promise.all([
       readProjects("projects.json"),
       readProjects("external-projects.json"),
+      fetch("catalog.json", { cache: "no-store" }).then((response) => (response.ok ? response.json() : [])).catch(() => []),
     ]);
     loaded = true;
     if (!marinos && !external) {
@@ -284,7 +290,7 @@
       return;
     }
     // Alphabetical by title, matching the Title header's initial aria-sort.
-    const projects = [...(marinos || []), ...(external || [])].sort((a, b) =>
+    const projects = withoutUnlistedProjects([...(marinos || []), ...(external || [])], unlistedUrls(catalog)).sort((a, b) =>
       a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: "base" })
     );
     tbody.innerHTML = projects.map(rowFor).join("");
@@ -377,7 +383,7 @@
       if (!dataResponse.ok && dataResponse.status !== 404) throw new Error(`scores fetch failed: ${dataResponse.status}`);
 
       // MarinOS is in scope but doesn't list itself in its own catalog.
-      const apps = [{ id: "marin-os", name: "MarinOS", url: "./", self: true }, ...catalog];
+      const apps = [{ id: "marin-os", name: "MarinOS", url: "./", self: true }, ...catalog.filter(isListed)];
       loaded = true;
       tbody.innerHTML = apps.map((app) => rowFor(app, data && data.apps && data.apps[app.id])).join("");
       table.hidden = false;
@@ -465,7 +471,7 @@
       const components = Object.entries((data && data.apps) || {})
         .filter(([, entry]) => entry && entry.kind === "component")
         .map(([id, entry]) => ({ id, name: entry.name || id, component: true }));
-      const apps = [{ id: "marin-os", name: "MarinOS", url: "./", self: true }, ...catalog, ...components];
+      const apps = [{ id: "marin-os", name: "MarinOS", url: "./", self: true }, ...catalog.filter(isListed), ...components];
       loaded = true;
       tbody.innerHTML = apps.map((app) => rowFor(app, data && data.apps && data.apps[app.id])).join("");
       table.hidden = false;
@@ -493,7 +499,7 @@
   const input = document.getElementById("home-search-input");
   const statusEl = document.getElementById("home-search-status");
   const resultsEl = document.getElementById("home-search-results");
-  const grid = document.querySelector(".directory-grid");
+  const grid = document.getElementById("home-apps");
   if (!box || !input || !statusEl || !resultsEl || !grid) return;
   box.hidden = false;
 
@@ -555,14 +561,15 @@
   const load = () => {
     if (!loading) {
       loading = Promise.all([read("catalog.json"), read("projects.json"), read("external-projects.json"), read("data/search-index.json")]).then(([catalog, projects, external, data]) => {
-        const apps = fromCatalog(Array.isArray(catalog) ? catalog : []);
+        const hidden = unlistedUrls(catalog);
+        const apps = fromCatalog((Array.isArray(catalog) ? catalog : []).filter(isListed));
         const appUrls = new Set(apps.map((a) => String(a.h).replace(/\/$/, "")));
         // An app may name a list of its own content (searchIndex in its catalog entry). If that list names text files for its sets
         // (a regulation, a guide, with every section and its text), they are read too, and used in place of the list's entries of the same
         // kind: the results then show where the words are.
-        const own = (Array.isArray(catalog) ? catalog : []).filter((app) => app.searchIndex);
+        const own = (Array.isArray(catalog) ? catalog : []).filter((app) => isListed(app) && app.searchIndex);
         return Promise.all(own.map((app) => read(app.searchIndex).then(withSets))).then((lists) => {
-          const all = [...apps, ...fromPages(), ...fromData(data), ...lists.flatMap(fromApp), ...fromProjects([...(Array.isArray(projects) ? projects : []), ...(Array.isArray(external) ? external : [])], appUrls)];
+          const all = [...apps, ...fromPages(), ...fromData(data), ...lists.flatMap(fromApp), ...fromProjects(withoutUnlistedProjects([...(Array.isArray(projects) ? projects : []), ...(Array.isArray(external) ? external : [])], hidden), appUrls)];
           entries = all.map((e) => ({ ...e, nw: words(e.n), aw: words(e.a), dw: words(e.d), name: plain(e.n), code: plain(e.c), alt: (e.alts || []).map(plain) }));
         });
       });

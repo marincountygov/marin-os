@@ -3,14 +3,14 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-mentions",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/d9f55dd2-2ac3-43e7-bd81-4b9d153e5d5b",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/6b1724b8-a779-4e78-af11-571333009e50",
   "creationInfo": {
     "creators": [
       "Tool: protobom-v0.0.0-20261125142108-cd5e2fd556a0+dirty",
       "Tool: GitHub.com-Dependency-Graph",
       "Tool: dependabot"
     ],
-    "created": "2026-11-25T16:56:15Z"
+    "created": "2026-11-25T21:50:18Z"
   },
   "packages": [
     {
@@ -25,21 +25,6 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:pypi/playwright@1.65.2"
-        }
-      ]
-    },
-    {
-      "name": "@nodable/entities",
-      "SPDXID": "SPDXRef-npm-nodable-entities-3.1.0-f36bbc",
-      "versionInfo": "3.1.0",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40nodable/entities@3.1.0"
         }
       ]
     },
@@ -92,6 +77,22 @@
       ]
     },
     {
+      "name": "xml-naming",
+      "SPDXID": "SPDXRef-npm-xml-naming-0.3.0-2cefa7",
+      "versionInfo": "0.3.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "copyrightText": "Copyright (c) 2026 Natural Intelligence",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/xml-naming@0.3.0"
+        }
+      ]
+    },
+    {
       "name": "fast-xml-parser",
       "SPDXID": "SPDXRef-npm-fast-xml-parser-5.12.0-cbc3a3",
       "versionInfo": "5.12.0",
@@ -103,6 +104,21 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/fast-xml-parser@5.12.0"
+        }
+      ]
+    },
+    {
+      "name": "@nodable/entities",
+      "SPDXID": "SPDXRef-npm-nodable-entities-3.1.0-f36bbc",
+      "versionInfo": "3.1.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40nodable/entities@3.1.0"
         }
       ]
     },
@@ -139,22 +155,6 @@
       ]
     },
     {
-      "name": "xml-naming",
-      "SPDXID": "SPDXRef-npm-xml-naming-0.3.0-2cefa7",
-      "versionInfo": "0.3.0",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "copyrightText": "Copyright (c) 2026 Natural Intelligence",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/xml-naming@0.3.0"
-        }
-      ]
-    },
-    {
       "name": "strnum",
       "SPDXID": "SPDXRef-npm-strnum-2.5.1-33835e",
       "versionInfo": "2.5.1",
@@ -185,34 +185,6 @@
       ]
     },
     {
-      "name": "actions/setup-node",
-      "SPDXID": "SPDXRef-githubactions-actions-setup-node-7..-123477",
-      "versionInfo": "7.*.*",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:githubactions/actions/setup-node@7.%2A.%2A"
-        }
-      ]
-    },
-    {
-      "name": "actions/upload-pages-artifact",
-      "SPDXID": "SPDXRef-githubactions-actions-upload-pages-artifact-5..-5f799a",
-      "versionInfo": "5.*.*",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:githubactions/actions/upload-pages-artifact@5.%2A.%2A"
-        }
-      ]
-    },
-    {
       "name": "actions/checkout",
       "SPDXID": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
       "versionInfo": "7.*.*",
@@ -237,6 +209,34 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:githubactions/actions/deploy-pages@5.%2A.%2A"
+        }
+      ]
+    },
+    {
+      "name": "actions/setup-node",
+      "SPDXID": "SPDXRef-githubactions-actions-setup-node-7..-123477",
+      "versionInfo": "7.*.*",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/actions/setup-node@7.%2A.%2A"
+        }
+      ]
+    },
+    {
+      "name": "actions/upload-pages-artifact",
+      "SPDXID": "SPDXRef-githubactions-actions-upload-pages-artifact-5..-5f799a",
+      "versionInfo": "5.*.*",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/actions/upload-pages-artifact@5.%2A.%2A"
         }
       ]
     },
@@ -348,17 +348,17 @@
     },
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
-      "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-python-7..-900e64",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
       "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-node-7..-123477",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
       "relatedSpdxElement": "SPDXRef-githubactions-actions-upload-pages-artifact-5..-5f799a",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-marincountygov-marin-mentions-main-784941",
+      "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-python-7..-900e64",
       "relationshipType": "DEPENDS_ON"
     },
     {

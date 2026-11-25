@@ -12,7 +12,9 @@ MarinOS is the directory for apps and documentation built by County of Marin tea
 - `beta` — working core functionality, being tested with real users, may still change based on feedback.
 - `live` — an established product, stable core functionality, ongoing maintenance.
 
-**`featured`** is optional: a whole number (1, 2, 3…) that sets the app's place among the featured apps; leave it out for apps that are not featured. Featured apps show first on the home page, in number order, with a Featured badge to the right of the status badge. The rest follow as live, beta, alpha, each A to Z. Add the badge `<span class="app-badge">Featured</span>` after the status badge in the card's `directory-card__badges` wrapper; `check-catalog-sync.js` checks the flag, badge and order.
+**`featured`** is optional: a whole number (1, 2, 3…) that sets the app's place in the Apps section on the home page; leave it out for apps that are not featured. The Apps section shows only the featured apps, in number order, with a link to the All apps page (`#apps`), which shows every app. The All apps page lists featured apps first in the same order, then beta and alpha (and live), each A to Z. Cards show the status badge only; there is no Featured badge, because the Apps section is what features an app. `check-catalog-sync.js` checks the order of both lists.
+
+**`unlisted`** is optional and only ever `true`: it hides the app everywhere on MarinOS (the home page cards, search, the banner menu in apps on App Shell 2.6.0 and later, and the Security, Status, Accessibility and Tech tables, and its project in Projects) while the app stays deployed and reachable by its link. An unlisted app has no card and cannot be featured.
 
 See `#status` on the live site for the full explanation shown to end users, and this repo's own `scripts/check-catalog-sync.js` for the enforced enum. Progression is typically alpha → beta → live, but not automatic — changing an app's status means changing its `catalog.json` entry (and keeping that app's own `marin.yml` `project.status` in sync with it). This is a product-maturity concept, not a project-status one (planned/active/paused/etc.) — the two are expected to coexist if a project-lifecycle model (e.g. schemaGov's) is adopted later, without this field changing shape.
 
@@ -27,7 +29,7 @@ The home page has a search box (`#home-search`, written in `index.html`, run by 
 This is the entire process — everything else updates itself:
 
 1. Add an entry to `catalog.json`: id, name, type, url, description, audience, status, owner, and `icon` (`{viewBox, markup}` — reuse the app's header/favicon icon, so the directory and banner show the same identity).
-2. Add the matching directory card to `index.html` (same url/name/description as the `catalog.json` entry — `check-catalog-sync.js` enforces this).
+2. Add the matching directory card to the All apps page in `index.html` (same url/name/description as the `catalog.json` entry — `check-catalog-sync.js` enforces this), in the order the checker expects. If the entry has a `featured` number, add the same card to the Apps section too. Cards carry the status badge only.
 3. Add the app's project record to `projects.json` (same name/url; `phase` matches its status).
 4. Run `node scripts/check-catalog-sync.js` and `node scripts/check-projects.js` locally, commit the files together, push.
 

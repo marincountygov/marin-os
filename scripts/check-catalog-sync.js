@@ -7,6 +7,12 @@
 // <p> text matches its description, and whose status badge matches its
 // status. Also flags any directory card in index.html with no matching
 // catalog.json entry, so the two can't drift in either direction.
+//
+// The home page has two lists of cards: the Apps section (#home-apps) shows
+// only the featured apps, in featured-number order, and the All apps page
+// (#apps) shows every app. An entry with "unlisted": true is hidden from both
+// (and from the banner menu, search and the inventories) and has no card. No
+// card carries a Featured badge: the Apps section is what features an app.
 
 const fs = require("fs");
 const path = require("path");
@@ -32,6 +38,12 @@ function readCatalog() {
         throw new Error(`catalog.json entry ${entry.id || "(no id)"} is missing required field "${field}"`);
       }
     }
+    if (entry.unlisted !== undefined && entry.unlisted !== true) {
+      throw new Error(`catalog.json entry "${entry.id}" has an unlisted value that isn't true. Leave the field out for a listed app.`);
+    }
+    if (entry.unlisted && entry.featured !== undefined) {
+      throw new Error(`catalog.json entry "${entry.id}" is unlisted and featured. An unlisted app cannot be featured.`);
+    }
     if (entry.featured !== undefined && !(Number.isInteger(entry.featured) && entry.featured > 0)) {
       throw new Error(`catalog.json entry "${entry.id}" has a featured value that isn't a whole number from 1 up.`);
     }
@@ -44,8 +56,7 @@ function readCatalog() {
   return entries;
 }
 
-function readCards() {
-  const html = fs.readFileSync(indexPath, "utf8");
+function readCards(html, where) {
   const cardPattern = /<article class="app-card directory-card">([\s\S]*?)<\/article>/g;
   const linkPattern = /<h3><a href="([^"]+)">([^<]+)<\/a><\/h3>/;
   const statusPattern = /<span class="app-status" data-status="([^"]+)">[^<]*<\/span>/;
@@ -59,28 +70,44 @@ function readCards() {
     const statusMatch = statusPattern.exec(cardHtml);
     const descriptionMatch = descriptionPattern.exec(cardHtml);
     if (!linkMatch) {
-      throw new Error(`Found a directory card in index.html with no parseable <h3><a> link:\n${match[0]}`);
+      throw new Error(`Found a directory card in ${where} with no parseable <h3><a> link:\n${match[0]}`);
     }
     cards.push({
       url: linkMatch[1],
       name: linkMatch[2],
       status: statusMatch ? statusMatch[1] : null,
-      featured: cardHtml.includes('<span class="app-badge">Featured</span>'),
+      badge: cardHtml.includes('class="app-badge"'),
       description: descriptionMatch ? descriptionMatch[1] : "",
     });
   }
   return cards;
 }
 
+// The Apps section on the home page and the All apps page, each as the text of its own list of cards.
+function readLists() {
+  const html = fs.readFileSync(indexPath, "utf8");
+  const featuredStart = html.indexOf('id="home-apps"');
+  const allStart = html.indexOf('<section id="apps"');
+  if (featuredStart < 0 || allStart < 0 || allStart < featuredStart) {
+    throw new Error('index.html needs the Apps section (id="home-apps") followed by the All apps page (<section id="apps">).');
+  }
+  const allEnd = html.indexOf("</section>", allStart);
+  return {
+    featured: readCards(html.slice(featuredStart, allStart), 'the Apps section (#home-apps)'),
+    all: readCards(html.slice(allStart, allEnd), "the All apps page (#apps)"),
+  };
+}
+
 function main() {
   const entries = readCatalog();
-  const cards = readCards();
+  const { featured: featuredCards, all: cards } = readLists();
   const errors = [];
+  const listed = entries.filter((e) => !e.unlisted);
 
-  for (const entry of entries) {
+  for (const entry of listed) {
     const card = cards.find((c) => c.url === entry.url);
     if (!card) {
-      errors.push(`catalog.json has "${entry.name}" (${entry.url}) but index.html has no matching directory card.`);
+      errors.push(`catalog.json has "${entry.name}" (${entry.url}) but the All apps page has no matching directory card.`);
       continue;
     }
     if (card.name !== entry.name) {
@@ -98,26 +125,33 @@ function main() {
     }
   }
 
-  for (const entry of entries) {
-    const card = cards.find((c) => c.url === entry.url);
-    if (card && card.featured !== (entry.featured !== undefined)) {
-      errors.push(`"${entry.url}": catalog.json featured is ${entry.featured !== undefined} but index.html ${card.featured ? "shows" : "has no"} Featured badge.`);
-    }
+  for (const card of [...featuredCards, ...cards]) {
+    if (card.badge) errors.push(`"${card.url}": the card has a badge besides its status. Cards show the status only; the Apps section is what features an app.`);
   }
 
   const rank = { live: 0, beta: 1, alpha: 2 };
-  const expected = [...entries]
+  const expected = [...listed]
     .sort((a, b) => (a.featured ?? Infinity) - (b.featured ?? Infinity) || rank[a.status] - rank[b.status] || a.name.localeCompare(b.name))
     .map((e) => e.url);
-  const actual = cards.map((c) => c.url).filter((u) => entries.some((e) => e.url === u));
+  const actual = cards.map((c) => c.url).filter((u) => listed.some((e) => e.url === u));
   if (JSON.stringify(expected) !== JSON.stringify(actual)) {
-    errors.push("index.html cards are not ordered by featured number first, then live, beta, alpha, each A to Z.");
+    errors.push("The All apps page cards are not ordered by featured number first, then live, beta, alpha, each A to Z.");
   }
 
-  for (const card of cards) {
+  const expectedFeatured = listed
+    .filter((e) => e.featured !== undefined)
+    .sort((a, b) => a.featured - b.featured || a.name.localeCompare(b.name))
+    .map((e) => e.url);
+  if (JSON.stringify(expectedFeatured) !== JSON.stringify(featuredCards.map((c) => c.url))) {
+    errors.push("The Apps section on the home page must hold exactly the featured apps, in featured-number order.");
+  }
+
+  for (const card of [...featuredCards, ...cards]) {
     const entry = entries.find((e) => e.url === card.url);
     if (!entry) {
       errors.push(`index.html has a directory card for "${card.name}" (${card.url}) with no matching catalog.json entry.`);
+    } else if (entry.unlisted) {
+      errors.push(`index.html has a directory card for "${card.name}" but catalog.json marks it unlisted. Remove the card.`);
     }
   }
 
@@ -128,7 +162,7 @@ function main() {
     process.exit(1);
   }
 
-  console.log(`catalog.json and index.html agree on all ${entries.length} entries.`);
+  console.log(`catalog.json and index.html agree on ${listed.length} listed apps (${entries.length - listed.length} unlisted, ${featuredCards.length} featured).`);
 }
 
 main();

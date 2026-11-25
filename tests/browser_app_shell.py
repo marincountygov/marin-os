@@ -25,6 +25,8 @@ from html_fixture import remove_from_html
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = json.loads((ROOT / "catalog.json").read_text())
+LISTED = [c for c in CATALOG if not c.get("unlisted")]  # an unlisted app has no card and is left out of every list on the page
+FEATURED = sorted((c for c in LISTED if "featured" in c), key=lambda c: c["featured"])
 MANIFEST = json.loads((ROOT / "vendor/marinos/manifest.json").read_text())
 VERSION = MANIFEST["shellVersion"]
 project_block = re.search(r"^project:([^\0]*?)(?=^\S|\Z)", (ROOT / "marin.yml").read_text(), re.M)[1]
@@ -142,7 +144,11 @@ def check_fonts(page: Page) -> None:
 
 def check_structure(page: Page, width: int, scheme: str) -> None:
     visible_route(page, "directory")
-    require(page.locator(".directory-card").count() == len(CATALOG), "Static card count differs from catalog")
+    require(page.locator("#home-apps .directory-card").count() == len(FEATURED), "The Apps section must show only the featured apps")
+    require(page.locator("#home-apps .directory-card h3 a").all_text_contents() == [c["name"] for c in FEATURED], "Featured apps are out of order")
+    require(page.locator("#home-apps h2").inner_text() == "Apps" and page.locator("#home-apps a[href='#apps']").inner_text() == "All apps", "The Apps section needs its heading and the All apps link")
+    require(page.locator(".app-badge").count() == 0, "Cards show the status only, with no Featured badge")
+    require(all(c["name"] != "Marin Reach" for c in LISTED) and page.locator(".directory-card", has_text="Marin Reach").count() == 0, "An unlisted app has no card")
     require(page.locator("#app-nav a").count() == 0, "The header holds only the app's own tabs: no About or Updates")
     require(not page.locator("#menu-toggle").is_visible() and not page.locator("#app-nav").is_visible(), "MarinOS has no tabs, so no Menu button")
     require(page.locator("#app-nav a[href='#security']").count() == 0, "Security must not be in header")
@@ -182,7 +188,8 @@ def check_structure(page: Page, width: int, scheme: str) -> None:
         goto_route(page, route)
         if route == "projects":
             page.locator("[data-projects-table]").wait_for()
-            count = len(json.loads((ROOT / "projects.json").read_text())) + len(json.loads((ROOT / "external-projects.json").read_text()))
+            hidden_urls = {c["url"].rstrip("/") for c in CATALOG if c.get("unlisted")}  # an unlisted app's project is hidden too
+            count = len([p for p in json.loads((ROOT / "projects.json").read_text()) + json.loads((ROOT / "external-projects.json").read_text()) if p.get("url", "").rstrip("/") not in hidden_urls])
             require(page.locator("[data-projects-body] tr").count() == count, "Projects data lost")
             tabs = page.locator("[data-projects-tabs] [role=tab]")
             tabs.nth(0).focus()
@@ -199,18 +206,18 @@ def check_structure(page: Page, width: int, scheme: str) -> None:
             require(sort.locator("..").get_attribute("aria-sort") == "descending", "Shell sorting not connected")
         elif route == "status":
             page.locator("[data-status-inventory-table]").wait_for()
-            require(page.locator("[data-status-inventory-body] tr").count() == len(CATALOG), "Status inventory changed")
+            require(page.locator("[data-status-inventory-body] tr").count() == len(LISTED), "Status inventory changed")
             if scheme == "dark":
                 badge = page.locator('#status .app-status[data-status="alpha"]').first
                 require(badge.evaluate("el=>getComputedStyle(el).color") == "rgb(0, 0, 0)", "Alpha dark text is not black")
                 require(badge.evaluate("el=>getComputedStyle(el).backgroundColor") == "rgb(229, 181, 59)", "Alpha dark fill is not gold")
         elif route == "security":
             page.locator("[data-inventory-table]").wait_for()
-            require(page.locator("[data-inventory-body] tr").count() == len(CATALOG) + 1, "Security inventory must include MarinOS")
+            require(page.locator("[data-inventory-body] tr").count() == len(LISTED) + 1, "Security inventory must include MarinOS")
             page.wait_for_function("document.querySelector('[data-security-content]').textContent.includes('Built for:')")
         elif route == "accessibility":
             page.locator("[data-accessibility-table]").wait_for()
-            require(page.locator("[data-accessibility-body] tr").count() == len(CATALOG) + 1, "Platform accessibility inventory lost")
+            require(page.locator("[data-accessibility-body] tr").count() == len(LISTED) + 1, "Platform accessibility inventory lost")
             require(page.locator("[data-accessibility-body] .app-score").count() > 0, "Shared score gauge missing")
             require(page.locator("[data-accessibility-scores]").count() == 0, "An unwanted second score renderer was added")
         elif route == "updates":
@@ -336,9 +343,20 @@ class Runner:
             status = page.locator("#home-search-status").inner_text()
             require("result" in status and "\u201cbudget\u201d" in status and " / " in status, f"The count line is 'N results / matching': {status!r}")
             require(page.locator("#home-search-results .home-search__group a", has_text="Marin Budget").count() >= 1, "The search finds Marin Budget")
-            require(page.locator(".directory-grid").is_hidden(), "The grid of apps steps aside while there are results")
+            require(page.locator("#home-apps").is_hidden(), "The Apps section steps aside while there are results")
             page.keyboard.press("Escape")
-            require(page.locator(".directory-grid").is_visible() and page.locator("#home-search-status").inner_text() == "", "Escape empties the box and brings the grid back")
+            require(page.locator("#home-apps").is_visible() and page.locator("#home-search-status").inner_text() == "", "Escape empties the box and brings the grid back")
+            # The All apps page lists every listed app and the home page links to it; an unlisted app is not found anywhere.
+            page.locator("#home-apps a[href='#apps']").click()
+            visible_route(page, "apps")
+            require(page.locator("#apps .directory-card").count() == len(LISTED), "All apps must list every listed app")
+            page.locator(".app-title__link").click()
+            visible_route(page, "directory")
+            for unlisted in [c for c in CATALOG if c.get("unlisted")]:
+                page.fill("#home-search-input", unlisted["name"])
+                page.wait_for_function("document.getElementById('home-search-status').textContent.length > 0")
+                require(page.locator("#home-search-results .home-search__group a", has_text=unlisted["name"]).count() == 0, f"Search must not find the unlisted app {unlisted['name']}")
+                page.keyboard.press("Escape")
             if not self.fixture_mode:
                 # The County's places come from the list marin-data builds, and open on their page in Marin Pulse.
                 page.fill("#home-search-input", "san rafael")
@@ -377,8 +395,9 @@ class Runner:
                 page.set_content(text, wait_until="domcontentloaded")
             else:
                 page.goto(self.base, wait_until="networkidle")
-            require(page.locator(".directory-card:visible").count() == len(CATALOG), "Directory fails without JavaScript")
-            require(page.locator(".directory-card h3 a").count() == len(CATALOG), "No-JavaScript card links missing")
+            require(page.locator("#apps .directory-card:visible").count() == len(LISTED), "All apps fails without JavaScript")
+            require(page.locator("#home-apps .directory-card:visible").count() == len(FEATURED), "Featured apps fail without JavaScript")
+            require(page.locator(".directory-card h3 a").count() == len(LISTED) + len(FEATURED), "No-JavaScript card links missing")
             require(page.locator("noscript h1").is_visible(), "No-JavaScript title missing")
             require(page.locator("#home-search").is_hidden(), "The search box stays hidden without JavaScript")
             total += 1
