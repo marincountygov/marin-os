@@ -3,15 +3,29 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-meeting-meter",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/2331fd4b-478a-448c-a380-9daba26e5550",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/16a4b40d-1fe9-4775-9dc9-1df13c81b2e4",
   "creationInfo": {
     "creators": [
       "Tool: protobom-v0.0.0-20261125142108-cd5e2fd556a0+dirty",
       "Tool: GitHub.com-Dependency-Graph"
     ],
-    "created": "2026-11-25T21:50:21Z"
+    "created": "2026-11-26T02:13:23Z"
   },
   "packages": [
+    {
+      "name": "actions/setup-node",
+      "SPDXID": "SPDXRef-githubactions-actions-setup-node-7..-123477",
+      "versionInfo": "7.*.*",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:githubactions/actions/setup-node@7.%2A.%2A"
+        }
+      ]
+    },
     {
       "name": "actions/setup-python",
       "SPDXID": "SPDXRef-githubactions-actions-setup-python-7..-900e64",
@@ -41,20 +55,6 @@
       ]
     },
     {
-      "name": "actions/setup-node",
-      "SPDXID": "SPDXRef-githubactions-actions-setup-node-7..-123477",
-      "versionInfo": "7.*.*",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:githubactions/actions/setup-node@7.%2A.%2A"
-        }
-      ]
-    },
-    {
       "name": "com.github.marincountygov/marin-meeting-meter",
       "SPDXID": "SPDXRef-github-marincountygov-marin-meeting-meter-main-c3ea80",
       "versionInfo": "main",
@@ -73,17 +73,17 @@
   "relationships": [
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-meeting-meter-main-c3ea80",
-      "relatedSpdxElement": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-github-marincountygov-marin-meeting-meter-main-c3ea80",
       "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-node-7..-123477",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-meeting-meter-main-c3ea80",
       "relatedSpdxElement": "SPDXRef-githubactions-actions-setup-python-7..-900e64",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-github-marincountygov-marin-meeting-meter-main-c3ea80",
+      "relatedSpdxElement": "SPDXRef-githubactions-actions-checkout-7..-c5c952",
       "relationshipType": "DEPENDS_ON"
     },
     {

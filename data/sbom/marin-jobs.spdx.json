@@ -3,14 +3,14 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-jobs",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/f3cc7cea-4cb8-4963-ba06-d326823f8478",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/59eec296-f278-4cbc-8c26-4bc805a60a7f",
   "creationInfo": {
     "creators": [
       "Tool: protobom-v0.0.0-20261125142108-cd5e2fd556a0+dirty",
       "Tool: GitHub.com-Dependency-Graph",
       "Tool: dependabot"
     ],
-    "created": "2026-11-25T21:50:30Z"
+    "created": "2026-11-26T02:13:33Z"
   },
   "packages": [
     {

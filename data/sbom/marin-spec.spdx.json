@@ -3,7 +3,7 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-spec",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/cc5f9bd3-c4f1-4a17-a12e-8a21c2ca18d1",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/012d3f6c-3e1a-4aa5-a36b-f1f1fd084b83",
   "comment": "Exact versions could not be resolved for some packages. For more information: https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph#dependencies-included.",
   "creationInfo": {
     "creators": [
@@ -11,7 +11,7 @@
       "Tool: GitHub.com-Dependency-Graph",
       "Tool: dependabot"
     ],
-    "created": "2026-11-25T21:50:26Z"
+    "created": "2026-11-26T02:13:29Z"
   },
   "packages": [
     {

@@ -3,15 +3,30 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "com.github.marincountygov/marin-csv",
-  "documentNamespace": "https://spdx.org/spdxdocs/protobom/31794781-b969-4029-bf32-16d0be69a230",
+  "documentNamespace": "https://spdx.org/spdxdocs/protobom/81ec90d2-2af7-4ad0-ac74-363d3130c710",
   "creationInfo": {
     "creators": [
       "Tool: protobom-v0.0.0-20261125142108-cd5e2fd556a0+dirty",
       "Tool: GitHub.com-Dependency-Graph"
     ],
-    "created": "2026-11-25T21:50:25Z"
+    "created": "2026-11-26T02:13:28Z"
   },
   "packages": [
+    {
+      "name": "tabulator-tables",
+      "SPDXID": "SPDXRef-npm-tabulator-tables-6.6.1-f2902f",
+      "versionInfo": "6.6.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/tabulator-tables@6.6.1"
+        }
+      ]
+    },
     {
       "name": "papaparse",
       "SPDXID": "SPDXRef-npm-papaparse-5.7.0-a86298",
@@ -25,21 +40,6 @@
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
           "referenceLocator": "pkg:npm/papaparse@5.7.0"
-        }
-      ]
-    },
-    {
-      "name": "tabulator-tables",
-      "SPDXID": "SPDXRef-npm-tabulator-tables-6.6.1-f2902f",
-      "versionInfo": "6.6.1",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/tabulator-tables@6.6.1"
         }
       ]
     },
@@ -62,12 +62,12 @@
   "relationships": [
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-csv-main-a90973",
-      "relatedSpdxElement": "SPDXRef-npm-papaparse-5.7.0-a86298",
+      "relatedSpdxElement": "SPDXRef-npm-tabulator-tables-6.6.1-f2902f",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-github-marincountygov-marin-csv-main-a90973",
-      "relatedSpdxElement": "SPDXRef-npm-tabulator-tables-6.6.1-f2902f",
+      "relatedSpdxElement": "SPDXRef-npm-papaparse-5.7.0-a86298",
       "relationshipType": "DEPENDS_ON"
     },
     {
